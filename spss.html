@@ -1,0 +1,1887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>SPSS Navigation Path Guide – Monu Prajapati</title>
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap"
+rel="stylesheet">
+<style>
+:root{--p:#6c3fc5;--pd:#4e2b96;--g:#e84393;--a:#f5a623;--dk:#1c1c2e;--gr:#94a3b8;--gl:#ede9f8;--bg:#f6f4fb}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:var(--bg);overflow-x:hidden}
+
+/* Header */
+.hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 60%,#2d1b69
+100%);color:#fff;padding:2rem
+1rem;text-align:center;position:relative;overflow:hidden}
+.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse
+at 70% 30%,rgba(232,67,147,.18) 0%,transparent
+60%),radial-gradient(ellipse at 20% 80%,rgba(245,166,35,.10)
+0%,transparent 50%);pointer-events:none}
+.hdr-inner{position:relative;z-index:1}
+.hdr h1{font-size:clamp(1.5rem, 5vw,
+3rem);font-weight:800;margin-bottom:.5rem;letter-spacing:-1px}
+.hdr .sub{font-size:clamp(0.9rem, 3vw,
+1.2rem);opacity:.88;margin-bottom:1.5rem;padding:0 0.5rem}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.18);padding:.6rem
+1.2rem;border-radius:50px;font-weight:600;border:2px solid
+rgba(255,255,255,.25);font-size:clamp(0.8rem, 2.5vw, 0.95rem)}
+.badge-dot{width:10px;height:10px;border-radius:50%;background:var(--a);display:inline-block;animation:pulse
+2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+/* Nav */
+.nav-wrap{position:sticky;top:0;background:#fff;box-shadow:0 2px 12px
+rgba(108,63,197,.12);z-index:100;border-bottom:3px solid var(--p)}
+.nav-inner{max-width:1400px;margin:0
+auto;display:flex;align-items:stretch;position:relative}
+.burger{display:flex;background:none;border:none;cursor:pointer;padding:1rem
+1.25rem;flex-direction:column;gap:5px;flex-shrink:0;justify-content:center}
+.burger
+span{display:block;width:24px;height:2.5px;background:var(--dk);border-radius:2px;transition:all
+.3s}
+.burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg)}
+.nav{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0
+8px 24px rgba(108,63,197,.15);border-top:2px solid
+var(--p);z-index:999;max-height:80vh;overflow-y:auto}
+.nav.open{display:flex}
+.ni{padding:1rem
+1.5rem;color:var(--dk);font-weight:600;text-align:left;border-bottom:1px
+solid var(--gl);border-left:4px solid transparent;transition:all
+.3s;cursor:pointer;user-select:none;font-size:1rem;min-height:56px;display:flex;align-items:center}
+.ni:hover,.ni.active{background:var(--p);color:#fff;border-left-color:var(--a)}
+.sbtn{background:var(--p);border:none;color:#fff;font-size:1.3rem;padding:0
+1.2rem;cursor:pointer;min-width:56px;min-height:56px;transition:background
+.2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.sbtn:hover{background:var(--pd)}
+.sbtn:active{transform:scale(0.95)}
+
+/* Search overlay */
+.so{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:9000;align-items:flex-start;justify-content:center;padding:1rem;padding-top:clamp(60px,
+15vh, 100px)}
+.so.open{display:flex}
+.sb{background:#fff;border-radius:16px;width:100%;max-width:680px;box-shadow:0
+20px 60px
+rgba(108,63,197,.25);overflow:hidden;max-height:85vh;display:flex;flex-direction:column}
+.siw{display:flex;align-items:center;padding:1rem
+1.25rem;border-bottom:2px solid var(--gl);gap:.75rem;flex-shrink:0}
+.siw span{font-size:1.3rem}
+.si{flex:1;border:none;outline:none;font-size:clamp(0.95rem, 3vw,
+1.1rem);font-family:inherit;color:var(--dk);min-width:0}
+.sc{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--gr);padding:0.5rem;min-width:44px;min-height:44px;display:flex;align-items:center;justify-content:center}
+.sr{flex:1;overflow-y:auto;padding:.5rem 0;-webkit-overflow-scrolling:touch}
+.sri{padding:.9rem 1.25rem;cursor:pointer;border-bottom:1px solid
+var(--gl);transition:background .15s;min-height:60px}
+.sri:hover,.sri:active{background:#f5f0ff}
+.sri:last-child{border-bottom:none}
+.rt{font-weight:700;color:var(--p);font-size:clamp(0.9rem, 2.5vw,
+0.95rem);word-wrap:break-word}
+.rs{font-size:clamp(0.75rem, 2vw, 0.8rem);color:var(--gr);margin-top:2px}
+.rd{font-size:clamp(0.8rem, 2.2vw,
+0.875rem);color:var(--dk);margin-top:3px;word-wrap:break-word}
+.se{padding:2rem
+1rem;text-align:center;color:var(--gr);font-size:clamp(0.9rem, 2.5vw,
+1rem)}
+
+/* Container */
+.ctr{max-width:1400px;margin:0 auto;padding:2rem 1rem}
+.section{display:none;animation:fi .4s ease}
+.section.active{display:block}
+@keyframes
+fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.section-title{font-size:clamp(1.5rem, 5vw,
+2.5rem);font-weight:800;margin-bottom:.5rem;word-wrap:break-word}
+.section-desc{font-size:clamp(0.95rem, 3vw,
+1.1rem);color:var(--gr);margin-bottom:2rem;line-height:1.5}
+
+/* Category */
+.category{margin-bottom:2.5rem}
+.category-title{font-size:clamp(1.2rem, 4vw,
+1.6rem);font-weight:700;margin-bottom:1.5rem;padding-bottom:.5rem;border-bottom:3px
+solid var(--p);display:inline-block;word-wrap:break-word}
+
+/* Cards */
+.card-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;margin-bottom:2rem}
+.path-card{background:#fff;border-radius:14px;padding:1.25rem;box-shadow:0
+2px 10px rgba(108,63,197,.08);transition:all .3s;border:2px solid
+transparent}
+.path-card:active{transform:scale(0.98);box-shadow:0 4px 16px
+rgba(108,63,197,.12)}
+.path-card h4{font-size:clamp(0.95rem, 3vw,
+1.05rem);font-weight:700;color:var(--p);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;word-wrap:break-word}
+.path-card h4::before{content:'▸';color:var(--g);flex-shrink:0}
+.path-card p{color:#555;margin-bottom:.9rem;font-size:clamp(0.85rem,
+2.5vw, 0.92rem);line-height:1.6}
+
+/* Path display (breadcrumb style) */
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:0;background:linear-gradient(135deg,#f5f0ff,#ede9f8);border-radius:10px;padding:.6rem
+.8rem;font-size:clamp(0.75rem, 2vw, 0.85rem);border:1.5px solid
+var(--gl);margin-bottom:.5rem}
+.path-step{font-family:'Fira
+Code',monospace;font-weight:600;color:var(--pd);background:#fff;padding:.2rem
+.45rem;border-radius:6px;border:1px solid
+#c9b8f0;white-space:nowrap;margin:2px}
+.path-arrow{color:var(--g);font-size:clamp(0.85rem, 2.2vw, 1rem);margin:0
+2px;font-weight:700;flex-shrink:0}
+.path-note{font-size:clamp(0.75rem, 2vw,
+0.78rem);color:var(--gr);margin-top:.4rem;font-style:italic;line-height:1.4}
+
+/* Multi-path */
+.multi-path{margin-bottom:.45rem}
+.multi-path-label{font-size:clamp(0.7rem, 2vw,
+0.75rem);font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+
+/* Dialog steps */
+.dialog-steps{list-style:none;counter-reset:steps;margin:.4rem 0
+.2rem;padding:0}
+.dialog-steps
+li{counter-increment:steps;display:flex;align-items:flex-start;gap:.6rem;font-size:clamp(0.82rem,
+2.3vw,
+0.87rem);color:#444;margin-bottom:.4rem;line-height:1.5;word-wrap:break-word}
+.dialog-steps
+li::before{content:counter(steps);background:var(--p);color:#fff;border-radius:50%;min-width:22px;width:22px;height:22px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-size:clamp(0.65rem,
+2vw, 0.7rem);font-weight:700;margin-top:.05rem}
+.dialog-steps li strong{color:var(--pd)}
+.dialog-steps li em{color:var(--g);font-style:normal;font-weight:600}
+
+/* Info boxes */
+.info-box,.warning-box,.success-box{padding:1rem;border-radius:12px;margin:1.5rem
+0;font-size:clamp(0.85rem, 2.5vw, 0.92rem);line-height:1.6}
+.info-box{background:linear-gradient(135deg,#ede9f8,#ddd6f3);border-left:4px
+solid var(--p)}
+.warning-box{background:linear-gradient(135deg,#fff8e8,#fef3c7);border-left:4px
+solid var(--a)}
+.success-box{background:linear-gradient(135deg,#fce4ef,#fce7f3);border-left:4px
+solid var(--g)}
+.box-title{font-weight:700;margin-bottom:.4rem;font-size:clamp(0.9rem,
+2.5vw, 0.95rem)}
+
+/* Tables */
+.table-container{overflow-x:auto;margin:1.5rem
+0;border-radius:12px;box-shadow:0 2px 10px
+rgba(108,63,197,.09);-webkit-overflow-scrolling:touch}
+table{width:100%;border-collapse:collapse;background:#fff;min-width:500px}
+th{background:var(--p);color:#fff;padding:.8rem
+.7rem;text-align:left;font-weight:600;font-size:clamp(0.8rem, 2.2vw,
+0.9rem)}
+td{padding:.75rem .7rem;border-bottom:1px solid
+var(--gl);font-size:clamp(0.8rem, 2.2vw, 0.9rem);word-wrap:break-word}
+tr:last-child td{border-bottom:none}
+td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.1rem
+.4rem;border-radius:4px;font-size:clamp(0.75rem, 2vw,
+0.82rem);color:var(--pd)}
+
+/* Footer */
+.footer{background:var(--dk);color:#fff;padding:2rem
+1rem;margin-top:3rem;text-align:center}
+.fc{max-width:800px;margin:0 auto}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1rem;margin:1.5rem
+0}
+.cc2{background:rgba(255,255,255,.08);padding:1.25rem
+.8rem;border-radius:12px;border:2px solid
+rgba(255,255,255,.15);transition:all .3s}
+.cc2:active{background:rgba(255,255,255,.13);transform:scale(0.97)}
+.cc2 .ico{font-size:clamp(1.5rem, 4vw, 2rem);margin-bottom:.5rem}
+.cc2 .lbl{font-size:clamp(0.75rem, 2vw,
+0.875rem);opacity:.75;margin-bottom:.25rem}
+.cc2 .val{font-size:clamp(0.9rem, 2.5vw, 1.05rem);font-weight:600}
+
+/* Scroll top */
+.stb{position:fixed;bottom:1.5rem;right:1.5rem;width:50px;height:50px;background:var(--p);color:#fff;border:none;border-radius:50%;font-size:1.5rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0
+4px 16px rgba(108,63,197,.4);transition:all
+.3s;z-index:1000;touch-action:manipulation}
+.stb.vis{display:flex}
+.stb:active{background:var(--pd);transform:scale(0.9)}
+
+/* Desktop improvements */
+@media(min-width:769px){
+  .hdr{padding:3rem 2rem}
+  .burger{display:none}
+  .nav{display:flex;flex-direction:row;position:static;box-shadow:none;border:none;flex:1;overflow-x:auto;max-height:none}
+  .nav::-webkit-scrollbar{height:4px}
+  .nav::-webkit-scrollbar-track{background:transparent}
+  .nav::-webkit-scrollbar-thumb{background:var(--gl);border-radius:4px}
+  .ni{flex:1;min-width:110px;padding:1.1rem
+.7rem;text-align:center;border-bottom:3px solid
+transparent;border-left:none;font-size:.82rem;white-space:nowrap}
+  .ni:hover,.ni.active{background:var(--p);color:#fff;border-bottom-color:var(--a);border-left-color:transparent}
+  .ctr{padding:3rem 2rem}
+  .card-grid{grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.5rem}
+  .path-card:hover{transform:translateY(-4px);box-shadow:0 10px 28px
+rgba(108,63,197,.18);border-color:var(--p)}
+  .stb{bottom:2rem;right:2rem}
+  .stb:hover{background:var(--pd);transform:translateY(-4px)}
+  .cc2:hover{background:rgba(255,255,255,.13);transform:translateY(-4px)}
+  table{min-width:auto}
+}
+
+/* Large tablet */
+@media(min-width:600px) and (max-width:768px){
+  .card-grid{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+}
+
+/* Improve touch targets on mobile */
+@media(max-width:768px){
+  button,a,.ni,.sri,.path-card{-webkit-tap-highlight-color:rgba(108,63,197,0.1)}
+}
+
+/* Landscape mobile fixes */
+@media(max-height:500px) and (orientation:landscape){
+  .hdr{padding:1.5rem 1rem}
+  .badge{padding:.4rem 1rem;font-size:0.8rem}
+  .nav{max-height:70vh}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="hdr">
+  <div class="hdr-inner">
+    <h1>📊 SPSS Navigation Guide</h1>
+    <p class="sub">Menu Paths, Dialogs & Step-by-Step Navigation — No Code
+Required</p>
+    <div class="badge"><span class="badge-dot"></span> SPSS Statistics
+v25–v29 Compatible</div>
+  </div>
+</header>
+
+<!-- NAV -->
+<div class="nav-wrap">
+  <div class="nav-inner">
+    <button class="burger" id="burger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav" id="mainNav">
+      <div class="ni active" onclick="showSection('data-management')">🗄️
+Data Mgmt</div>
+      <div class="ni" onclick="showSection('descriptive')">📊
+Descriptive</div>
+      <div class="ni" onclick="showSection('regression')">📈 Regression</div>
+      <div class="ni" onclick="showSection('comparison')">⚖️ Comparison</div>
+      <div class="ni" onclick="showSection('nonparametric')">🔢
+Non-Param</div>
+      <div class="ni" onclick="showSection('reliability')">🔬
+Reliability</div>
+      <div class="ni" onclick="showSection('factor')">🧮 Factor</div>
+      <div class="ni" onclick="showSection('charts')">🎨 Charts</div>
+      <div class="ni" onclick="showSection('output')">📄 Output</div>
+    </div>
+    <button class="sbtn" onclick="openSearch()" title="Search"
+aria-label="Search">🔍</button>
+  </div>
+</div>
+
+<!-- SEARCH OVERLAY -->
+<div class="so" id="searchOverlay" onclick="closeSearchOut(event)">
+  <div class="sb" onclick="event.stopPropagation()">
+    <div class="siw">
+      <span>🔍</span>
+      <input class="si" id="searchInput" placeholder="Search paths,
+analyses, dialogs…" oninput="runSearch()" autocomplete="off">
+      <button class="sc" onclick="closeSearch()" aria-label="Close
+search">✕</button>
+    </div>
+    <div class="sr" id="searchResults"><div class="se">Start typing to
+search…</div></div>
+  </div>
+</div>
+
+<div class="ctr">
+
+<!-- ============================================================ -->
+<!-- 1. DATA MANAGEMENT -->
+<!-- ============================================================ -->
+<div class="section active" id="data-management">
+  <div class="section-title">🗄️ Data Management</div>
+  <p class="section-desc">Opening files, editing data, transforming
+variables, and managing datasets via SPSS menus.</p>
+
+  <div class="category">
+    <div class="category-title">📂 Opening & Saving Files</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Open Data File</h4>
+        <p>Import an existing SPSS or Excel dataset into the Data Editor.</p>
+        <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span
+class="path-step">Open</span><span
+class="path-arrow">›</span><span
+class="path-step">Data…</span></div>
+        <ul class="dialog-steps">
+          <li>Browse to your file location</li>
+          <li>Change <strong>Files of type</strong> to match format (e.g.,
+<em>Excel</em>, <em>CSV</em>, <em>.sav</em>)</li>
+          <li>Click <strong>Open</strong></li>
+          <li>For Excel: check <em>Read variable names from first row</em>
+→ OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Save / Save As</h4>
+        <p>Save your dataset in SPSS format (.sav) or export to another
+format.</p>
+        <div class="multi-path">
+          <div class="multi-path-label">Save (same file)</div>
+          <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span
+class="path-step">Save</span></div>
+        </div>
+        <div class="multi-path">
+          <div class="multi-path-label">Save as new name/format</div>
+          <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">Save
+As…</span></div>
+        </div>
+        <p class="path-note">Select save type: SPSS (.sav), Excel, CSV,
+etc.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Import CSV / Text File</h4>
+        <p>Read delimited text files with SPSS's Text Import Wizard.</p>
+        <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">Import
+Data</span><span class="path-arrow">›</span><span
+class="path-step">CSV Data…</span></div>
+        <ul class="dialog-steps">
+          <li>Select your .csv file → Next</li>
+          <li>Confirm delimiter type (comma, tab, space)</li>
+          <li>Check <em>Variable names at top of file</em> if applicable</li>
+          <li>Click <strong>Finish</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Import Excel File</h4>
+        <p>Open .xlsx or .xls files directly into SPSS.</p>
+        <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">Import
+Data</span><span class="path-arrow">›</span><span
+class="path-step">Excel…</span></div>
+        <ul class="dialog-steps">
+          <li>Select your Excel file</li>
+          <li>Choose the correct <strong>Worksheet</strong> from
+dropdown</li>
+          <li>Check <em>Read variable names from first row of data</em></li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">🔧 Transforming Variables</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Compute New Variable</h4>
+        <p>Create a new variable using arithmetic, functions, or logical
+expressions.</p>
+        <div class="path"><span class="path-step">Transform</span><span
+class="path-arrow">›</span><span class="path-step">Compute
+Variable…</span></div>
+        <ul class="dialog-steps">
+          <li>Enter a name in <strong>Target Variable</strong></li>
+          <li>Build expression in <em>Numeric Expression</em> box using
+variable list and function buttons</li>
+          <li>Optionally click <strong>If…</strong> to apply a condition</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Recode Into Same Variable</h4>
+        <p>Change existing values of a variable in place.</p>
+        <div class="path"><span class="path-step">Transform</span><span
+class="path-arrow">›</span><span class="path-step">Recode into
+Same Variables…</span></div>
+        <ul class="dialog-steps">
+          <li>Move target variable(s) to <em>Variables</em> box</li>
+          <li>Click <strong>Old and New Values…</strong></li>
+          <li>Enter each old value → new value pair → <em>Add</em></li>
+          <li>Click <strong>Continue</strong> → <strong>OK</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Recode Into Different Variable</h4>
+        <p>Recode a variable into a new variable (preserves original).</p>
+        <div class="path"><span class="path-step">Transform</span><span
+class="path-arrow">›</span><span class="path-step">Recode into
+Different Variables…</span></div>
+        <ul class="dialog-steps">
+          <li>Move source variable to <em>Input Variable → Output
+Variable</em></li>
+          <li>Enter a <strong>Name</strong> for the new variable →
+<em>Change</em></li>
+          <li>Click <strong>Old and New Values…</strong> and define
+mappings</li>
+          <li>Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Visual Binning (Categorize)</h4>
+        <p>Group a continuous variable into categories visually.</p>
+        <div class="path"><span class="path-step">Transform</span><span
+class="path-arrow">›</span><span class="path-step">Visual
+Binning…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variable into <em>Variables to Bin</em> → Continue</li>
+          <li>Enter a <strong>Binned Variable Name</strong></li>
+          <li>Click <em>Make Cutpoints…</em> or drag boundaries on
+histogram</li>
+          <li>Assign category <strong>Labels</strong> → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Sort Cases</h4>
+        <p>Sort all rows in ascending or descending order by one or more
+variables.</p>
+        <div class="path"><span class="path-step">Data</span><span
+class="path-arrow">›</span><span class="path-step">Sort
+Cases…</span></div>
+        <ul class="dialog-steps">
+          <li>Move sort key variable(s) to <em>Sort by</em></li>
+          <li>Choose <strong>Ascending</strong> or
+<strong>Descending</strong> for each key</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Select Cases (Filter)</h4>
+        <p>Restrict analysis to a subset of cases matching a condition.</p>
+        <div class="path"><span class="path-step">Data</span><span
+class="path-arrow">›</span><span class="path-step">Select
+Cases…</span></div>
+        <ul class="dialog-steps">
+          <li>Choose <em>If condition is satisfied</em> → click
+<strong>If…</strong></li>
+          <li>Enter logical condition (e.g., <em>age &gt; 18</em>)</li>
+          <li>Choose action: <em>Filter</em> (keeps all) or
+<em>Delete</em></li>
+          <li>Continue → OK</li>
+        </ul>
+        <p class="path-note">Filtered-out rows show a slash through row
+number. Reset via Data › Select Cases › All Cases.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Split File (Group Analysis)</h4>
+        <p>Run analyses separately for each group without filtering.</p>
+        <div class="path"><span class="path-step">Data</span><span
+class="path-arrow">›</span><span class="path-step">Split
+File…</span></div>
+        <ul class="dialog-steps">
+          <li>Select <em>Compare groups</em> or <em>Organize output by
+groups</em></li>
+          <li>Move grouping variable to <em>Groups Based on</em></li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">Always reset: Data › Split File › Analyze all
+cases when done.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Merge / Add Cases or Variables</h4>
+        <p>Combine two datasets by stacking rows or adding columns.</p>
+        <div class="multi-path">
+          <div class="multi-path-label">Add rows (cases)</div>
+          <div class="path"><span class="path-step">Data</span><span
+class="path-arrow">›</span><span class="path-step">Merge
+Files</span><span class="path-arrow">›</span><span
+class="path-step">Add Cases…</span></div>
+        </div>
+        <div class="multi-path">
+          <div class="multi-path-label">Add columns (variables)</div>
+          <div class="path"><span class="path-step">Data</span><span
+class="path-arrow">›</span><span class="path-step">Merge
+Files</span><span class="path-arrow">›</span><span
+class="path-step">Add Variables…</span></div>
+        </div>
+      </div>
+
+      <div class="path-card">
+        <h4>Variable Properties & Labels</h4>
+        <p>Set variable labels, value labels, measure type, and missing
+values.</p>
+        <div class="path"><span class="path-step">Data Editor</span><span
+class="path-arrow">›</span><span class="path-step">Variable View
+tab</span></div>
+        <ul class="dialog-steps">
+          <li>Click the <em>Label</em> cell to add a descriptive label</li>
+          <li>Click the <em>Values</em> cell → <strong>…</strong> button →
+enter code + label pairs</li>
+          <li>Click <em>Missing</em> cell → define user-missing values</li>
+          <li>Set <em>Measure</em>: Nominal, Ordinal, or Scale</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="warning-box">
+    <div class="box-title">⚠️ Always Check Variable View First</div>
+    Before running analyses, switch to <strong>Variable View</strong> (tab
+at bottom of Data Editor) to confirm variables have correct
+measurement levels (Scale/Ordinal/Nominal). Wrong levels can cause
+incorrect analysis options to appear.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 2. DESCRIPTIVE STATISTICS -->
+<!-- ============================================================ -->
+<div class="section" id="descriptive">
+  <div class="section-title">📊 Descriptive Statistics</div>
+  <p class="section-desc">Summarize and explore your data using frequency
+tables, descriptives, crosstabs, and explore.</p>
+
+  <div class="category">
+    <div class="category-title">📋 Summary Statistics</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Descriptive Statistics (Mean, SD, etc.)</h4>
+        <p>Get mean, std. deviation, min, max, range, and more for scale
+variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Descriptive
+Statistics</span><span class="path-arrow">›</span><span
+class="path-step">Descriptives…</span></div>
+        <ul class="dialog-steps">
+          <li>Move scale variables to <em>Variable(s)</em></li>
+          <li>Click <strong>Options…</strong> → check: Mean, Std.
+deviation, Minimum, Maximum, Skewness, Kurtosis</li>
+          <li>Continue → OK</li>
+        </ul>
+        <p class="path-note">Output: Descriptive Statistics table in
+Output Viewer.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Frequencies (Counts & %)</h4>
+        <p>Get count and percentage tables, ideal for categorical
+variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Descriptive
+Statistics</span><span class="path-arrow">›</span><span
+class="path-step">Frequencies…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variable(s)</em> box</li>
+          <li>Click <strong>Statistics…</strong> → check Mean, Median,
+Mode, Std. Deviation, Percentiles as needed → Continue</li>
+          <li>Click <strong>Charts…</strong> → choose Bar/Histogram if
+desired → Continue</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Explore (Detailed with Normality Tests)</h4>
+        <p>Deep descriptive summary including outlier detection and
+normality tests.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Descriptive
+Statistics</span><span class="path-arrow">›</span><span
+class="path-step">Explore…</span></div>
+        <ul class="dialog-steps">
+          <li>Move continuous variable(s) to <em>Dependent List</em></li>
+          <li>Optionally move grouping variable to <em>Factor List</em></li>
+          <li>Click <strong>Statistics…</strong> → check <em>Descriptives,
+Outliers</em> → Continue</li>
+          <li>Click <strong>Plots…</strong> → check <em>Normality plots
+with tests</em>, <em>Stem-and-leaf</em> → Continue → OK</li>
+        </ul>
+        <p class="path-note">Produces Shapiro-Wilk and Kolmogorov-Smirnov
+normality tests.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Crosstabulation</h4>
+        <p>Two-way frequency table for two categorical variables (with
+Chi-Square option).</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Descriptive
+Statistics</span><span class="path-arrow">›</span><span
+class="path-step">Crosstabs…</span></div>
+        <ul class="dialog-steps">
+          <li>Move one variable to <em>Row(s)</em> and another to
+<em>Column(s)</em></li>
+          <li>Click <strong>Statistics…</strong> → check
+<em>Chi-square</em>, <em>Phi and Cramer's V</em> → Continue</li>
+          <li>Click <strong>Cells…</strong> → check <em>Row, Column,
+Total</em> percentages → Continue</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Case Summaries</h4>
+        <p>List individual case values with optional group subtotals.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Reports</span><span
+class="path-arrow">›</span><span class="path-step">Case
+Summaries…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to display into <em>Variables</em></li>
+          <li>Move grouping variable to <em>Grouping Variables</em>
+(optional)</li>
+          <li>Check <em>Statistics</em> for subtotals → Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Compare Means (Group Means Table)</h4>
+        <p>See mean, std. deviation and count broken down by a grouping
+variable.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Compare
+Means</span><span class="path-arrow">›</span><span
+class="path-step">Means…</span></div>
+        <ul class="dialog-steps">
+          <li>Move the continuous variable to <em>Dependent List</em></li>
+          <li>Move grouping variable to <em>Independent List</em></li>
+          <li>Click <strong>Options…</strong> → select statistics →
+Continue → OK</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="info-box">
+    <div class="box-title">ℹ️ Choosing the Right Summary Tool</div>
+    Use <strong>Frequencies</strong> for nominal/ordinal variables. Use
+<strong>Descriptives</strong> for scale variables when you just need
+means and SDs quickly. Use <strong>Explore</strong> when you need
+normality tests before parametric analyses.
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 3. REGRESSION -->
+<!-- ============================================================ -->
+<div class="section" id="regression">
+  <div class="section-title">📈 Regression Analysis</div>
+  <p class="section-desc">Run linear, logistic, and other regression
+models through SPSS menus.</p>
+
+  <div class="category">
+    <div class="category-title">📉 Linear Regression</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Simple / Multiple Linear Regression</h4>
+        <p>Predict a continuous outcome from one or more
+continuous/categorical predictors.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span
+class="path-step">Linear…</span></div>
+        <ul class="dialog-steps">
+          <li>Move outcome (DV) to <em>Dependent</em></li>
+          <li>Move predictor(s) to <em>Independent(s)</em></li>
+          <li>Choose <strong>Method</strong>: Enter, Stepwise, Forward,
+Backward</li>
+          <li>Click <strong>Statistics…</strong> → check: <em>Estimates,
+Model fit, R squared change, Descriptives, Collinearity
+diagnostics</em> → Continue</li>
+          <li>Click <strong>Plots…</strong> → add <em>ZRESID vs
+ZPRED</em>, check <em>Normal probability plot</em> → Continue →
+OK</li>
+        </ul>
+        <p class="path-note">Output includes: Model Summary (R², adjusted
+R²), ANOVA table, Coefficients table with B, Beta, t, Sig.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Hierarchical Regression (Block Entry)</h4>
+        <p>Enter predictors in ordered blocks to test incremental variance
+explained.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span
+class="path-step">Linear…</span></div>
+        <ul class="dialog-steps">
+          <li>Add Block 1 predictors to <em>Independent(s)</em></li>
+          <li>Click <strong>Next</strong> to create Block 2 → add second
+set</li>
+          <li>Under Statistics…, check <em>R squared change</em></li>
+          <li>Continue → OK</li>
+        </ul>
+        <p class="path-note">Each block's ΔR² and F-change significance
+will appear in Model Summary.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Regression Diagnostics</h4>
+        <p>Check residuals, leverage, influence, and multicollinearity.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span
+class="path-step">Linear…</span><span
+class="path-arrow">›</span><span
+class="path-step">Save…</span></div>
+        <ul class="dialog-steps">
+          <li>Under <em>Residuals</em>: check <em>Standardized,
+Studentized</em></li>
+          <li>Under <em>Distances</em>: check <em>Cook's, Leverage
+values</em></li>
+          <li>Under <em>Influence Statistics</em>: check
+<em>DfBeta(s)</em></li>
+          <li>Continue → OK (saved as new variables in dataset)</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">🔀 Logistic & Other Regression</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Binary Logistic Regression</h4>
+        <p>Predict a binary (0/1) outcome from continuous or categorical
+predictors.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span class="path-step">Binary
+Logistic…</span></div>
+        <ul class="dialog-steps">
+          <li>Move binary DV to <em>Dependent</em></li>
+          <li>Move predictors to <em>Covariates</em></li>
+          <li>For categorical predictors: click
+<strong>Categorical…</strong> → move to <em>Categorical
+Covariates</em> → set contrast type → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>CI for
+Exp(B)</em>, <em>Hosmer-Lemeshow goodness of fit</em> → Continue
+→ OK</li>
+        </ul>
+        <p class="path-note">Output: Variables in Equation table with
+Exp(B) = Odds Ratios and 95% CI.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Ordinal Logistic Regression</h4>
+        <p>Model an ordinal outcome (e.g., Likert scale ratings).</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span
+class="path-step">Ordinal…</span></div>
+        <ul class="dialog-steps">
+          <li>Move ordinal DV to <em>Dependent</em></li>
+          <li>Move continuous predictors to <em>Covariate(s)</em></li>
+          <li>Move categorical predictors to <em>Factor(s)</em></li>
+          <li>Under <strong>Output…</strong>: check parameter estimates,
+goodness of fit → Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Curve Estimation (Non-linear Trend)</h4>
+        <p>Fit various functional forms (linear, quadratic, logarithmic,
+etc.) to your data.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Regression</span><span
+class="path-arrow">›</span><span class="path-step">Curve
+Estimation…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV to <em>Dependent(s)</em> and IV to <em>Independent
+Variable</em></li>
+          <li>Check desired model types: <em>Linear, Quadratic, Cubic,
+Logarithmic, etc.</em></li>
+          <li>Check <em>Plot models</em> for a visual comparison</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 4. COMPARISON TESTS -->
+<!-- ============================================================ -->
+<div class="section" id="comparison">
+  <div class="section-title">⚖️ Group Comparison Tests</div>
+  <p class="section-desc">Compare means across groups using t-tests,
+ANOVA, and related procedures.</p>
+
+  <div class="category">
+    <div class="category-title">🔬 T-Tests</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>One-Sample T-Test</h4>
+        <p>Test whether a sample mean differs from a known / hypothesized
+value.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Compare
+Means</span><span class="path-arrow">›</span><span
+class="path-step">One-Sample T Test…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variable to <em>Test Variable(s)</em></li>
+          <li>Enter the hypothesized value in <strong>Test Value</strong>
+field</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">Output: t-statistic, df, Sig. (2-tailed), and
+Mean Difference with 95% CI.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Independent Samples T-Test</h4>
+        <p>Compare means of two independent groups.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Compare
+Means</span><span class="path-arrow">›</span><span
+class="path-step">Independent-Samples T Test…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV to <em>Test Variable(s)</em></li>
+          <li>Move grouping variable to <em>Grouping Variable</em></li>
+          <li>Click <strong>Define Groups…</strong> → enter values for
+Group 1 and Group 2 → Continue</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">Check Levene's Test: if Sig. &lt; .05, use
+"Equal variances not assumed" row.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Paired Samples T-Test</h4>
+        <p>Compare means from the same subjects measured twice (pre-post,
+matched pairs).</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Compare
+Means</span><span class="path-arrow">›</span><span
+class="path-step">Paired-Samples T Test…</span></div>
+        <ul class="dialog-steps">
+          <li>Click the first variable in the list, then Ctrl+click the
+second</li>
+          <li>Move the pair to <em>Paired Variables</em></li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">Output shows paired differences mean, SD, t,
+df, and Sig.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">📊 ANOVA</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>One-Way ANOVA</h4>
+        <p>Compare means across three or more independent groups.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Compare
+Means</span><span class="path-arrow">›</span><span
+class="path-step">One-Way ANOVA…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV(s) to <em>Dependent List</em></li>
+          <li>Move grouping variable to <em>Factor</em></li>
+          <li>Click <strong>Post Hoc…</strong> → check <em>Tukey</em>
+(equal variances) or <em>Games-Howell</em> (unequal) →
+Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive,
+Homogeneity of variance test, Welch</em> → Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Two-Way (Factorial) ANOVA</h4>
+        <p>Test main effects and interaction of two independent variables
+on a continuous DV.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">General Linear
+Model</span><span class="path-arrow">›</span><span
+class="path-step">Univariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV to <em>Dependent Variable</em></li>
+          <li>Move both IVs to <em>Fixed Factor(s)</em></li>
+          <li>Click <strong>Plots…</strong> → set up a profile plot → Add
+→ Continue</li>
+          <li>Click <strong>Post Hoc…</strong> → select factors → check
+<em>Tukey</em> → Continue → OK</li>
+        </ul>
+        <p class="path-note">Interaction term (AxB) is automatically
+included. Check Sig. column for each effect.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Repeated Measures ANOVA</h4>
+        <p>Compare means from the same participants across multiple time
+points or conditions.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">General Linear
+Model</span><span class="path-arrow">›</span><span
+class="path-step">Repeated Measures…</span></div>
+        <ul class="dialog-steps">
+          <li>Enter a <strong>Within-Subject Factor Name</strong> and
+<em>Number of Levels</em> → Add → Define</li>
+          <li>Move time-point variables to <em>Within-Subjects
+Variables</em> slots</li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive
+statistics, Estimates of effect size</em> → Continue</li>
+          <li>Click <strong>Plots…</strong> → profile plot → Continue →
+OK</li>
+        </ul>
+        <p class="path-note">Check Mauchly's Test of Sphericity. If
+violated (p &lt; .05) use Greenhouse-Geisser correction.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>ANCOVA (Covariate Control)</h4>
+        <p>Compare group means while controlling for a continuous
+covariate.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">General Linear
+Model</span><span class="path-arrow">›</span><span
+class="path-step">Univariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV to <em>Dependent Variable</em></li>
+          <li>Move grouping variable to <em>Fixed Factor(s)</em></li>
+          <li>Move covariate(s) to <em>Covariate(s)</em></li>
+          <li>Options: check <em>Descriptive statistics, Homogeneity
+tests</em> → Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>MANOVA (Multiple DVs)</h4>
+        <p>Test group differences on two or more dependent variables
+simultaneously.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">General Linear
+Model</span><span class="path-arrow">›</span><span
+class="path-step">Multivariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move all DVs to <em>Dependent Variables</em></li>
+          <li>Move grouping variable to <em>Fixed Factor(s)</em></li>
+          <li>Options: check <em>Descriptive statistics, Estimates of
+effect size</em> → Continue → OK</li>
+        </ul>
+        <p class="path-note">Report Wilks' Lambda from the Multivariate
+Tests table.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 5. NON-PARAMETRIC TESTS -->
+<!-- ============================================================ -->
+<div class="section" id="nonparametric">
+  <div class="section-title">🔢 Non-Parametric Tests</div>
+  <p class="section-desc">Distribution-free alternatives when normality or
+other parametric assumptions are violated.</p>
+
+  <div class="card-grid">
+
+    <div class="path-card">
+      <h4>Mann-Whitney U Test</h4>
+      <p>Non-parametric alternative to the independent samples t-test.</p>
+      <div class="multi-path">
+        <div class="multi-path-label">Legacy dialog</div>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span class="path-step">2 Independent
+Samples…</span></div>
+      </div>
+      <ul class="dialog-steps">
+        <li>Move test variable to <em>Test Variable List</em></li>
+        <li>Move grouping variable to <em>Grouping Variable</em> → Define
+Groups (enter values)</li>
+        <li>Check <em>Mann-Whitney U</em> under Test Type → OK</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Wilcoxon Signed-Rank Test</h4>
+      <p>Non-parametric paired test (alternative to paired t-test).</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span class="path-step">2 Related
+Samples…</span></div>
+      <ul class="dialog-steps">
+        <li>Select both variables → move the pair to <em>Test Pairs</em></li>
+        <li>Check <em>Wilcoxon</em> under Test Type → OK</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Kruskal-Wallis Test</h4>
+      <p>Non-parametric alternative to one-way ANOVA (3+ independent
+groups).</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span class="path-step">K Independent
+Samples…</span></div>
+      <ul class="dialog-steps">
+        <li>Move test variable to <em>Test Variable List</em></li>
+        <li>Move grouping variable to <em>Grouping Variable</em> → Define
+Range → Continue</li>
+        <li>Check <em>Kruskal-Wallis H</em> → OK</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Friedman Test</h4>
+      <p>Non-parametric alternative to one-way repeated measures ANOVA.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span class="path-step">K Related
+Samples…</span></div>
+      <ul class="dialog-steps">
+        <li>Move all repeated-measure variables to <em>Test
+Variables</em></li>
+        <li>Check <em>Friedman</em> under Test Type → OK</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Chi-Square Goodness-of-Fit</h4>
+      <p>Test whether an observed frequency distribution matches expected
+proportions.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span
+class="path-step">Chi-Square…</span></div>
+      <ul class="dialog-steps">
+        <li>Move categorical variable to <em>Test Variable List</em></li>
+        <li>Under <em>Expected Values</em>: choose <em>All categories
+equal</em> or enter specific expected values</li>
+        <li>Click <strong>OK</strong></li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Binomial Test</h4>
+      <p>Test whether the proportion of a binary variable matches a
+specified proportion.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Nonparametric
+Tests</span><span class="path-arrow">›</span><span
+class="path-step">Legacy Dialogs</span><span
+class="path-arrow">›</span><span
+class="path-step">Binomial…</span></div>
+      <ul class="dialog-steps">
+        <li>Move binary variable to <em>Test Variable List</em></li>
+        <li>Enter <strong>Test Proportion</strong> (e.g., 0.5 for 50/50)</li>
+        <li>Click <strong>OK</strong></li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="success-box">
+    <div class="box-title">✅ Automated Nonparametric Tests (SPSS v21+)</div>
+    Use <strong>Analyze › Nonparametric Tests › One Sample / Related
+Samples / Independent Samples…</strong> for a guided wizard that
+automatically selects the appropriate test based on your data — no
+need to remember which legacy dialog to use!
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 6. RELIABILITY & SCALE ANALYSIS -->
+<!-- ============================================================ -->
+<div class="section" id="reliability">
+  <div class="section-title">🔬 Reliability & Scale Analysis</div>
+  <p class="section-desc">Assess internal consistency of questionnaire
+scales and explore scale structure.</p>
+
+  <div class="card-grid">
+
+    <div class="path-card">
+      <h4>Reliability Analysis (Cronbach's α)</h4>
+      <p>Measure internal consistency of a multi-item scale.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Scale</span><span
+class="path-arrow">›</span><span class="path-step">Reliability
+Analysis…</span></div>
+      <ul class="dialog-steps">
+        <li>Move all scale items to <em>Items</em></li>
+        <li>Keep Model as <em>Alpha</em> (Cronbach's)</li>
+        <li>Click <strong>Statistics…</strong> → check: <em>Item, Scale,
+Scale if item deleted, Correlations, Inter-item</em> →
+Continue</li>
+        <li>Click <strong>OK</strong></li>
+      </ul>
+      <p class="path-note">Target: α ≥ .70 (acceptable); α ≥ .80 (good).
+Check "Cronbach's Alpha if Item Deleted" to identify weak items.</p>
+    </div>
+
+    <div class="path-card">
+      <h4>Inter-Rater Reliability (ICC)</h4>
+      <p>Assess agreement between raters using Intraclass Correlation
+Coefficient.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Scale</span><span
+class="path-arrow">›</span><span class="path-step">Reliability
+Analysis…</span></div>
+      <ul class="dialog-steps">
+        <li>Move rater variables to <em>Items</em></li>
+        <li>Change <em>Model</em> to <strong>Intraclass correlation
+coefficient</strong></li>
+        <li>Set <em>Model</em> (Two-Way Mixed/Random) and <em>Type</em>
+(Consistency/Absolute Agreement)</li>
+        <li>Statistics: check CI → Continue → OK</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Multidimensional Scaling (Perceptual Mapping)</h4>
+      <p>Visualize similarities or distances between items/stimuli in
+2D/3D space.</p>
+      <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Scale</span><span
+class="path-arrow">›</span><span class="path-step">Multidimensional
+Scaling (ALSCAL)…</span></div>
+      <ul class="dialog-steps">
+        <li>Move proximity variables to <em>Variables</em></li>
+        <li>Set data type (distances vs. similarities)</li>
+        <li>Choose <em>Number of Dimensions</em> (usually 2)</li>
+        <li>Options: display plot → OK</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 7. FACTOR ANALYSIS -->
+<!-- ============================================================ -->
+<div class="section" id="factor">
+  <div class="section-title">🧮 Factor & Cluster Analysis</div>
+  <p class="section-desc">Explore latent structures, reduce dimensions,
+and group cases.</p>
+
+  <div class="category">
+    <div class="category-title">🔍 Factor Analysis (EFA & PCA)</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Exploratory Factor Analysis (EFA)</h4>
+        <p>Identify latent factors underlying a set of observed
+variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Dimension
+Reduction</span><span class="path-arrow">›</span><span
+class="path-step">Factor…</span></div>
+        <ul class="dialog-steps">
+          <li>Move all indicator items to <em>Variables</em></li>
+          <li>Click <strong>Extraction…</strong> → Method: <em>Principal
+Axis Factoring</em> or <em>Maximum Likelihood</em>; choose
+<em>Based on Eigenvalue &gt; 1</em> → Continue</li>
+          <li>Click <strong>Rotation…</strong> → Method: <em>Promax</em>
+(oblique) or <em>Varimax</em> (orthogonal) → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>Sorted by size,
+Suppress small coefficients (.30)</em> → Continue → OK</li>
+        </ul>
+        <p class="path-note">Review Pattern Matrix (oblique) or Rotated
+Component Matrix (orthogonal). Look for loadings ≥ .40.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Principal Components Analysis (PCA)</h4>
+        <p>Reduce many variables to fewer uncorrelated components.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span class="path-step">Dimension
+Reduction</span><span class="path-arrow">›</span><span
+class="path-step">Factor…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variables</em></li>
+          <li>Click <strong>Extraction…</strong> → Method: <em>Principal
+Components</em> → Continue</li>
+          <li>Click <strong>Rotation…</strong> → <em>Varimax</em> →
+Continue</li>
+          <li>Click <strong>Scores…</strong> → check <em>Save as
+variables</em> if you want component scores → Continue → OK</li>
+        </ul>
+        <p class="path-note">Check the Scree Plot (Extraction → Display:
+Scree plot) to identify the elbow point for number of
+components.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Confirmatory Factor Analysis (CFA)</h4>
+        <p>Test a pre-specified factor structure (requires AMOS add-on or
+script).</p>
+        <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">New</span><span
+class="path-arrow">›</span><span class="path-step">IBM SPSS
+Amos</span></div>
+        <ul class="dialog-steps">
+          <li>Open <strong>AMOS Graphics</strong> from Start Menu or SPSS
+File menu</li>
+          <li>Click <em>File › Data Files…</em> → link your SPSS dataset</li>
+          <li>Draw latent factors (ellipses) and observed variables
+(rectangles) using toolbar</li>
+          <li>Click <em>Analyze › Calculate Estimates</em> to run → View
+output via <em>Analyze › View Text…</em></li>
+        </ul>
+        <p class="path-note">Report CFI ≥ .95, RMSEA ≤ .06, SRMR ≤ .08 for
+good fit.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">🗃️ Cluster Analysis</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Hierarchical Cluster Analysis</h4>
+        <p>Group cases or variables into clusters with a dendrogram.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Classify</span><span
+class="path-arrow">›</span><span class="path-step">Hierarchical
+Cluster…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variable(s)</em></li>
+          <li>Choose to cluster <em>Cases</em> or <em>Variables</em></li>
+          <li>Method: <strong>Ward's</strong> (most common for cases)</li>
+          <li>Plots: check <em>Dendrogram</em> → Continue → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>K-Means Cluster Analysis</h4>
+        <p>Partition cases into a specified number (k) of clusters.</p>
+        <div class="path"><span class="path-step">Analyze</span><span
+class="path-arrow">›</span><span
+class="path-step">Classify</span><span
+class="path-arrow">›</span><span class="path-step">K-Means
+Cluster…</span></div>
+        <ul class="dialog-steps">
+          <li>Move clustering variables to <em>Variables</em></li>
+          <li>Set <em>Number of Clusters</em> (k)</li>
+          <li>Click <strong>Save…</strong> → check <em>Cluster
+membership</em> to save cluster ID as new variable</li>
+          <li>Options: check <em>Cluster information for each case</em> →
+Continue → OK</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 8. CHARTS & VISUALISATION -->
+<!-- ============================================================ -->
+<div class="section" id="charts">
+  <div class="section-title">🎨 Charts & Visualisation</div>
+  <p class="section-desc">Build bar charts, histograms, scatterplots, and
+more using SPSS Chart Builder.</p>
+
+  <div class="category">
+    <div class="category-title">📊 Chart Builder (Primary Method)</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Open Chart Builder</h4>
+        <p>SPSS's drag-and-drop chart creation interface.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span></div>
+        <ul class="dialog-steps">
+          <li>Click <strong>OK</strong> on the welcome dialog to proceed</li>
+          <li>Choose a chart type from the <em>Gallery</em> at the bottom
+left</li>
+          <li>Drag a chart thumbnail to the canvas preview area</li>
+          <li>Drag variables from the variable list onto axis drop zones</li>
+          <li>Set options in <em>Element Properties</em> panel → OK</li>
+        </ul>
+        <p class="path-note">Double-click a chart in Output Viewer to open
+Chart Editor for formatting.</p>
+      </div>
+
+      <div class="path-card">
+        <h4>Bar Chart</h4>
+        <p>Display counts or means for categorical groups.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span><span class="path-arrow">›</span><span
+class="path-step">Gallery: Bar</span></div>
+        <ul class="dialog-steps">
+          <li>Drag a <em>Simple Bar</em> thumbnail to canvas</li>
+          <li>Drag categorical variable to <em>X-Axis</em> drop zone</li>
+          <li>Drag continuous variable to <em>Y-Axis</em> (or leave for
+Count)</li>
+          <li>In Element Properties: set Statistic to <em>Mean</em> or
+<em>Count</em> → Apply → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Histogram</h4>
+        <p>Visualize the distribution of a continuous variable.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span><span class="path-arrow">›</span><span
+class="path-step">Gallery: Histogram</span></div>
+        <ul class="dialog-steps">
+          <li>Drag <em>Simple Histogram</em> to canvas</li>
+          <li>Drag continuous variable to <em>X-Axis</em></li>
+          <li>In Element Properties: check <em>Display normal curve</em>
+if needed → Apply → OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Scatterplot</h4>
+        <p>Explore relationship between two continuous variables.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span><span class="path-arrow">›</span><span
+class="path-step">Gallery: Scatter/Dot</span></div>
+        <ul class="dialog-steps">
+          <li>Drag <em>Simple Scatter</em> to canvas</li>
+          <li>Drag X variable to <em>X-Axis</em>, Y variable to
+<em>Y-Axis</em></li>
+          <li>Optionally drag grouping variable to <em>Color</em> drop
+zone for coloring by group</li>
+          <li>To add regression line: Chart Editor → Elements › Fit Line
+at Total</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Boxplot</h4>
+        <p>Show median, quartiles, and outliers by group.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span><span class="path-arrow">›</span><span
+class="path-step">Gallery: Boxplot</span></div>
+        <ul class="dialog-steps">
+          <li>Drag <em>Simple Boxplot</em> to canvas</li>
+          <li>Drag continuous variable to <em>Y-Axis</em></li>
+          <li>Drag categorical variable to <em>X-Axis</em></li>
+          <li>OK</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Line Chart</h4>
+        <p>Display trends over categories or time using connected points.</p>
+        <div class="path"><span class="path-step">Graphs</span><span
+class="path-arrow">›</span><span class="path-step">Chart
+Builder…</span><span class="path-arrow">›</span><span
+class="path-step">Gallery: Line</span></div>
+        <ul class="dialog-steps">
+          <li>Drag <em>Simple Line</em> to canvas</li>
+          <li>Drag time/category variable to <em>X-Axis</em></li>
+          <li>Drag measure to <em>Y-Axis</em></li>
+          <li>For multiple groups: drag grouping variable to
+<em>Color</em> → OK</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="category">
+    <div class="category-title">✏️ Editing Charts</div>
+    <div class="card-grid">
+
+      <div class="path-card">
+        <h4>Chart Editor</h4>
+        <p>Modify colors, fonts, axes, titles, and add fit lines after
+chart is created.</p>
+        <div class="path"><span class="path-step">Output
+Viewer</span><span class="path-arrow">›</span><span
+class="path-step">Double-click chart</span></div>
+        <ul class="dialog-steps">
+          <li>Click any element to select it, then right-click for
+options</li>
+          <li>Double-click an element to open its <em>Properties</em>
+dialog</li>
+          <li>Use <strong>Elements</strong> menu to add fit lines,
+reference lines, error bars</li>
+          <li>Use <strong>Options</strong> menu to change chart size</li>
+          <li>Close Chart Editor window to save changes to output</li>
+        </ul>
+      </div>
+
+      <div class="path-card">
+        <h4>Export Chart as Image</h4>
+        <p>Save a chart as PNG, TIFF, EMF, or PDF.</p>
+        <div class="path"><span class="path-step">Output
+Viewer</span><span class="path-arrow">›</span><span
+class="path-step">Right-click chart</span><span
+class="path-arrow">›</span><span
+class="path-step">Export…</span></div>
+        <ul class="dialog-steps">
+          <li>Select <strong>Export format</strong>: PNG, TIFF, JPG, EMF,
+PDF</li>
+          <li>Set file path and name</li>
+          <li>Adjust <em>Image size</em> and <em>Resolution (DPI)</em> for
+publication quality</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">For journals: use TIFF at 300+ DPI; for
+presentations: PNG at 150+ DPI.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- 9. OUTPUT MANAGEMENT -->
+<!-- ============================================================ -->
+<div class="section" id="output">
+  <div class="section-title">📄 Output & Results Management</div>
+  <p class="section-desc">Navigate, export, and manage SPSS Output Viewer
+results.</p>
+
+  <div class="card-grid">
+
+    <div class="path-card">
+      <h4>Save Output File (.spv)</h4>
+      <p>Save your Output Viewer results for future reference.</p>
+      <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">Save</span></div>
+      <p>Or use Save As to choose a location:</p>
+      <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span class="path-step">Save
+As…</span><span class="path-arrow">›</span><span
+class="path-step">SPSS Output (.spv)</span></div>
+    </div>
+
+    <div class="path-card">
+      <h4>Export Output to Word / PDF / Excel</h4>
+      <p>Export all or selected results to various formats for reporting.</p>
+      <div class="path"><span class="path-step">File</span><span
+class="path-arrow">›</span><span
+class="path-step">Export…</span></div>
+      <ul class="dialog-steps">
+        <li>Under <em>Export Format</em>: choose Word (.docx), PDF, Excel
+(.xlsx), HTML, or PowerPoint</li>
+        <li>Under <em>Export What</em>: All visible output, Selected
+output, All output except notes</li>
+        <li>Set file path → <strong>OK</strong></li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Copy Table to Word/Excel</h4>
+      <p>Quickly copy a single output table to another application.</p>
+      <div class="path"><span class="path-step">Output Viewer</span><span
+class="path-arrow">›</span><span class="path-step">Right-click
+table</span></div>
+      <ul class="dialog-steps">
+        <li>Click the table to select it</li>
+        <li>Right-click → <em>Copy</em> (for Word) or <em>Copy
+Special…</em></li>
+        <li>For Excel pivot-ready format: <em>Copy Special…</em> →
+<em>Tab-separated values</em></li>
+        <li>Paste into Word, Excel, or PowerPoint</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Delete Unwanted Output Items</h4>
+      <p>Clean up the Output Viewer by removing items.</p>
+      <div class="path"><span class="path-step">Output Viewer</span><span
+class="path-arrow">›</span><span class="path-step">Click item in
+left panel</span><span class="path-arrow">›</span><span
+class="path-step">Delete key</span></div>
+      <p class="path-note">Use Ctrl+Click to select multiple items in the
+left outline panel before deleting.</p>
+    </div>
+
+    <div class="path-card">
+      <h4>Pivot Table Editor (Edit a Table)</h4>
+      <p>Modify, reformat, or add footnotes to a results table.</p>
+      <div class="path"><span class="path-step">Output Viewer</span><span
+class="path-arrow">›</span><span class="path-step">Double-click
+table</span></div>
+      <ul class="dialog-steps">
+        <li>Double-click opens the <em>Pivot Table Editor</em></li>
+        <li>Drag row/column labels to pivot structure via <strong>Pivot ›
+Pivot Trays…</strong></li>
+        <li>Format cells via <strong>Format › Cell Properties</strong></li>
+        <li>Add/edit footnotes via <strong>Insert › Footnote</strong></li>
+        <li>Click outside to deactivate editor</li>
+      </ul>
+    </div>
+
+    <div class="path-card">
+      <h4>Syntax Log (Copy Last Command)</h4>
+      <p>See the syntax generated by your menu actions for repeatability.</p>
+      <div class="path"><span class="path-step">Edit</span><span
+class="path-arrow">›</span><span
+class="path-step">Options…</span><span
+class="path-arrow">›</span><span class="path-step">Viewer
+tab</span></div>
+      <ul class="dialog-steps">
+        <li>Check <em>Display commands in the log</em></li>
+        <li>Now all menu-driven commands appear in output as syntax</li>
+        <li>Right-click the Log entry → <em>Copy to Syntax Editor</em> to
+save and re-run</li>
+      </ul>
+      <p class="path-note">This is an excellent way to learn SPSS syntax
+from your own menu actions!</p>
+    </div>
+
+    <div class="path-card">
+      <h4>Undo / Redo in Data Editor</h4>
+      <p>Reverse or redo the last data editing actions.</p>
+      <div class="multi-path">
+        <div class="multi-path-label">Undo</div>
+        <div class="path"><span class="path-step">Edit</span><span
+class="path-arrow">›</span><span
+class="path-step">Undo</span></div>
+      </div>
+      <div class="multi-path">
+        <div class="multi-path-label">Keyboard shortcut</div>
+        <div class="path"><span class="path-step">Ctrl</span><span
+class="path-arrow">+</span><span class="path-step">Z</span></div>
+      </div>
+      <p class="path-note">SPSS supports unlimited undo for data changes
+within a session.</p>
+    </div>
+
+    <div class="path-card">
+      <h4>SPSS Version & System Info</h4>
+      <p>Check your SPSS version, license, and installed modules.</p>
+      <div class="path"><span class="path-step">Help</span><span
+class="path-arrow">›</span><span class="path-step">About IBM SPSS
+Statistics</span></div>
+      <p class="path-note">Use <strong>Help › Topics</strong> (or press
+F1) for context-sensitive help on any open dialog.</p>
+    </div>
+
+  </div>
+
+  <div class="info-box">
+    <div class="box-title">ℹ️ Quick Keyboard Shortcuts Reference</div>
+    <div class="table-container" style="margin-top:.75rem">
+      <table>
+        <tr><th>Action</th><th>Shortcut</th></tr>
+        <tr><td>Run syntax</td><td><code>Ctrl+R</code></td></tr>
+        <tr><td>Open data file</td><td><code>Ctrl+O</code></td></tr>
+        <tr><td>Save</td><td><code>Ctrl+S</code></td></tr>
+        <tr><td>Undo</td><td><code>Ctrl+Z</code></td></tr>
+        <tr><td>Copy</td><td><code>Ctrl+C</code></td></tr>
+        <tr><td>Switch Data/Output/Syntax
+window</td><td><code>Ctrl+Tab</code></td></tr>
+        <tr><td>Context Help on dialog</td><td><code>F1</code></td></tr>
+        <tr><td>Go to case (row)</td><td><code>Ctrl+G</code></td></tr>
+        <tr><td>Find & Replace in Data Editor</td><td><code>Ctrl+F</code>
+/ <code>Ctrl+H</code></td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+</div><!-- end .ctr -->
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="fc">
+    <p style="font-size:clamp(1.2rem, 4vw,
+1.5rem);font-weight:800;margin-bottom:.5rem">📊 SPSS Navigation
+Guide</p>
+    <p style="opacity:.75;margin-bottom:1.5rem;font-size:clamp(0.9rem,
+2.5vw, 1rem)">Menu Paths • Dialog Steps • Navigation Only — No Syntax
+Required</p>
+    <div class="cg">
+      <div class="cc2"><div class="ico">🗄️</div><div
+class="lbl">Sections</div><div class="val">9 Main Topics</div></div>
+      <div class="cc2"><div class="ico">🗺️</div><div class="lbl">Paths
+Covered</div><div class="val">50+ Navigation Paths</div></div>
+      <div class="cc2"><div class="ico">🎓</div><div class="lbl">Compatible
+With</div><div class="val">SPSS v25–v29</div></div>
+      <div class="cc2"><div class="ico">✍️</div><div class="lbl">Created
+By</div><div class="val">Monu Prajapati</div></div>
+    </div>
+    <p style="opacity:.5;font-size:clamp(0.8rem, 2vw,
+0.85rem);margin-top:1rem">IBM SPSS Statistics reference guide for
+academic & research use</p>
+  </div>
+</footer>
+
+<!-- Scroll to top -->
+<button class="stb" id="scrollTopBtn"
+onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Scroll to top"
+aria-label="Scroll to top">↑</button>
+
+<script>
+// ---- Search index ----
+const searchIndex = [
+  {title:"Open Data File",section:"data-management",sectionName:"Data
+Management",desc:"File › Open › Data…"},
+  {title:"Save / Save As",section:"data-management",sectionName:"Data
+Management",desc:"File › Save or File › Save As…"},
+  {title:"Import CSV / Text
+File",section:"data-management",sectionName:"Data Management",desc:"File
+› Import Data › CSV Data…"},
+  {title:"Import Excel File",section:"data-management",sectionName:"Data
+Management",desc:"File › Import Data › Excel…"},
+  {title:"Compute New
+Variable",section:"data-management",sectionName:"Data
+Management",desc:"Transform › Compute Variable…"},
+  {title:"Recode Into Same
+Variable",section:"data-management",sectionName:"Data
+Management",desc:"Transform › Recode into Same Variables…"},
+  {title:"Recode Into Different
+Variable",section:"data-management",sectionName:"Data
+Management",desc:"Transform › Recode into Different Variables…"},
+  {title:"Visual Binning",section:"data-management",sectionName:"Data
+Management",desc:"Transform › Visual Binning…"},
+  {title:"Sort Cases",section:"data-management",sectionName:"Data
+Management",desc:"Data › Sort Cases…"},
+  {title:"Select Cases Filter",section:"data-management",sectionName:"Data
+Management",desc:"Data › Select Cases…"},
+  {title:"Split File Group
+Analysis",section:"data-management",sectionName:"Data
+Management",desc:"Data › Split File…"},
+  {title:"Merge Add Cases
+Variables",section:"data-management",sectionName:"Data
+Management",desc:"Data › Merge Files › Add Cases / Add Variables…"},
+  {title:"Variable Labels Value
+Labels",section:"data-management",sectionName:"Data
+Management",desc:"Data Editor › Variable View tab"},
+  {title:"Descriptive Statistics Mean
+SD",section:"descriptive",sectionName:"Descriptive
+Statistics",desc:"Analyze › Descriptive Statistics › Descriptives…"},
+  {title:"Frequencies Counts
+Percentages",section:"descriptive",sectionName:"Descriptive
+Statistics",desc:"Analyze › Descriptive Statistics › Frequencies…"},
+  {title:"Explore Normality Tests
+Shapiro-Wilk",section:"descriptive",sectionName:"Descriptive
+Statistics",desc:"Analyze › Descriptive Statistics › Explore…"},
+  {title:"Crosstabulation
+Chi-Square",section:"descriptive",sectionName:"Descriptive
+Statistics",desc:"Analyze › Descriptive Statistics › Crosstabs…"},
+  {title:"Compare Means
+Table",section:"descriptive",sectionName:"Descriptive
+Statistics",desc:"Analyze › Compare Means › Means…"},
+  {title:"Linear
+Regression",section:"regression",sectionName:"Regression",desc:"Analyze
+› Regression › Linear…"},
+  {title:"Hierarchical Regression Block
+Entry",section:"regression",sectionName:"Regression",desc:"Analyze ›
+Regression › Linear… (use Next for blocks)"},
+  {title:"Binary Logistic
+Regression",section:"regression",sectionName:"Regression",desc:"Analyze
+› Regression › Binary Logistic…"},
+  {title:"Ordinal Logistic
+Regression",section:"regression",sectionName:"Regression",desc:"Analyze
+› Regression › Ordinal…"},
+  {title:"Curve Estimation
+Non-linear",section:"regression",sectionName:"Regression",desc:"Analyze
+› Regression › Curve Estimation…"},
+  {title:"One-Sample T-Test",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › Compare Means › One-Sample T Test…"},
+  {title:"Independent Samples
+T-Test",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › Compare Means › Independent-Samples T
+Test…"},
+  {title:"Paired Samples T-Test",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › Compare Means › Paired-Samples T Test…"},
+  {title:"One-Way ANOVA",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › Compare Means › One-Way ANOVA…"},
+  {title:"Two-Way Factorial ANOVA",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › General Linear Model › Univariate…"},
+  {title:"Repeated Measures ANOVA",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › General Linear Model › Repeated Measures…"},
+  {title:"ANCOVA Covariate",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › General Linear Model › Univariate… (add
+covariate)"},
+  {title:"MANOVA Multiple DVs",section:"comparison",sectionName:"Group
+Comparison",desc:"Analyze › General Linear Model › Multivariate…"},
+  {title:"Mann-Whitney U
+Test",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs › 2
+Independent Samples…"},
+  {title:"Wilcoxon Signed-Rank
+Test",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs › 2 Related
+Samples…"},
+  {title:"Kruskal-Wallis
+Test",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs › K
+Independent Samples…"},
+  {title:"Friedman
+Test",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs › K Related
+Samples…"},
+  {title:"Chi-Square Goodness of
+Fit",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs ›
+Chi-Square…"},
+  {title:"Binomial
+Test",section:"nonparametric",sectionName:"Non-Parametric
+Tests",desc:"Analyze › Nonparametric Tests › Legacy Dialogs ›
+Binomial…"},
+  {title:"Cronbach Alpha
+Reliability",section:"reliability",sectionName:"Reliability",desc:"Analyze
+› Scale › Reliability Analysis…"},
+  {title:"ICC Intraclass
+Correlation",section:"reliability",sectionName:"Reliability",desc:"Analyze
+› Scale › Reliability Analysis… (Model: ICC)"},
+  {title:"Exploratory Factor Analysis
+EFA",section:"factor",sectionName:"Factor Analysis",desc:"Analyze ›
+Dimension Reduction › Factor…"},
+  {title:"Principal Components Analysis
+PCA",section:"factor",sectionName:"Factor Analysis",desc:"Analyze ›
+Dimension Reduction › Factor… (Method: Principal Components)"},
+  {title:"Hierarchical Cluster
+Analysis",section:"factor",sectionName:"Factor & Cluster",desc:"Analyze
+› Classify › Hierarchical Cluster…"},
+  {title:"K-Means Cluster Analysis",section:"factor",sectionName:"Factor &
+Cluster",desc:"Analyze › Classify › K-Means Cluster…"},
+  {title:"Chart
+Builder",section:"charts",sectionName:"Charts",desc:"Graphs › Chart
+Builder…"},
+  {title:"Bar Chart",section:"charts",sectionName:"Charts",desc:"Graphs ›
+Chart Builder… › Gallery: Bar"},
+  {title:"Histogram",section:"charts",sectionName:"Charts",desc:"Graphs ›
+Chart Builder… › Gallery: Histogram"},
+  {title:"Scatterplot",section:"charts",sectionName:"Charts",desc:"Graphs
+› Chart Builder… › Gallery: Scatter/Dot"},
+  {title:"Boxplot",section:"charts",sectionName:"Charts",desc:"Graphs ›
+Chart Builder… › Gallery: Boxplot"},
+  {title:"Export Chart
+Image",section:"charts",sectionName:"Charts",desc:"Output Viewer ›
+Right-click chart › Export…"},
+  {title:"Export Output Word PDF
+Excel",section:"output",sectionName:"Output",desc:"File › Export…"},
+  {title:"Pivot Table
+Editor",section:"output",sectionName:"Output",desc:"Output Viewer ›
+Double-click table"},
+  {title:"Copy Table to Word
+Excel",section:"output",sectionName:"Output",desc:"Output Viewer ›
+Right-click table › Copy"},
+  {title:"Syntax Log",section:"output",sectionName:"Output",desc:"Edit ›
+Options… › Viewer tab"},
+];
+
+function openSearch(){
+  document.getElementById('searchOverlay').classList.add('open');
+  document.getElementById('searchInput').focus();
+  document.body.style.overflow='hidden';
+}
+
+function closeSearch(){
+  document.getElementById('searchOverlay').classList.remove('open');
+  document.getElementById('searchInput').value='';
+  document.getElementById('searchResults').innerHTML='<div
+class="se">Start typing to search…</div>';
+  document.body.style.overflow='';
+}
+
+function closeSearchOut(e){
+  if(e.target===document.getElementById('searchOverlay'))closeSearch();
+}
+
+function runSearch(){
+  const q=document.getElementById('searchInput').value.toLowerCase().trim();
+  const res=document.getElementById('searchResults');
+  if(!q){res.innerHTML='<div class="se">Start typing to
+search…</div>';return;}
+  const
+hits=searchIndex.filter(i=>i.title.toLowerCase().includes(q)||i.desc.toLowerCase().includes(q)||i.sectionName.toLowerCase().includes(q));
+  if(!hits.length){res.innerHTML='<div class="se">No results found for
+"'+q+'"</div>';return;}
+  res.innerHTML=hits.slice(0,12).map(i=>`<div class="sri"
+onclick="goTo('${i.section}');closeSearch()"><div
+class="rt">${i.title}</div><div class="rs">${i.sectionName}</div><div
+class="rd">${i.desc}</div></div>`).join('');
+}
+
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape')closeSearch();
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openSearch();}
+});
+
+function showSection(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const
+map={'data-management':0,'descriptive':1,'regression':2,'comparison':3,'nonparametric':4,'reliability':5,'factor':6,'charts':7,'output':8};
+  document.querySelectorAll('.ni')[map[id]].classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  const nav=document.getElementById('mainNav');
+  if(nav.classList.contains('open')){
+    nav.classList.remove('open');
+    document.getElementById('burger').classList.remove('open');
+  }
+}
+
+function goTo(id){showSection(id);}
+
+// Burger
+document.getElementById('burger').addEventListener('click',function(){
+  this.classList.toggle('open');
+  document.getElementById('mainNav').classList.toggle('open');
+});
+
+// Close menu when clicking outside on mobile
+document.addEventListener('click',function(e){
+  const nav=document.getElementById('mainNav');
+  const burger=document.getElementById('burger');
+  if(nav.classList.contains('open')&&!nav.contains(e.target)&&!burger.contains(e.target)){
+    nav.classList.remove('open');
+    burger.classList.remove('open');
+  }
+});
+
+// Scroll to top button
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTopBtn').classList.toggle('vis',window.scrollY>300);
+});
+
+// Prevent body scroll when search is open
+const searchOverlay=document.getElementById('searchOverlay');
+const observer=new MutationObserver(()=>{
+  if(searchOverlay.classList.contains('open')){
+    document.body.style.overflow='hidden';
+  }else{
+    document.body.style.overflow='';
+  }
+});
+observer.observe(searchOverlay,{attributes:true,attributeFilter:['class']});
+</script>
+</body>
+</html>
