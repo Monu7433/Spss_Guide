@@ -7,10 +7,38 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--p:#6c3fc5;--pd:#4e2b96;--g:#e84393;--a:#f5a623;--dk:#1c1c2e;--gr:#94a3b8;--gl:#ede9f8;--bg:#f6f4fb}
-.container{max-width:1400px;margin:0 auto;padding:0 1.25rem;}
+.container{
+width:100%;
+max-width:1400px;
+margin:0 auto;
+padding:0 16px;
+}
 *{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:var(--bg)}
+body{
+font-family:'Inter',sans-serif;
+line-height:1.6;
+color:var(--dk);
+background:var(--bg);
+overflow-x:hidden;
+}
 .hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 60%,#2d1b69 100%);color:#fff;padding:2.5rem 0 2rem;text-align:center;position:relative;overflow:hidden}
+/* correct layout */
+
+.hdr{
+width:100%;
+}
+
+.nav-wrap{
+width:100%;
+}
+
+.ctr{
+width:100%;
+max-width:1400px;
+margin:0 auto;
+padding:2rem 16px;
+box-sizing:border-box;
+}
 .hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(232,67,147,.18) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(245,166,35,.10) 0%,transparent 50%);pointer-events:none}
 .hdr-inner{position:relative;z-index:1}
 .hdr h1{font-size:clamp(1.4rem,5vw,2.75rem);font-weight:800;margin-bottom:.5rem;letter-spacing:-.5px;line-height:1.2}
@@ -20,19 +48,27 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:v
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .nav-wrap{position:sticky;top:0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);z-index:100;border-bottom:3px solid var(--p)}
 .nav-inner{
+width:100%;
 max-width:1400px;
 margin:0 auto;
-padding:0 1.25rem;
+padding:0 16px;
 display:flex;
 align-items:center;
-position:relative
+position:relative;
+box-sizing:border-box;
 }
 .burger{display:none;background:none;border:none;cursor:pointer;padding:1rem 1.25rem;flex-direction:column;gap:5px;flex-shrink:0}
 .burger span{display:block;width:24px;height:2.5px;background:var(--dk);border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav{display:flex;flex:1;overflow-x:auto}
+.nav{
+display:flex;
+flex:1;
+overflow-x:auto;
+max-width:100%;
+width:100%;
+}
 .ni{flex:1;min-width:110px;padding:1.1rem .7rem;color:var(--dk);font-weight:600;text-align:center;border-bottom:3px solid transparent;transition:all .3s;white-space:nowrap;cursor:pointer;user-select:none;font-size:.82rem}
 .ni:hover,.ni.active{background:var(--p);color:#fff;border-bottom-color:var(--a)}
 .sbtn{background:var(--p);border:none;color:#fff;font-size:1.15rem;padding:0 1.1rem;cursor:pointer;min-height:48px;min-width:48px;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
@@ -52,7 +88,6 @@ position:relative
 .rs{font-size:.75rem;color:var(--gr);margin-top:2px}
 .rd{font-size:.85rem;color:var(--dk);margin-top:3px}
 .se{padding:2rem;text-align:center;color:var(--gr);font-size:.9rem}
-.ctr{max-width:1400px;margin:0 auto;padding:2rem 1.25rem}
 .section{display:none;animation:fi .35s ease}
 .section.active{display:block}
 @keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
@@ -102,71 +137,184 @@ td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.08rem .35r
 
 /* ════ MOBILE — EXACT STATA PATTERN ════ */
 @media(max-width:768px){
-  .hdr{padding:2.5rem 0 2rem;}
-  .burger{display:flex}
-  .nav{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.18);border-top:2px solid var(--p);z-index:999;max-height:80vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
-  .nav.open{display:flex}
-  .ni{min-width:auto;text-align:left;padding:.95rem 1.25rem;border-bottom:1px solid var(--gl);border-left:4px solid transparent;font-size:.95rem}
-  .ni:hover,.ni.active{background:var(--p);color:#fff;border-left-color:var(--a);border-bottom:1px solid rgba(255,255,255,.15)}
-  .ctr{padding:1.25rem .9rem}
-  .card-grid{grid-template-columns:1fr;gap:1rem}
-  .path{font-size:.75rem;padding:.45rem .7rem}
-  .path-step{font-size:.7rem;padding:.08rem .35rem}
-  .dialog-steps li{font-size:.82rem}
-  .info-box,.warning-box,.success-box{padding:.9rem 1rem;font-size:.85rem}
-  th,td{padding:.65rem .75rem;font-size:.82rem}
-  .section-title{font-size:1.5rem}
-  .category-title{font-size:1.1rem}
-  .section-desc{font-size:.88rem;margin-bottom:1.5rem}
-  .footer{padding:2rem .9rem}
-  .cg{grid-template-columns:1fr 1fr;gap:1rem}
-  .stb{width:42px;height:42px;font-size:1.2rem;bottom:1.25rem;right:1rem}
-  .so{padding-top:0;align-items:flex-end}
-  .sb{width:100%;border-radius:16px 16px 0 0;max-height:90vh}
-  .sr{max-height:55vh}
-  .siw{padding:.85rem 1rem}
-  .si{font-size:.95rem}
-  .sri{padding:.75rem 1rem}
+
+body{
+overflow-x:hidden;
 }
+
+.nav-inner{
+padding-left:0;
+padding-right:0;
+}
+
+.hdr{padding:2.5rem 0 2rem;}
+
+
+  .burger{display:flex}
+
+  .nav{
+    display:none;
+    flex-direction:column;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:#fff;
+    box-shadow:0 8px 28px rgba(0,0,0,.18);
+    border-top:2px solid var(--p);
+    z-index:999;
+    max-height:80vh;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch
+  }
+
+  .nav.open{display:flex}
+
+  .ni{
+    min-width:auto;
+    text-align:left;
+    padding:.95rem 1.25rem;
+    border-bottom:1px solid var(--gl);
+    border-left:4px solid transparent;
+    font-size:.95rem
+  }
+
+  .ni:hover,
+  .ni.active{
+    background:var(--p);
+    color:#fff;
+    border-left-color:var(--a);
+    border-bottom:1px solid rgba(255,255,255,.15)
+  }
+
+  .ctr{padding:1.25rem .9rem}
+
+  .card-grid{grid-template-columns:1fr;gap:1rem}
+
+  .path{font-size:.75rem;padding:.45rem .7rem}
+
+  .path-step{font-size:.7rem;padding:.08rem .35rem}
+
+  .dialog-steps li{font-size:.82rem}
+
+  .info-box,
+  .warning-box,
+  .success-box{
+    padding:.9rem 1rem;
+    font-size:.85rem
+  }
+
+  th,td{
+    padding:.65rem .75rem;
+    font-size:.82rem
+  }
+
+  .section-title{font-size:1.5rem}
+
+  .category-title{font-size:1.1rem}
+
+  .section-desc{
+    font-size:.88rem;
+    margin-bottom:1.5rem
+  }
+
+  .footer{padding:2rem .9rem}
+
+  .cg{
+    grid-template-columns:1fr 1fr;
+    gap:1rem
+  }
+
+  .stb{
+    width:42px;
+    height:42px;
+    font-size:1.2rem;
+    bottom:1.25rem;
+    right:1rem
+  }
+
+  .so{
+    padding-top:0;
+    align-items:flex-end
+  }
+
+  .sb{
+    width:100%;
+    border-radius:16px 16px 0 0;
+    max-height:90vh
+  }
+
+  .sr{max-height:55vh}
+
+  .siw{padding:.85rem 1rem}
+
+  .si{font-size:.95rem}
+
+  .sri{padding:.75rem 1rem}
+
+  /* ⭐ THIS FIXES HEADER GAP */
+  .hdr-inner.container{
+    padding-left:0;
+    padding-right:0;
+  }
+
+}  /* ⭐ THIS WAS MISSING — VERY IMPORTANT */
+
+
+/* SMALL MOBILE */
 @media(max-width:400px){
+
   .hdr h1{font-size:1.25rem}
+
   .path-step{font-size:.65rem}
-  th,td{padding:.55rem .6rem;font-size:.78rem}
+
+  th,td{
+    padding:.55rem .6rem;
+    font-size:.78rem
+  }
+
 }
 </style>
 </head>
 <body>
+
 <div class="hdr">
   <div class="hdr-inner container">
     <h1>📊 SPSS Navigation Guide</h1>
     <p style="font-size:1.1rem;font-weight:700;margin:.5rem 0">Monu Prajapati</p>
     <p class="sub">Menu Paths &bull; Dialogs &bull; Step-by-Step &mdash; No Code Required</p>
-    <div class="badge"><span class="badge-dot"></span> SPSS Statistics v25&ndash;v29 Compatible</div>
+    <div class="badge">
+      <span class="badge-dot"></span>
+      SPSS Statistics v25–v29 Compatible
+    </div>
   </div>
 </div>
 
 <div class="nav-wrap">
   <div class="nav-inner">
-    <button class="burger" id="burger" aria-label="Open navigation"><span></span><span></span><span></span></button>
-    <nav class="nav" id="mainNav">
-      <div class="ni active" data-s="data-management">&#128452; Data Mgmt</div>
-      <div class="ni" data-s="descriptive">&#128202; Descriptive</div>
-      <div class="ni" data-s="regression">&#128200; Regression</div>
-      <div class="ni" data-s="comparison">&#9878; Comparison</div>
-      <div class="ni" data-s="nonparametric">&#128290; Non-Param</div>
-      <div class="ni" data-s="reliability">&#128300; Reliability</div>
-      <div class="ni" data-s="factor">&#129518; Factor</div>
-      <div class="ni" data-s="charts">&#127912; Charts</div>
-      <div class="ni" data-s="output">&#128196; Output</div>
-    </nav>
-    <button class="sbtn" id="sBtn" title="Search (Ctrl+K)" aria-label="Search">&#128269;</button>
-  </div>
-</div>
 
-<div class="so" id="sOverlay" role="dialog" aria-modal="true">
-  <div class="sb">
-    <div class="siw"><span>&#128269;</span><input class="si" id="sInput" type="text" placeholder="Search paths, analyses, dialogs&hellip;" autocomplete="off" inputmode="search"><button class="sc" id="sClose" aria-label="Close">&times;</button></div>
-    <div class="sr" id="sResults"><div class="se">Start typing to search&hellip;</div></div>
+    <button class="burger" id="burger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <nav class="nav" id="mainNav">
+
+      <div class="ni active" data-s="data-management">📂 Data Mgmt</div>
+      <div class="ni" data-s="descriptive">📊 Descriptive</div>
+      <div class="ni" data-s="regression">📈 Regression</div>
+      <div class="ni" data-s="comparison">⚖️ Comparison</div>
+      <div class="ni" data-s="nonparametric">🔢 Non-Param</div>
+      <div class="ni" data-s="reliability">🔬 Reliability</div>
+      <div class="ni" data-s="factor">🧮 Factor</div>
+      <div class="ni" data-s="charts">🎨 Charts</div>
+      <div class="ni" data-s="output">📄 Output</div>
+
+    </nav>
+
+    <button class="sbtn" id="sBtn">🔍</button>
+
   </div>
 </div>
 
