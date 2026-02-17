@@ -7,9 +7,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root{--p:#6c3fc5;--pd:#4e2b96;--g:#e84393;--a:#f5a623;--dk:#1c1c2e;--gr:#94a3b8;--gl:#ede9f8;--bg:#f6f4fb}
+.container{max-width:1400px;margin:0 auto;padding:0 1.25rem;}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:var(--bg)}
-.hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 60%,#2d1b69 100%);color:#fff;padding:2.5rem 1.25rem 2rem;text-align:center;position:relative;overflow:hidden}
+.hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 60%,#2d1b69 100%);color:#fff;padding:2.5rem 0 2rem;text-align:center;position:relative;overflow:hidden}
 .hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(232,67,147,.18) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(245,166,35,.10) 0%,transparent 50%);pointer-events:none}
 .hdr-inner{position:relative;z-index:1}
 .hdr h1{font-size:clamp(1.4rem,5vw,2.75rem);font-weight:800;margin-bottom:.5rem;letter-spacing:-.5px;line-height:1.2}
@@ -18,7 +19,14 @@ body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:v
 .badge-dot{width:9px;height:9px;border-radius:50%;background:var(--a);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 .nav-wrap{position:sticky;top:0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);z-index:100;border-bottom:3px solid var(--p)}
-.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;position:relative}
+.nav-inner{
+max-width:1400px;
+margin:0 auto;
+padding:0 1.25rem;
+display:flex;
+align-items:center;
+position:relative
+}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:1rem 1.25rem;flex-direction:column;gap:5px;flex-shrink:0}
 .burger span{display:block;width:24px;height:2.5px;background:var(--dk);border-radius:2px;transition:all .3s}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -94,7 +102,7 @@ td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.08rem .35r
 
 /* ════ MOBILE — EXACT STATA PATTERN ════ */
 @media(max-width:768px){
-  .hdr{padding:1.75rem 1rem 1.5rem}
+  .hdr{padding:2.5rem 0 2rem;}
   .burger{display:flex}
   .nav{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:0 8px 28px rgba(0,0,0,.18);border-top:2px solid var(--p);z-index:999;max-height:80vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
   .nav.open{display:flex}
@@ -129,7 +137,7 @@ td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.08rem .35r
 </head>
 <body>
 <div class="hdr">
-  <div class="hdr-inner">
+  <div class="hdr-inner container">
     <h1>📊 SPSS Navigation Guide</h1>
     <p style="font-size:1.1rem;font-weight:700;margin:.5rem 0">Monu Prajapati</p>
     <p class="sub">Menu Paths &bull; Dialogs &bull; Step-by-Step &mdash; No Code Required</p>
