@@ -2,441 +2,397 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=5.0">
 <title>SPSS Navigation Path Guide – Monu Prajapati</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--p:#6c3fc5;--pd:#4e2b96;--g:#e84393;--a:#f5a623;--dk:#1c1c2e;--gr:#94a3b8;--gl:#ede9f8;--bg:#f6f4fb}
-.container{
-width:100%;
-max-width:1400px;
-margin:0 auto;
-padding:0 16px;
+:root{
+  --p:#6c3fc5;--pd:#4e2b96;--g:#e84393;--a:#f5a623;--dk:#1c1c2e;--gr:#94a3b8;--gl:#ede9f8;--bg:#f6f4fb;
+  --success:#10b981;--info:#3b82f6;--warning:#f59e0b;--danger:#ef4444;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.08);--shadow-md:0 4px 16px rgba(0,0,0,.1);--shadow-lg:0 8px 32px rgba(0,0,0,.12);
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-font-family:'Inter',sans-serif;
-line-height:1.6;
-color:var(--dk);
-background:var(--bg);
-overflow-x:hidden;
-}
-.hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 60%,#2d1b69 100%);color:#fff;padding:2.5rem 0 2rem;text-align:center;position:relative;overflow:hidden}
-/* correct layout */
-
-.hdr{
-width:100%;
-}
-
-.nav-wrap{
-width:100%;
-}
-
-.ctr{
-width:100%;
-max-width:1400px;
-margin:0 auto;
-padding:2rem 16px;
-box-sizing:border-box;
-}
-.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(232,67,147,.18) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(245,166,35,.10) 0%,transparent 50%);pointer-events:none}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;line-height:1.6;color:var(--dk);background:var(--bg);overflow-x:hidden;min-height:100vh}
+.ctr{width:100%;max-width:1400px;margin:0 auto;padding:1.5rem 16px;box-sizing:border-box}
+.hdr{background:linear-gradient(135deg,#6c3fc5 0%,#4e2b96 40%,#2d1b69 100%);color:#fff;padding:3rem 1rem 2.5rem;text-align:center;position:relative;overflow:hidden;width:100%}
+.hdr::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 70% 30%,rgba(232,67,147,.2) 0%,transparent 60%),radial-gradient(ellipse at 20% 80%,rgba(245,166,35,.12) 0%,transparent 50%);pointer-events:none}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to bottom,transparent,var(--bg));pointer-events:none}
 .hdr-inner{position:relative;z-index:1}
-.hdr h1{font-size:clamp(1.4rem,5vw,2.75rem);font-weight:800;margin-bottom:.5rem;letter-spacing:-.5px;line-height:1.2}
-.hdr .sub{font-size:clamp(.9rem,3vw,1.1rem);opacity:.9}
-.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.18);padding:.55rem 1.25rem;border-radius:50px;font-weight:600;border:2px solid rgba(255,255,255,.25);font-size:clamp(.75rem,2.5vw,.88rem);margin-top:1rem}
-.badge-dot{width:9px;height:9px;border-radius:50%;background:var(--a);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
-.nav-wrap{position:sticky;top:0;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.1);z-index:100;border-bottom:3px solid var(--p)}
-.nav-inner{
-width:100%;
-max-width:1400px;
-margin:0 auto;
-padding:0 16px;
-display:flex;
-align-items:center;
-position:relative;
-box-sizing:border-box;
-}
-.burger{display:none;background:none;border:none;cursor:pointer;padding:1rem 1.25rem;flex-direction:column;gap:5px;flex-shrink:0}
-.burger span{display:block;width:24px;height:2.5px;background:var(--dk);border-radius:2px;transition:all .3s}
+.hdr h1{font-size:clamp(1.6rem,5.5vw,3rem);font-weight:800;margin-bottom:.5rem;letter-spacing:-1px;text-shadow:0 2px 20px rgba(0,0,0,.2)}
+.hdr .author{font-size:clamp(1rem,3vw,1.25rem);font-weight:700;margin:.5rem 0;opacity:.95}
+.hdr .sub{font-size:clamp(.85rem,2.5vw,1rem);opacity:.85;max-width:500px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.15);padding:.6rem 1.4rem;border-radius:50px;font-weight:600;border:1px solid rgba(255,255,255,.25);font-size:clamp(.75rem,2.2vw,.85rem);margin-top:1.2rem;backdrop-filter:blur(8px)}
+.badge-dot{width:10px;height:10px;border-radius:50%;background:var(--a);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
+.nav-wrap{position:sticky;top:0;background:#fff;box-shadow:var(--shadow-md);z-index:1000;border-bottom:3px solid var(--p);width:100%}
+.nav-inner{max-width:1400px;margin:0 auto;display:flex;align-items:center;padding:0}
+.nav{display:flex;flex:1;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:0 .5rem}
+.nav::-webkit-scrollbar{display:none}
+.ni{flex:0 0 auto;min-width:fit-content;padding:1rem 1.1rem;color:var(--dk);font-weight:600;text-align:center;border-bottom:3px solid transparent;transition:all .25s;white-space:nowrap;cursor:pointer;font-size:.8rem;text-transform:uppercase;letter-spacing:.3px}
+.ni:hover,.ni.active{background:var(--p);color:#fff;border-bottom-color:var(--a)}
+.ni .icon{margin-right:5px;font-size:1.15em}
+.burger{display:none;background:none;border:none;cursor:pointer;padding:1rem;flex-direction:column;gap:5px;margin-left:auto}
+.burger span{display:block;width:24px;height:2.5px;background:var(--dk);transition:all .3s;border-radius:2px}
 .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger.open span:nth-child(2){opacity:0}
 .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.nav{
-display:flex;
-flex:1;
-overflow-x:auto;
-max-width:100%;
-width:100%;
-}
-.ni{flex:1;min-width:110px;padding:1.1rem .7rem;color:var(--dk);font-weight:600;text-align:center;border-bottom:3px solid transparent;transition:all .3s;white-space:nowrap;cursor:pointer;user-select:none;font-size:.82rem}
-.ni:hover,.ni.active{background:var(--p);color:#fff;border-bottom-color:var(--a)}
-.sbtn{background:var(--p);border:none;color:#fff;font-size:1.15rem;padding:0 1.1rem;cursor:pointer;min-height:48px;min-width:48px;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.sbtn{background:var(--p);border:none;color:#fff;padding:0 1.1rem;cursor:pointer;min-height:52px;font-size:1.1rem;transition:background .2s}
 .sbtn:hover{background:var(--pd)}
-.so{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9000;align-items:flex-start;justify-content:center;padding-top:60px}
-.so.open{display:flex}
-.sb{background:#fff;border-radius:14px;width:94%;max-width:680px;box-shadow:0 20px 60px rgba(0,0,0,.3);overflow:hidden}
-.siw{display:flex;align-items:center;padding:.9rem 1.1rem;border-bottom:2px solid var(--gl);gap:.6rem}
-.siw span{font-size:1.2rem}
-.si{flex:1;border:none;outline:none;font-size:1rem;font-family:inherit;color:var(--dk)}
-.sc{background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--gr);padding:.25rem;min-width:32px;min-height:32px}
-.sr{max-height:60vh;overflow-y:auto;padding:.4rem 0;-webkit-overflow-scrolling:touch}
-.sri{padding:.8rem 1.1rem;cursor:pointer;border-bottom:1px solid var(--gl);transition:background .15s}
-.sri:active{background:#f5f0ff}
-.sri:last-child{border-bottom:none}
-.rt{font-weight:700;color:var(--p);font-size:.92rem}
-.rs{font-size:.75rem;color:var(--gr);margin-top:2px}
-.rd{font-size:.85rem;color:var(--dk);margin-top:3px}
-.se{padding:2rem;text-align:center;color:var(--gr);font-size:.9rem}
-.section{display:none;animation:fi .35s ease}
+.section{display:none;animation:fi .4s ease;min-height:100vh}
 .section.active{display:block}
-@keyframes fi{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.section-title{font-size:clamp(1.5rem,5vw,2.5rem);font-weight:800;margin-bottom:.4rem;line-height:1.2}
-.section-desc{font-size:.95rem;color:var(--gr);margin-bottom:2rem}
-.category{margin-bottom:2.5rem}
-.category-title{font-size:clamp(1.1rem,4vw,1.6rem);font-weight:700;margin-bottom:1.25rem;padding-bottom:.4rem;border-bottom:3px solid var(--p);display:inline-block}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.25rem;margin-bottom:1.5rem}
-.path-card{background:#fff;border-radius:12px;padding:1.25rem;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .3s;border:2px solid transparent}
-.path-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(108,63,197,.15);border-color:var(--p)}
-.path-card h4{font-size:1rem;font-weight:700;color:var(--p);margin-bottom:.5rem;display:flex;align-items:center;gap:.45rem}
-.path-card h4::before{content:'▸';color:var(--g)}
-.path-card p{color:var(--dk);margin-bottom:.75rem;font-size:.88rem}
-.path{display:flex;flex-wrap:wrap;align-items:center;gap:2px;background:linear-gradient(135deg,#f5f0ff,#ede9f8);border-radius:8px;padding:.55rem .85rem;font-size:.82rem;border:1.5px solid var(--gl);margin-bottom:.45rem}
-.path-step{font-family:'Fira Code',monospace;font-weight:600;color:var(--pd);background:#fff;padding:.1rem .4rem;border-radius:5px;border:1px solid #c9b8f0;white-space:nowrap}
-.path-arrow{color:var(--g);font-size:.9rem;margin:0 1px;font-weight:700;flex-shrink:0}
-.path-note{font-size:.75rem;color:var(--gr);margin-top:.35rem;font-style:italic;line-height:1.4}
-.multi-path{margin-bottom:.4rem}
-.multi-path-label{font-size:.72rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.25rem}
-.dialog-steps{list-style:none;counter-reset:steps;margin:.4rem 0 .2rem;padding:0}
-.dialog-steps li{counter-increment:steps;display:flex;align-items:flex-start;gap:.5rem;font-size:.85rem;color:#444;margin-bottom:.3rem;line-height:1.45}
-.dialog-steps li::before{content:counter(steps);background:var(--p);color:#fff;border-radius:50%;width:18px;height:18px;flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;margin-top:.1rem}
+@keyframes fi{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.section-header{margin-bottom:2rem;padding-bottom:1rem;border-bottom:2px solid var(--gl)}
+.section-title{font-size:clamp(1.6rem,5vw,2.4rem);font-weight:800;margin-bottom:.3rem;line-height:1.2;background:linear-gradient(135deg,var(--p),var(--g));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.section-desc{font-size:.95rem;color:var(--gr);max-width:700px}
+.category-title{font-size:clamp(1.1rem,4vw,1.5rem);font-weight:700;margin:2rem 0 1.25rem;padding-bottom:.5rem;border-bottom:3px solid var(--p);display:inline-flex;align-items:center;gap:.5rem}
+.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem;margin-bottom:2rem}
+.path-card{background:#fff;border-radius:14px;padding:1.4rem;box-shadow:var(--shadow-sm);border:2px solid transparent;transition:all .3s;position:relative;overflow:hidden}
+.path-card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:linear-gradient(180deg,var(--p),var(--g));opacity:0;transition:opacity .3s}
+.path-card:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:var(--shadow-lg)}
+.path-card:hover::before{opacity:1}
+.path-card h4{font-size:1.05rem;color:var(--p);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;font-weight:700}
+.path-card h4::before{content:'▸';color:var(--g);font-size:1.2em}
+.path-card p.desc{font-size:.88rem;color:#4a5568;margin-bottom:.7rem;line-height:1.55}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:3px;background:linear-gradient(135deg,#f5f0ff,#ede9f8);border-radius:8px;padding:.65rem .9rem;font-size:.8rem;margin-bottom:.6rem;font-family:'Fira Code',monospace;border:1px solid #e0d4f5}
+.path-step{color:var(--pd);font-weight:600;background:#fff;padding:2px 6px;border-radius:4px;border:1px solid #c9b8f0;white-space:nowrap}
+.path-arrow{color:var(--g);font-weight:bold}
+.path-note{font-size:.78rem;color:var(--gr);margin-top:.4rem;font-style:italic}
+.multi-path{margin-bottom:.45rem}
+.multi-path-label{font-size:.75rem;font-weight:700;color:var(--g);text-transform:uppercase;letter-spacing:.05em;margin-bottom:.3rem}
+.tag-list{display:flex;flex-wrap:wrap;gap:.4rem;margin:.5rem 0}
+.tag{font-size:.7rem;padding:.25rem .6rem;border-radius:20px;font-weight:600;text-transform:uppercase;letter-spacing:.3px}
+.tag-medical{background:#fef3c7;color:#92400e}
+.tag-critical{background:#fee2e2;color:#991b1b}
+.tag-advanced{background:#dbeafe;color:#1e40af}
+.tag-essential{background:#d1fae5;color:#065f46}
+.dialog-steps{list-style:none;counter-reset:steps;margin:.6rem 0 .3rem;padding:0}
+.dialog-steps li{counter-increment:steps;display:flex;gap:.6rem;font-size:.85rem;margin-bottom:.4rem;line-height:1.5;align-items:flex-start}
+.dialog-steps li::before{content:counter(steps);background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border-radius:50%;width:20px;height:20px;flex-shrink:0;display:flex;justify-content:center;align-items:center;font-size:.7rem;font-weight:700;margin-top:1px}
 .dialog-steps li strong{color:var(--pd)}
 .dialog-steps li em{color:var(--g);font-style:normal;font-weight:600}
-.info-box{background:linear-gradient(135deg,#ede9f8,#ddd6f3);padding:1.1rem 1.25rem;border-radius:12px;border-left:4px solid var(--p);margin:1.25rem 0;font-size:.9rem}
-.warning-box{background:linear-gradient(135deg,#fff8e8,#fef3c7);padding:1.1rem 1.25rem;border-radius:12px;border-left:4px solid var(--a);margin:1.25rem 0;font-size:.9rem}
-.success-box{background:linear-gradient(135deg,#fce4ef,#fce7f3);padding:1.1rem 1.25rem;border-radius:12px;border-left:4px solid var(--g);margin:1.25rem 0;font-size:.9rem}
-.box-title{font-weight:700;margin-bottom:.35rem;font-size:.93rem}
-.table-container{overflow-x:auto;margin:1.25rem 0;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,.08);-webkit-overflow-scrolling:touch}
-table{width:100%;border-collapse:collapse;background:#fff;font-size:.88rem}
-th{background:var(--p);color:#fff;padding:.8rem .9rem;text-align:left;font-weight:600;white-space:nowrap}
-td{padding:.75rem .9rem;border-bottom:1px solid var(--gl);vertical-align:top}
+.theory-box{background:linear-gradient(135deg,#f0ebff,#e8e0ff);border-radius:10px;padding:.9rem 1rem;margin:.7rem 0;font-size:.84rem;border-left:4px solid var(--p)}
+.theory-box .theory-title{font-weight:700;color:var(--pd);margin-bottom:.35rem;font-size:.88rem;display:flex;align-items:center;gap:.4rem}
+.theory-box .formula{font-family:'Fira Code',monospace;background:rgba(108,63,197,.1);padding:.3rem .6rem;border-radius:6px;font-size:.82rem;margin:.3rem 0;color:var(--pd);display:inline-block}
+.report-box{background:linear-gradient(135deg,#ecfdf5,#d1fae5);border-radius:10px;padding:.9rem 1rem;margin:.7rem 0;font-size:.84rem;border-left:4px solid var(--success)}
+.report-box .report-title{font-weight:700;color:#065f46;margin-bottom:.35rem;font-size:.88rem;display:flex;align-items:center;gap:.4rem}
+.report-box code{font-family:'Fira Code',monospace;background:rgba(16,185,129,.12);padding:.15rem .4rem;border-radius:4px;font-size:.8rem;color:#047857}
+.info-box,.warning-box,.critical-box,.tip-box,.success-box{padding:1.2rem;border-radius:12px;margin:1.5rem 0;font-size:.9rem;border-left:4px solid;position:relative}
+.info-box{background:#ede9f8;border-left-color:var(--p)}
+.warning-box{background:#fff8e8;border-left-color:var(--a)}
+.critical-box{background:#fef2f2;border-left-color:var(--danger);border:1px solid #fecaca}
+.tip-box{background:#ecfdf5;border-left-color:var(--success)}
+.success-box{background:linear-gradient(135deg,#fce4ef,#fce7f3);border-left-color:var(--g)}
+.box-title{font-weight:700;margin-bottom:.4rem;display:flex;align-items:center;gap:.4rem;font-size:1rem}
+.medical-highlight{background:linear-gradient(135deg,#fef3c7,#fde68a);border-radius:12px;padding:1rem 1.2rem;margin:1rem 0;border:1px solid #fbbf24}
+.medical-highlight .title{font-weight:700;color:#92400e;display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem}
+.medical-highlight ul{margin:.4rem 0 0 1.2rem;font-size:.85rem;color:#78350f}
+.medical-highlight li{margin-bottom:.2rem}
+.table-container{overflow-x:auto;margin:1.5rem 0;border-radius:12px;box-shadow:var(--shadow-sm)}
+table{width:100%;border-collapse:collapse;background:#fff}
+th{background:var(--p);color:#fff;padding:1rem;text-align:left;font-weight:600;font-size:.9rem}
+td{padding:.9rem 1rem;border-bottom:1px solid var(--gl);font-size:.9rem}
 tr:last-child td{border-bottom:none}
-tr:hover{background:var(--bg)}
-td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.08rem .35rem;border-radius:4px;font-size:.8rem;color:var(--pd)}
-.footer{background:var(--dk);color:#fff;padding:2.5rem 1.25rem;margin-top:3rem;text-align:center}
-.fc{max-width:800px;margin:0 auto}
-.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.25rem;margin:1.5rem 0}
-.cc2{background:rgba(255,255,255,.08);padding:1.25rem;border-radius:12px;border:2px solid rgba(255,255,255,.15);transition:all .3s}
-.cc2:hover{background:rgba(255,255,255,.13)}
-.cc2 .ico{font-size:1.75rem;margin-bottom:.4rem}
-.cc2 .lbl{font-size:.8rem;opacity:.75;margin-bottom:.2rem}
-.cc2 .val{font-size:.95rem;font-weight:600}
-.stb{position:fixed;bottom:1.5rem;right:1.25rem;width:46px;height:46px;background:var(--p);color:#fff;border:none;border-radius:50%;font-size:1.4rem;cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(108,63,197,.45);transition:all .3s;z-index:1000}
-.stb.vis{display:flex}
-.stb:hover{background:var(--pd);transform:translateY(-3px)}
-
-/* ════ MOBILE — EXACT STATA PATTERN ════ */
+tr:hover{background:#f9f7ff}
+td code{font-family:'Fira Code',monospace;background:#ede9f8;padding:.1rem .4rem;border-radius:4px;font-size:.82rem;color:var(--pd)}
+.so{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:9000;padding:80px 1rem 1rem;justify-content:center;backdrop-filter:blur(4px)}
+.so.open{display:flex}
+.sb{background:#fff;border-radius:16px;width:100%;max-width:700px;overflow:hidden;box-shadow:0 25px 80px rgba(0,0,0,.4);animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+.siw{display:flex;align-items:center;padding:1rem 1.2rem;border-bottom:2px solid var(--gl);gap:.7rem}
+.si{flex:1;border:none;outline:none;font-size:1.1rem;padding:.3rem}
+.sc{background:none;border:none;font-size:1.8rem;cursor:pointer;color:var(--gr);transition:color .2s}
+.sc:hover{color:var(--dk)}
+.sr{max-height:60vh;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.sri{padding:1rem 1.2rem;border-bottom:1px solid var(--gl);cursor:pointer;transition:background .15s}
+.sri:hover{background:var(--bg)}
+.sri strong{color:var(--p);font-size:.95rem;display:block;margin-bottom:.2rem}
+.sri small{color:var(--gr);font-size:.8rem;font-family:'Fira Code',monospace}
+.se{padding:2rem;text-align:center;color:var(--gr)}
+.footer{background:#0d1117;color:#fff;padding:3.5rem 1.5rem 2.5rem;text-align:center;margin-top:4rem;position:relative}
+.footer::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--p),var(--g),var(--a))}
+.fc{max-width:860px;margin:0 auto}
+.contact-heading{font-size:1.6rem;font-weight:800;letter-spacing:.5px;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:center;gap:.6rem}
+.contact-phone-icon{font-size:1.4rem;filter:drop-shadow(0 0 6px rgba(232,67,147,.7))}
+.contact-name{font-size:1.5rem;font-weight:700;margin-bottom:.4rem}
+.contact-role{font-size:1rem;opacity:.65;margin-bottom:2.2rem;letter-spacing:.2px}
+.contact-cards{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;max-width:760px;margin:0 auto 2.5rem}
+.contact-card{display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.1);border-radius:16px;padding:2rem 1.5rem;text-decoration:none;color:#fff;transition:all .3s;cursor:pointer}
+.contact-card:hover{background:rgba(255,255,255,.11);border-color:rgba(255,255,255,.22);transform:translateY(-4px);box-shadow:0 8px 30px rgba(0,0,0,.35)}
+.contact-card-icon{font-size:2.2rem;margin-bottom:.9rem}
+.contact-card-label{font-size:.85rem;opacity:.6;margin-bottom:.5rem;letter-spacing:.3px}
+.contact-card-value{font-size:1.1rem;font-weight:700;letter-spacing:.3px}
+.contact-email-link{color:#6b9fff;font-size:.95rem}
+.contact-copy{font-size:.9rem;opacity:.7;margin-bottom:.5rem}
+.contact-legal{font-size:.78rem;opacity:.4;max-width:600px;margin:0 auto}
+@media(max-width:540px){.contact-cards{grid-template-columns:1fr}.contact-card{padding:1.5rem 1rem}}
+.stb{position:fixed;bottom:1.5rem;right:1.5rem;width:50px;height:50px;background:linear-gradient(135deg,var(--p),var(--pd));color:#fff;border:none;border-radius:50%;display:none;align-items:center;justify-content:center;cursor:pointer;z-index:999;box-shadow:var(--shadow-lg);transition:all .3s;font-size:1.3rem}
+.stb:hover{transform:translateY(-3px);box-shadow:0 8px 25px rgba(108,63,197,.4)}
+.stb.vis{display:flex;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}
 @media(max-width:768px){
-
-body{
-overflow-x:hidden;
-}
-
-.nav-inner{
-padding-left:0;
-padding-right:0;
-}
-
-.hdr{padding:2.5rem 0 2rem;}
-
-
+  .ctr{padding:1rem 12px}
+  .hdr{padding:2rem 1rem 2rem}
   .burger{display:flex}
-
-  .nav{
-    display:none;
-    flex-direction:column;
-    position:absolute;
-    top:100%;
-    left:0;
-    right:0;
-    background:#fff;
-    box-shadow:0 8px 28px rgba(0,0,0,.18);
-    border-top:2px solid var(--p);
-    z-index:999;
-    max-height:80vh;
-    overflow-y:auto;
-    -webkit-overflow-scrolling:touch
-  }
-
+  .nav{display:none;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:#fff;box-shadow:var(--shadow-lg);max-height:70vh;overflow-y:auto;padding:0}
   .nav.open{display:flex}
-
-  .ni{
-    min-width:auto;
-    text-align:left;
-    padding:.95rem 1.25rem;
-    border-bottom:1px solid var(--gl);
-    border-left:4px solid transparent;
-    font-size:.95rem
-  }
-
-  .ni:hover,
-  .ni.active{
-    background:var(--p);
-    color:#fff;
-    border-left-color:var(--a);
-    border-bottom:1px solid rgba(255,255,255,.15)
-  }
-
-  .ctr{padding:1.25rem .9rem}
-
+  .ni{text-align:left;padding:.9rem 1.2rem;border-bottom:1px solid var(--gl);border-left:4px solid transparent;font-size:.85rem}
+  .ni.active{border-left-color:var(--a);border-bottom-color:transparent}
   .card-grid{grid-template-columns:1fr;gap:1rem}
-
-  .path{font-size:.75rem;padding:.45rem .7rem}
-
-  .path-step{font-size:.7rem;padding:.08rem .35rem}
-
-  .dialog-steps li{font-size:.82rem}
-
-  .info-box,
-  .warning-box,
-  .success-box{
-    padding:.9rem 1rem;
-    font-size:.85rem
-  }
-
-  th,td{
-    padding:.65rem .75rem;
-    font-size:.82rem
-  }
-
-  .section-title{font-size:1.5rem}
-
-  .category-title{font-size:1.1rem}
-
-  .section-desc{
-    font-size:.88rem;
-    margin-bottom:1.5rem
-  }
-
-  .footer{padding:2rem .9rem}
-
-  .cg{
-    grid-template-columns:1fr 1fr;
-    gap:1rem
-  }
-
-  .stb{
-    width:42px;
-    height:42px;
-    font-size:1.2rem;
-    bottom:1.25rem;
-    right:1rem
-  }
-
-  .so{
-    padding-top:0;
-    align-items:flex-end
-  }
-
-  .sb{
-    width:100%;
-    border-radius:16px 16px 0 0;
-    max-height:90vh
-  }
-
-  .sr{max-height:55vh}
-
-  .siw{padding:.85rem 1rem}
-
-  .si{font-size:.95rem}
-
-  .sri{padding:.75rem 1rem}
-
-  /* ⭐ THIS FIXES HEADER GAP */
-  .hdr-inner.container{
-    padding-left:0;
-    padding-right:0;
-  }
-
-}  /* ⭐ THIS WAS MISSING — VERY IMPORTANT */
-
-
-/* SMALL MOBILE */
-@media(max-width:400px){
-
-  .hdr h1{font-size:1.25rem}
-
-  .path-step{font-size:.65rem}
-
-  th,td{
-    padding:.55rem .6rem;
-    font-size:.78rem
-  }
-
+  .path-card{padding:1.2rem}
+  .so{padding-top:60px}
+  .sb{width:95%;border-radius:12px}
+  .stb{width:45px;height:45px;bottom:1rem;right:1rem}
+  .cg{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .hdr h1{font-size:1.4rem}
+  .section-title{font-size:1.3rem}
+  .category-title{font-size:1rem}
+  .path{font-size:.75rem;padding:.5rem .7rem}
+  .path-step{padding:1px 4px}
+  .dialog-steps li{font-size:.8rem}
+  .cg{grid-template-columns:1fr}
+}
+@media print{
+  .nav-wrap,.stb,.sbtn{display:none!important}
+  .section{display:block!important;page-break-inside:avoid}
+  .path-card{break-inside:avoid}
 }
 </style>
 </head>
 <body>
 
-<div class="hdr">
-  <div class="hdr-inner container">
+<header class="hdr">
+  <div class="hdr-inner">
     <h1>📊 SPSS Navigation Guide</h1>
-    <p style="font-size:1.1rem;font-weight:700;margin:.5rem 0">Monu Prajapati</p>
-    <p class="sub">Menu Paths &bull; Dialogs &bull; Step-by-Step &mdash; No Code Required</p>
-    <div class="badge">
-      <span class="badge-dot"></span>
-      SPSS Statistics v25–v29 Compatible
-    </div>
+    <p class="author">Monu Prajapati</p>
+    <p class="sub">Complete Menu Paths, Theory & Dialogs for Statistical Analysis — No Code Required</p>
+    <div class="badge"><span class="badge-dot"></span> SPSS Statistics v25–v29 Compatible</div>
   </div>
-</div>
+</header>
 
 <div class="nav-wrap">
   <div class="nav-inner">
-
-    <button class="burger" id="burger">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-
     <nav class="nav" id="mainNav">
-
-      <div class="ni active" data-s="data-management">📂 Data Mgmt</div>
-      <div class="ni" data-s="descriptive">📊 Descriptive</div>
-      <div class="ni" data-s="regression">📈 Regression</div>
-      <div class="ni" data-s="comparison">⚖️ Comparison</div>
-      <div class="ni" data-s="nonparametric">🔢 Non-Param</div>
-      <div class="ni" data-s="reliability">🔬 Reliability</div>
-      <div class="ni" data-s="factor">🧮 Factor</div>
-      <div class="ni" data-s="charts">🎨 Charts</div>
-      <div class="ni" data-s="output">📄 Output</div>
-
+      <div class="ni active" data-s="sec-basics"><span class="icon">🚀</span>Basics</div>
+      <div class="ni" data-s="sec-datamgmt"><span class="icon">🗄️</span>Data Management</div>
+      <div class="ni" data-s="sec-testselect"><span class="icon">🎯</span>Test Selection</div>
+      <div class="ni" data-s="sec-tests"><span class="icon">🧪</span>Statistical Tests</div>
+      <div class="ni" data-s="sec-regression"><span class="icon">📈</span>Regression & Modeling</div>
+      <div class="ni" data-s="sec-viz"><span class="icon">📊</span>Visualization</div>
+      <div class="ni" data-s="sec-reference"><span class="icon">📖</span>Reference</div>
     </nav>
-
-    <button class="sbtn" id="sBtn">🔍</button>
-
+    <button class="burger" id="burger" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+    <button class="sbtn" id="sBtn" aria-label="Search"><span style="font-size:1.2rem">🔍</span></button>
   </div>
 </div>
 
-<div class="ctr">
+<div class="so" id="sOverlay">
+  <div class="sb">
+    <div class="siw"><span style="font-size:1.3rem">🔍</span><input type="text" class="si" id="sInput" placeholder="Search analysis, test, or menu path..." autocomplete="off"><button class="sc" id="sClose" aria-label="Close">&times;</button></div>
+    <div class="sr" id="sResults"><div class="se">Start typing to search…</div></div>
+  </div>
+</div>
 
-<!-- ════════ 1. DATA MANAGEMENT ════════ -->
-<div class="section active" id="data-management">
-  <div class="section-title">🗄️ Data Management</div>
-  <p class="section-desc">Opening files, editing data, transforming variables, and managing datasets via SPSS menus.</p>
+<main class="ctr">
+
+<!-- ============================== BASICS ============================== -->
+<section class="section active" id="sec-basics">
+  <div class="section-header">
+    <h2 class="section-title">🚀 Basics — Getting Started with SPSS</h2>
+    <p class="section-desc">Interface orientation, opening files, variable setup, and key concepts before running any analysis.</p>
+  </div>
 
   <div class="category">
-    <div class="category-title">📂 Opening & Saving Files</div>
+    <h3 class="category-title"><span class="icon">🖥️</span>Interface Overview</h3>
     <div class="card-grid">
-
       <div class="path-card">
-        <h4>Open Data File</h4>
-        <p>Import an existing SPSS or Excel dataset into the Data Editor.</p>
+        <h4>Data Editor — Data View</h4>
+        <p class="desc">The spreadsheet view where each row = one case (participant) and each column = one variable. All raw data is entered and viewed here.</p>
+        <div class="path"><span class="path-step">Data Editor</span><span class="path-arrow">›</span><span class="path-step">Data View tab (bottom)</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Key Concepts</div>Each <strong>row</strong> is an observation (patient, subject, record). Each <strong>column</strong> is a variable. Missing values appear as a dot (.) by default.</div>
+      </div>
+      <div class="path-card">
+        <h4>Data Editor — Variable View</h4>
+        <p class="desc">Define variable properties: name, type, label, value labels, missing values, and measurement level. <strong>Always configure this before analysis.</strong></p>
+        <div class="path"><span class="path-step">Data Editor</span><span class="path-arrow">›</span><span class="path-step">Variable View tab (bottom)</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Measurement Levels</div><strong>Scale (Continuous)</strong>: numeric with meaningful intervals (age, BP, weight)<br><strong>Ordinal</strong>: ranked categories (Likert, disease severity)<br><strong>Nominal</strong>: unordered categories (gender, blood group, diagnosis)</div>
+        <div class="warning-box" style="margin:.7rem 0"><div class="box-title">⚠️ Critical Step</div>Wrong measurement level = wrong analysis options appear in menus. Always set this first.</div>
+      </div>
+      <div class="path-card">
+        <h4>Open Data File (.sav / Excel / CSV)</h4>
         <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Open</span><span class="path-arrow">›</span><span class="path-step">Data…</span></div>
         <ul class="dialog-steps">
-          <li>Browse to your file location</li>
-          <li>Change <strong>Files of type</strong> to match format (e.g., <em>Excel</em>, <em>CSV</em>, <em>.sav</em>)</li>
+          <li>Browse to file location</li>
+          <li>Change <strong>Files of type</strong> to match format (.sav, .xlsx, .csv)</li>
           <li>Click <strong>Open</strong></li>
           <li>For Excel: check <em>Read variable names from first row</em> → OK</li>
         </ul>
       </div>
-
-      <div class="path-card">
-        <h4>Save / Save As</h4>
-        <p>Save your dataset in SPSS format (.sav) or export to another format.</p>
-        <div class="multi-path">
-          <div class="multi-path-label">Save same file</div>
-          <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save</span></div>
-        </div>
-        <div class="multi-path">
-          <div class="multi-path-label">Save as new name / format</div>
-          <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save As…</span></div>
-        </div>
-        <p class="path-note">Select save type: SPSS (.sav), Excel, CSV, etc.</p>
-      </div>
-
       <div class="path-card">
         <h4>Import CSV / Text File</h4>
-        <p>Read delimited text files with SPSS's Text Import Wizard.</p>
         <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Import Data</span><span class="path-arrow">›</span><span class="path-step">CSV Data…</span></div>
         <ul class="dialog-steps">
           <li>Select your .csv file → Next</li>
-          <li>Confirm delimiter type (comma, tab, space)</li>
-          <li>Check <em>Variable names at top of file</em> if applicable</li>
-          <li>Click <strong>Finish</strong></li>
+          <li>Confirm delimiter (comma, tab, space)</li>
+          <li>Check <em>Variable names at top of file</em> → Finish</li>
         </ul>
       </div>
-
       <div class="path-card">
-        <h4>Import Excel File</h4>
-        <p>Open .xlsx or .xls files directly into SPSS.</p>
-        <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Import Data</span><span class="path-arrow">›</span><span class="path-step">Excel…</span></div>
-        <ul class="dialog-steps">
-          <li>Select your Excel file</li>
-          <li>Choose the correct <strong>Worksheet</strong> from dropdown</li>
-          <li>Check <em>Read variable names from first row of data</em></li>
-          <li>Click <strong>OK</strong></li>
-        </ul>
+        <h4>Save / Save As</h4>
+        <div class="multi-path"><div class="multi-path-label">Save current file</div><div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save</span><span class="path-arrow"> </span><span class="path-step">Ctrl+S</span></div></div>
+        <div class="multi-path"><div class="multi-path-label">Save as new name/format</div><div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save As…</span></div></div>
+        <p class="path-note">Save as .sav (SPSS format) to preserve variable labels and value codes. Export to Excel/CSV loses metadata.</p>
       </div>
-
+      <div class="path-card">
+        <h4>Output Viewer</h4>
+        <p class="desc">All analysis results appear in the Output Viewer window as tables and charts. Each run adds new output to the bottom.</p>
+        <div class="path"><span class="path-step">Window</span><span class="path-arrow">›</span><span class="path-step">IBM SPSS Statistics Viewer</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Output Tips</div>Use the left-side <strong>outline panel</strong> to jump to any result. Right-click any table → <strong>Export</strong> to copy to Word/Excel. Double-click a chart to open Chart Editor.</div>
+      </div>
     </div>
   </div>
 
   <div class="category">
-    <div class="category-title">🔧 Transforming Variables</div>
+    <h3 class="category-title"><span class="icon">📐</span>Normality Testing (First Step Before Any Test)</h3>
     <div class="card-grid">
+      <div class="path-card">
+        <h4>Shapiro-Wilk &amp; Kolmogorov-Smirnov</h4>
+        <p class="desc">Test whether your continuous variable is normally distributed. This determines whether to use parametric or non-parametric tests.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Explore…</span></div>
+        <ul class="dialog-steps">
+          <li>Move continuous variable(s) to <em>Dependent List</em></li>
+          <li>Optionally move grouping variable to <em>Factor List</em></li>
+          <li>Click <strong>Plots…</strong> → check <em>☑ Normality plots with tests</em> → Continue</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><strong>Shapiro-Wilk (SW)</strong> is generally preferred regardless of sample size — it is more powerful and sensitive than KS for detecting departures from normality.<br><strong>Kolmogorov-Smirnov (KS)</strong>: an older alternative, less powerful; only use if specifically required by a reviewer or journal.<br><br><span class="formula">H₀: Data is normally distributed</span><br><strong>p &gt; 0.05</strong> → fail to reject H₀ → use parametric tests<br><strong>p ≤ 0.05</strong> → data is NOT normal → use non-parametric alternatives</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div>Normality was assessed via the Shapiro-Wilk test. Results indicated the data were normally distributed, <code>W(n) = .xxx, p = .xxx</code>.</div>
+        <div class="tag-list"><span class="tag tag-essential">Essential First Step</span><span class="tag tag-critical">Before Every Test</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Levene's Test of Homogeneity of Variance</h4>
+        <p class="desc">Tests whether groups have equal variances — required before independent t-tests and ANOVA.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">One-Way ANOVA…</span><span class="path-arrow">›</span><span class="path-step">Options: Homogeneity of variance test</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><strong>p &gt; 0.05</strong>: Equal variances assumed (use standard test)<br><strong>p ≤ 0.05</strong>: Variances are unequal → use Welch correction (for t-test: "Equal variances not assumed" row; for ANOVA: Welch F statistic)</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-box"><div class="box-title">ℹ️ Workflow Before Every Analysis</div>1. Check <strong>Variable View</strong> — correct measurement levels<br>2. Run <strong>Explore</strong> — check normality (SW/KS tests)<br>3. Check <strong>Levene's</strong> — equal variances if comparing groups<br>4. Then choose the appropriate test</div>
+</section>
 
+<!-- ============================== DATA MANAGEMENT ============================== -->
+<section class="section" id="sec-datamgmt">
+  <div class="section-header">
+    <h2 class="section-title">🗄️ Data Management</h2>
+    <p class="section-desc">Transform, clean, filter, sort, and restructure your dataset using SPSS menus.</p>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">🔧</span>Variable Transformations</h3>
+    <div class="card-grid">
       <div class="path-card">
         <h4>Compute New Variable</h4>
-        <p>Create a new variable using arithmetic, functions, or logical expressions.</p>
+        <p class="desc">Create a new variable from a mathematical expression (e.g., BMI = weight/height²).</p>
         <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Compute Variable…</span></div>
         <ul class="dialog-steps">
           <li>Enter a name in <strong>Target Variable</strong></li>
-          <li>Build expression in <em>Numeric Expression</em> box using variable list and function buttons</li>
-          <li>Optionally click <strong>If…</strong> to apply a condition</li>
+          <li>Build expression in <em>Numeric Expression</em> box (use keyboard or function list)</li>
+          <li>Optionally click <strong>If…</strong> to compute only for cases meeting a condition</li>
           <li>Click <strong>OK</strong></li>
         </ul>
+        <p class="path-note">Example: weight / (height * height) for BMI. Use LN(), SQRT(), ABS() functions from the list.</p>
       </div>
-
-      <div class="path-card">
-        <h4>Recode Into Same Variable</h4>
-        <p>Change existing values of a variable in place (permanently overwrites original).</p>
-        <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Recode into Same Variables…</span></div>
-        <ul class="dialog-steps">
-          <li>Move target variable(s) to <em>Variables</em> box</li>
-          <li>Click <strong>Old and New Values…</strong></li>
-          <li>Enter each old value → new value pair → <em>Add</em></li>
-          <li>Click <strong>Continue</strong> → <strong>OK</strong></li>
-        </ul>
-      </div>
-
       <div class="path-card">
         <h4>Recode Into Different Variable</h4>
-        <p>Recode into a new variable — original data is preserved.</p>
+        <p class="desc">Create a new categorical variable from an existing one (e.g., age → age group). Always use "Different Variable" to preserve original data.</p>
         <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Recode into Different Variables…</span></div>
         <ul class="dialog-steps">
           <li>Move source variable to <em>Input Variable → Output Variable</em></li>
-          <li>Enter a <strong>Name</strong> for the new variable → <em>Change</em></li>
-          <li>Click <strong>Old and New Values…</strong> and define mappings</li>
+          <li>Enter <strong>Name</strong> for new variable → click <em>Change</em></li>
+          <li>Click <strong>Old and New Values…</strong></li>
+          <li>Enter each old value (or range) → new value → Add</li>
           <li>Continue → OK</li>
         </ul>
+        <p class="path-note">After recoding: go to Variable View → set Measure to Nominal/Ordinal and add Value Labels for the new variable.</p>
       </div>
-
       <div class="path-card">
-        <h4>Visual Binning (Categorize)</h4>
-        <p>Group a continuous variable into categories visually.</p>
+        <h4>Visual Binning (Categorize Continuous)</h4>
+        <p class="desc">Convert a continuous variable (age, score) into ordered categories using a visual histogram interface.</p>
         <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Visual Binning…</span></div>
         <ul class="dialog-steps">
           <li>Move variable into <em>Variables to Bin</em> → Continue</li>
           <li>Enter a <strong>Binned Variable Name</strong></li>
-          <li>Click <em>Make Cutpoints…</em> or drag boundaries on histogram</li>
-          <li>Assign category <strong>Labels</strong> → OK</li>
+          <li>Click <em>Make Cutpoints…</em> → set equal-width or percentile bins, or drag boundaries manually</li>
+          <li>Assign category <strong>Labels</strong> (e.g., 0–18, 19–35, 36+) → OK</li>
         </ul>
       </div>
+      <div class="path-card">
+        <h4>Recode Into Same Variable</h4>
+        <p class="desc">Replace values within an existing variable. Use only if you no longer need the original values.</p>
+        <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Recode into Same Variables…</span></div>
+        <ul class="dialog-steps">
+          <li>Move target variable(s) to <em>Variables</em></li>
+          <li>Click <strong>Old and New Values…</strong></li>
+          <li>Enter old → new value pairs → Add → Continue → OK</li>
+        </ul>
+        <div class="warning-box" style="margin:.7rem 0"><div class="box-title">⚠️ Warning</div>This permanently overwrites the original values. Prefer <em>Recode into Different Variable</em>.</div>
+      </div>
+      <div class="path-card">
+        <h4>Standardize (Z-Score) a Variable</h4>
+        <p class="desc">Convert a variable to z-scores (mean=0, SD=1) for comparisons across different scales.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Descriptives…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variable(s) to <em>Variable(s)</em> list</li>
+          <li>Check <em>☑ Save standardized values as variables</em></li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">New variable <strong>Zvarname</strong> is created in the dataset. Formula: Z = (X − Mean) / SD.</p>
+        <div class="theory-box"><div class="theory-title">📘 Z-Score Formula</div><span class="formula">Z = (X − μ) / σ</span><br>Useful for detecting outliers: |Z| &gt; 3 = potential outlier.</div>
+      </div>
+      <div class="path-card">
+        <h4>Rank Cases</h4>
+        <p class="desc">Assign ranks to cases for non-parametric analyses or to create rank-transformed variables.</p>
+        <div class="path"><span class="path-step">Transform</span><span class="path-arrow">›</span><span class="path-step">Rank Cases…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variable(s) to <em>Variables</em></li>
+          <li>Optionally move grouping variable to <em>By</em> to rank within groups</li>
+          <li>Click <strong>Rank Types…</strong> → select Ranks, Fractional rank, Savage scores, etc.</li>
+          <li>Click <strong>Ties…</strong> → select how ties are handled → Continue → OK</li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
+  <div class="category">
+    <h3 class="category-title"><span class="icon">🔍</span>Data Filtering &amp; Restructuring</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Select Cases (Filter)</h4>
+        <p class="desc">Temporarily restrict analysis to a subset of cases meeting a condition (e.g., only adults, only treatment group).</p>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Select Cases…</span></div>
+        <ul class="dialog-steps">
+          <li>Choose <em>If condition is satisfied</em> → click <strong>If…</strong></li>
+          <li>Enter logical condition (e.g., <em>age &gt;= 18</em>, <em>group = 1</em>)</li>
+          <li>Choose <em>Filter unselected cases</em> (keeps rows, marks them) or <em>Delete unselected cases</em></li>
+          <li>Continue → OK</li>
+        </ul>
+        <p class="path-note">Filtered rows show a slash (/) through row number. Reset: Data › Select Cases › All Cases.</p>
+      </div>
+      <div class="path-card">
+        <h4>Split File (Group Analyses)</h4>
+        <p class="desc">Run all subsequent analyses separately for each group defined by a grouping variable.</p>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Split File…</span></div>
+        <ul class="dialog-steps">
+          <li>Select <em>Compare groups</em> or <em>Organize output by groups</em></li>
+          <li>Move grouping variable to <em>Groups Based on</em></li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <p class="path-note">⚠️ Always reset when done: Data › Split File › Analyze all cases.</p>
+      </div>
       <div class="path-card">
         <h4>Sort Cases</h4>
-        <p>Sort all rows ascending or descending by one or more variables.</p>
         <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Sort Cases…</span></div>
         <ul class="dialog-steps">
           <li>Move sort key variable(s) to <em>Sort by</em></li>
@@ -444,275 +400,312 @@ padding-right:0;
           <li>Click <strong>OK</strong></li>
         </ul>
       </div>
-
       <div class="path-card">
-        <h4>Select Cases (Filter)</h4>
-        <p>Restrict analysis to a subset of cases matching a condition.</p>
-        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Select Cases…</span></div>
+        <h4>Merge Files — Add Cases (Rows)</h4>
+        <p class="desc">Append rows from a second dataset (same variables, more participants).</p>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Merge Files</span><span class="path-arrow">›</span><span class="path-step">Add Cases…</span></div>
         <ul class="dialog-steps">
-          <li>Choose <em>If condition is satisfied</em> → click <strong>If…</strong></li>
-          <li>Enter logical condition (e.g., <em>age &gt; 18</em>)</li>
-          <li>Choose action: <em>Filter</em> (keeps all) or <em>Delete</em></li>
-          <li>Continue → OK</li>
-        </ul>
-        <p class="path-note">Filtered-out rows show a slash through row number. Reset via Data › Select Cases › All Cases.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Split File (Group Analysis)</h4>
-        <p>Run analyses separately for each group without filtering.</p>
-        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Split File…</span></div>
-        <ul class="dialog-steps">
-          <li>Select <em>Compare groups</em> or <em>Organize output by groups</em></li>
-          <li>Move grouping variable to <em>Groups Based on</em></li>
-          <li>Click <strong>OK</strong></li>
-        </ul>
-        <p class="path-note">Always reset: Data › Split File › Analyze all cases when done.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Merge / Add Cases or Variables</h4>
-        <p>Combine two datasets by stacking rows or adding columns.</p>
-        <div class="multi-path">
-          <div class="multi-path-label">Add rows (cases)</div>
-          <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Merge Files</span><span class="path-arrow">›</span><span class="path-step">Add Cases…</span></div>
-        </div>
-        <div class="multi-path">
-          <div class="multi-path-label">Add columns (variables)</div>
-          <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Merge Files</span><span class="path-arrow">›</span><span class="path-step">Add Variables…</span></div>
-        </div>
-      </div>
-
-      <div class="path-card">
-        <h4>Variable Properties & Labels</h4>
-        <p>Set variable labels, value labels, measure type, and missing values.</p>
-        <div class="path"><span class="path-step">Data Editor</span><span class="path-arrow">›</span><span class="path-step">Variable View tab</span></div>
-        <ul class="dialog-steps">
-          <li>Click the <em>Label</em> cell → add a descriptive label</li>
-          <li>Click <em>Values</em> cell → <strong>…</strong> button → enter code + label pairs</li>
-          <li>Click <em>Missing</em> cell → define user-missing values</li>
-          <li>Set <em>Measure</em>: Nominal, Ordinal, or Scale</li>
+          <li>Select the second dataset (open or from file)</li>
+          <li>Match variable pairs if names differ</li>
+          <li>Exclude unmatched variables if needed → OK</li>
         </ul>
       </div>
-
+      <div class="path-card">
+        <h4>Merge Files — Add Variables (Columns)</h4>
+        <p class="desc">Join a second dataset by a key variable (like a database JOIN — same participants, more variables).</p>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Merge Files</span><span class="path-arrow">›</span><span class="path-step">Add Variables…</span></div>
+        <ul class="dialog-steps">
+          <li>Select second dataset → choose <em>Match cases on key variables</em></li>
+          <li>Move the ID/key variable to <em>Key Variables</em></li>
+          <li>Both datasets must be sorted by the key variable first → OK</li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <h4>Restructure Data (Wide ↔ Long)</h4>
+        <p class="desc">Convert between wide format (one row per subject, multiple time-point columns) and long format (one row per measurement).</p>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Restructure…</span></div>
+        <ul class="dialog-steps">
+          <li>Choose <em>Restructure selected variables into cases</em> (wide → long) or vice versa</li>
+          <li>Follow the wizard: identify the subject ID, variable groups, and index variable</li>
+          <li>Finish → creates new dataset</li>
+        </ul>
+        <p class="path-note">Long format required for Mixed Models and Repeated Measures in many contexts.</p>
+      </div>
     </div>
   </div>
 
-  <div class="warning-box">
-    <div class="box-title">⚠️ Always Check Variable View First</div>
-    Before running analyses, switch to <strong>Variable View</strong> (tab at bottom of Data Editor) to confirm variables have correct measurement levels (Scale/Ordinal/Nominal). Wrong levels can cause incorrect analysis options to appear.
+  <div class="category">
+    <h3 class="category-title"><span class="icon">❓</span>Missing Values &amp; Data Quality</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Missing Value Analysis (MVA)</h4>
+        <p class="desc">Identify patterns of missingness and decide on appropriate imputation strategy.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Missing Value Analysis…</span></div>
+        <ul class="dialog-steps">
+          <li>Move quantitative variables to <em>Quantitative Variables</em></li>
+          <li>Click <strong>Patterns…</strong> → display missing pattern → Continue</li>
+          <li>Click <strong>Descriptives…</strong> → check Univariate statistics → Continue</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Missing Data Mechanisms</div><strong>MCAR</strong> (Missing Completely At Random): unrelated to any variable — listwise deletion acceptable<br><strong>MAR</strong> (Missing At Random): related to observed data — use MI or EM<br><strong>MNAR</strong> (Missing Not At Random): related to the missing value itself — most problematic</div>
+        <div class="tag-list"><span class="tag tag-medical">Medical Research</span><span class="tag tag-essential">Essential</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Multiple Imputation (MI)</h4>
+        <p class="desc">Replace missing values with multiple plausible estimates, creating several complete datasets for pooled analysis.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Multiple Imputation</span><span class="path-arrow">›</span><span class="path-step">Impute Missing Data Values…</span></div>
+        <ul class="dialog-steps">
+          <li>Select variables for imputation on the <em>Variables</em> tab</li>
+          <li>Set <strong>Number of imputations</strong> (recommended: 5–20)</li>
+          <li>Click <strong>Constraints…</strong> → set variable-specific bounds → Continue</li>
+          <li>Click <strong>Output…</strong> → specify save options → OK</li>
+        </ul>
+        <p class="path-note">Creates new pooled dataset marked as "imputed." Run analyses on this dataset and SPSS auto-pools results.</p>
+        <div class="theory-box"><div class="theory-title">📘 When to Use MI</div>Use when missing data is MAR and missing rate &gt; 5%. More imputations = more stable estimates. Requires SPSS Missing Values add-on module.</div>
+      </div>
+      <div class="path-card">
+        <h4>Validate Data (Range &amp; Consistency Checks)</h4>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Validate</span><span class="path-arrow">›</span><span class="path-step">Validate Data…</span></div>
+        <ul class="dialog-steps">
+          <li>Click <strong>Rules</strong> tab → define single-variable rules (e.g., age 18–100)</li>
+          <li>Add cross-variable rules (e.g., pregnancy = yes only if sex = female)</li>
+          <li>Click <strong>Violations</strong> tab → choose handling</li>
+          <li>Click <strong>Output</strong> tab → select reports → OK</li>
+        </ul>
+        <div class="tag-list"><span class="tag tag-medical">Clinical Research</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Identify Duplicate Cases</h4>
+        <div class="path"><span class="path-step">Data</span><span class="path-arrow">›</span><span class="path-step">Identify Duplicate Cases…</span></div>
+        <ul class="dialog-steps">
+          <li>Move matching variables (e.g., PatientID) to <em>Define matching cases by</em></li>
+          <li>Choose sort order within groups</li>
+          <li>Select first or last case as primary</li>
+          <li>Click <em>Indicator</em> to create a duplicate flag variable → OK</li>
+        </ul>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<!-- ════════ 2. DESCRIPTIVE ════════ -->
-<div class="section" id="descriptive">
-  <div class="section-title">📊 Descriptive Statistics</div>
-  <p class="section-desc">Summarize and explore your data using frequency tables, descriptives, crosstabs, and explore.</p>
+<!-- ============================== TEST SELECTION ============================== -->
+<section class="section" id="sec-testselect">
+  <div class="section-header">
+    <h2 class="section-title">🎯 Test Selection Guide</h2>
+    <p class="section-desc">Choose the correct statistical test based on your research question, data type, and assumptions.</p>
+  </div>
 
   <div class="category">
-    <div class="category-title">📋 Summary Statistics</div>
-    <div class="card-grid">
+    <h3 class="category-title"><span class="icon">🗺️</span>Decision Flowchart</h3>
+    <div class="info-box"><div class="box-title">🧭 How to Pick Your Test</div>
+      <strong>Step 1:</strong> What is your research question? (Compare groups? Predict? Association?)<br>
+      <strong>Step 2:</strong> What type is your outcome (DV)? (Continuous / Categorical / Time-to-event)<br>
+      <strong>Step 3:</strong> How many groups/predictors? (1 group, 2 groups, 3+ groups)<br>
+      <strong>Step 4:</strong> Are the groups independent or related (paired/repeated)?<br>
+      <strong>Step 5:</strong> Is the data normally distributed? (check Shapiro-Wilk)
+    </div>
+    <div class="table-container">
+      <table>
+        <tr><th>Question Type</th><th>DV Type</th><th>Groups</th><th>Normal?</th><th>Use This Test</th></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>1 group vs. value</td><td>Yes</td><td>One-Sample t-test</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 independent</td><td>Yes</td><td>Independent t-test</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 independent, unequal var.</td><td>Yes</td><td>Welch t-test</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 paired/repeated</td><td>Yes</td><td>Paired t-test</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>3+ independent</td><td>Yes</td><td>One-Way ANOVA</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>3+ paired/repeated</td><td>Yes</td><td>Repeated Measures ANOVA</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 factors (interaction)</td><td>Yes</td><td>Two-Way ANOVA</td></tr>
+        <tr><td>Compare means, control covariate</td><td>Continuous</td><td>2+ groups</td><td>Yes</td><td>ANCOVA</td></tr>
+        <tr><td>Compare multiple DVs</td><td>Multiple continuous</td><td>2+ groups</td><td>Yes</td><td>MANOVA</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 independent</td><td>No</td><td>Mann-Whitney U</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>2 paired</td><td>No</td><td>Wilcoxon Signed-Rank</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>3+ independent</td><td>No</td><td>Kruskal-Wallis H</td></tr>
+        <tr><td>Compare means</td><td>Continuous</td><td>3+ repeated</td><td>No</td><td>Friedman Test</td></tr>
+        <tr><td>Association</td><td>Continuous–Continuous</td><td>—</td><td>Yes</td><td>Pearson Correlation</td></tr>
+        <tr><td>Association</td><td>Ordinal or non-normal</td><td>—</td><td>No</td><td>Spearman Correlation</td></tr>
+        <tr><td>Association</td><td>Categorical–Categorical</td><td>—</td><td>—</td><td>Chi-Square (Crosstabs)</td></tr>
+        <tr><td>Predict continuous DV</td><td>Continuous</td><td>1+ predictors</td><td>Residuals normal</td><td>Linear Regression</td></tr>
+        <tr><td>Predict binary DV</td><td>Binary (0/1)</td><td>1+ predictors</td><td>—</td><td>Binary Logistic Regression</td></tr>
+        <tr><td>Predict ordinal DV</td><td>Ordinal</td><td>1+ predictors</td><td>—</td><td>Ordinal Regression</td></tr>
+        <tr><td>Predict count DV</td><td>Count (non-negative integers)</td><td>1+ predictors</td><td>—</td><td>Poisson Regression</td></tr>
+        <tr><td>Time-to-event</td><td>Survival/Time</td><td>Groups</td><td>—</td><td>Kaplan-Meier + Log-Rank</td></tr>
+        <tr><td>Time-to-event (multivariable)</td><td>Survival/Time</td><td>With covariates</td><td>—</td><td>Cox Regression</td></tr>
+        <tr><td>Diagnostic accuracy</td><td>Continuous test vs. binary gold standard</td><td>—</td><td>—</td><td>ROC Curve / AUC</td></tr>
+        <tr><td>Scale reliability</td><td>Multiple items</td><td>—</td><td>—</td><td>Cronbach's Alpha</td></tr>
+        <tr><td>Fit frequencies</td><td>Categorical</td><td>1 variable</td><td>—</td><td>Chi-Square Goodness-of-Fit</td></tr>
+        <tr><td>Proportion vs. expected</td><td>Binary</td><td>—</td><td>—</td><td>Binomial Test</td></tr>
+      </table>
+    </div>
+  </div>
 
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📏</span>Effect Size Reference</h3>
+    <div class="card-grid">
       <div class="path-card">
-        <h4>Descriptive Statistics (Mean, SD, etc.)</h4>
-        <p>Get mean, std. deviation, min, max, range, and more for scale variables.</p>
+        <h4>Cohen's d (t-tests)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Formula &amp; Benchmarks</div><span class="formula">d = (M₁ − M₂) / SDpooled</span><br><strong>Small</strong>: d = 0.2 | <strong>Medium</strong>: d = 0.5 | <strong>Large</strong>: d = 0.8</div>
+        <p class="desc">SPSS does not compute Cohen's d directly. Calculate manually from output means and pooled SD, or use the Bootstrapping option.</p>
+        <div class="report-box"><div class="report-title">📝 Report</div>The groups differed significantly, <code>t(df) = x.xx, p = .xxx, d = x.xx [95% CI: x.xx, x.xx]</code>.</div>
+      </div>
+      <div class="path-card">
+        <h4>η² and ηₚ² (ANOVA)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Formula &amp; Benchmarks</div><span class="formula">η² = SS_effect / SS_total</span><br><span class="formula">ηₚ² = SS_effect / (SS_effect + SS_error)</span><br><strong>Small</strong>: .01 | <strong>Medium</strong>: .06 | <strong>Large</strong>: .14<br><br>Request in SPSS: Options → <em>Estimates of effect size</em></div>
+        <div class="report-box"><div class="report-title">📝 Report</div><code>F(df1, df2) = x.xx, p = .xxx, ηₚ² = .xx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>r (Correlation &amp; Mann-Whitney)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Benchmarks (Cohen)</div><strong>Small</strong>: r = 0.1 | <strong>Medium</strong>: r = 0.3 | <strong>Large</strong>: r = 0.5<br><br>For Mann-Whitney: <span class="formula">r = Z / √N</span></div>
+        <div class="report-box"><div class="report-title">📝 Report (Pearson)</div><code>r(df) = .xxx, p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Odds Ratio (Logistic Regression)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Interpretation</div>OR = Exp(B) in SPSS output.<br><strong>OR &gt; 1</strong>: predictor increases odds of outcome<br><strong>OR &lt; 1</strong>: predictor decreases odds<br><strong>OR = 1</strong>: no effect</div>
+        <div class="report-box"><div class="report-title">📝 Report</div><code>OR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Hazard Ratio (Cox Regression)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Interpretation</div>HR = Exp(B) in Cox output.<br><strong>HR &gt; 1</strong>: increased risk/hazard<br><strong>HR &lt; 1</strong>: protective factor<br><strong>HR = 1</strong>: no effect on hazard</div>
+        <div class="report-box"><div class="report-title">📝 Report</div><code>HR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Cramér's V (Chi-Square)</h4>
+        <div class="theory-box"><div class="theory-title">📘 Formula &amp; Benchmarks</div><span class="formula">V = √(χ²/n·(k−1))</span><br>where k = min(rows, columns)<br><strong>Small</strong>: V = 0.1 | <strong>Medium</strong>: V = 0.3 | <strong>Large</strong>: V = 0.5<br><br>Request in SPSS Crosstabs: Statistics → <em>Phi and Cramer's V</em></div>
+        <div class="report-box"><div class="report-title">📝 Report</div><code>χ²(df, N = xxx) = x.xx, p = .xxx, V = .xx</code></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== STATISTICAL TESTS ============================== -->
+<section class="section" id="sec-tests">
+  <div class="section-header">
+    <h2 class="section-title">🧪 Statistical Tests</h2>
+    <p class="section-desc">Descriptive stats, correlation, group comparisons (t-tests, ANOVA), non-parametric tests, chi-square, and survival analysis.</p>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📋</span>Descriptive Statistics</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Descriptives (Mean, SD, Skewness)</h4>
+        <p class="desc">Quick summary table of means, SD, min/max, skewness, and kurtosis for continuous variables.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Descriptives…</span></div>
         <ul class="dialog-steps">
           <li>Move scale variables to <em>Variable(s)</em></li>
-          <li>Click <strong>Options…</strong> → check Mean, Std. deviation, Minimum, Maximum, Skewness, Kurtosis</li>
-          <li>Continue → OK</li>
-        </ul>
-        <p class="path-note">Output: Descriptive Statistics table in Output Viewer.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Frequencies (Counts & %)</h4>
-        <p>Get count and percentage tables, ideal for categorical variables.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Frequencies…</span></div>
-        <ul class="dialog-steps">
-          <li>Move variables to <em>Variable(s)</em> box</li>
-          <li>Click <strong>Statistics…</strong> → check Mean, Median, Mode, Std. Deviation, Percentiles → Continue</li>
-          <li>Click <strong>Charts…</strong> → choose Bar / Histogram → Continue</li>
+          <li>Click <strong>Options…</strong> → check: Mean, Std. deviation, Min, Max, Skewness, Kurtosis → Continue</li>
           <li>Click <strong>OK</strong></li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Key Outputs</div><strong>Skewness</strong>: |value| &gt; 2 = problematic skew<br><strong>Kurtosis</strong>: |value| &gt; 7 = heavy tails<br><strong>Std Error of Skewness/Kurtosis</strong>: ratio &gt; ±2 suggests non-normality</div>
       </div>
-
       <div class="path-card">
-        <h4>Explore (Normality Tests)</h4>
-        <p>Deep descriptive summary including outlier detection and normality tests.</p>
+        <h4>Frequencies (Counts &amp; Percentages)</h4>
+        <p class="desc">Frequency and percentage tables — ideal for categorical (nominal/ordinal) variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Frequencies…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variable(s)</em></li>
+          <li>Click <strong>Statistics…</strong> → check Mean, Median, Mode, Percentiles as needed → Continue</li>
+          <li>Click <strong>Charts…</strong> → choose Bar/Pie → Continue → OK</li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <h4>Explore (Detailed + Normality)</h4>
+        <p class="desc">Full descriptive summary including 5% trimmed mean, skewness, kurtosis, outlier detection, and normality tests.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Explore…</span></div>
         <ul class="dialog-steps">
           <li>Move continuous variable(s) to <em>Dependent List</em></li>
-          <li>Optionally move grouping variable to <em>Factor List</em></li>
-          <li>Click <strong>Statistics…</strong> → check <em>Descriptives, Outliers</em> → Continue</li>
-          <li>Click <strong>Plots…</strong> → check <em>Normality plots with tests</em>, <em>Stem-and-leaf</em> → Continue → OK</li>
+          <li>Move grouping variable to <em>Factor List</em> (optional)</li>
+          <li>Click <strong>Statistics…</strong> → check Descriptives, Outliers → Continue</li>
+          <li>Click <strong>Plots…</strong> → check <em>Normality plots with tests</em>, Stem-and-leaf → Continue → OK</li>
         </ul>
-        <p class="path-note">Produces Shapiro-Wilk and Kolmogorov-Smirnov normality tests.</p>
+        <div class="theory-box"><div class="theory-title">📘 Normality Tests Produced</div><strong>Shapiro-Wilk</strong>: Generally preferred — more powerful and accurate for detecting non-normality regardless of sample size<br><strong>Kolmogorov-Smirnov</strong>: Older alternative; less powerful. Only use if specifically required<br>p &gt; .05 = normally distributed</div>
       </div>
-
       <div class="path-card">
-        <h4>Crosstabulation</h4>
-        <p>Two-way frequency table for two categorical variables, with Chi-Square.</p>
+        <h4>Crosstabulation + Chi-Square</h4>
+        <p class="desc">Two-way frequency table for two categorical variables with association tests.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Crosstabs…</span></div>
         <ul class="dialog-steps">
-          <li>Move one variable to <em>Row(s)</em> and another to <em>Column(s)</em></li>
+          <li>Move one variable to <em>Row(s)</em>, another to <em>Column(s)</em></li>
           <li>Click <strong>Statistics…</strong> → check <em>Chi-square</em>, <em>Phi and Cramer's V</em> → Continue</li>
-          <li>Click <strong>Cells…</strong> → check <em>Row, Column, Total</em> percentages → Continue</li>
+          <li>Click <strong>Cells…</strong> → check Row, Column, Total percentages → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><span class="formula">χ² = Σ[(O − E)² / E]</span><br><strong>Assumption</strong>: Expected cell count ≥ 5 in ≥ 80% of cells. If violated, use Fisher's Exact Test (available in same dialog for 2×2 tables).</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div><code>χ²(df, N = xxx) = x.xx, p = .xxx, V = .xx</code></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">🔗</span>Correlation</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Pearson Correlation</h4>
+        <p class="desc">Linear association between two normally distributed continuous variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Correlate</span><span class="path-arrow">›</span><span class="path-step">Bivariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variables</em> box</li>
+          <li>Check <em>☑ Pearson</em></li>
+          <li>Check <em>☑ Flag significant correlations</em></li>
+          <li>Click <strong>Options…</strong> → check Means, SD, Exclude cases pairwise → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Assumptions</div><span class="formula">r = Σ[(x−x̄)(y−ȳ)] / (n−1)·sₓ·sᵧ</span><br>Range: −1 to +1. Assumes: both variables continuous and normally distributed, linear relationship.<br><strong>Assumptions check</strong>: inspect scatterplot for linearity; check normality via Explore.</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div><code>r(df) = .xxx, p = .xxx</code> (two-tailed)</div>
+        <div class="tag-list"><span class="tag tag-essential">Essential</span><span class="tag tag-medical">Medical Research</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Spearman Rank Correlation</h4>
+        <p class="desc">Monotonic association for ordinal data or non-normal continuous variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Correlate</span><span class="path-arrow">›</span><span class="path-step">Bivariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variables</em></li>
+          <li>Check <em>☑ Spearman</em> (uncheck Pearson if not needed)</li>
+          <li>Check <em>☑ Flag significant correlations</em> → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Applies Pearson formula to the ranks of the data rather than raw values. Use when data is ordinal, non-normal, or contains outliers. Measures <em>monotonic</em> (not necessarily linear) relationships.</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div><code>rₛ(df) = .xxx, p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Kendall's Tau-b</h4>
+        <p class="desc">Association measure for ranked/ordinal data, especially with many tied values or small samples.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Correlate</span><span class="path-arrow">›</span><span class="path-step">Bivariate…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables to <em>Variables</em></li>
+          <li>Check <em>☑ Kendall's tau-b</em> → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 When to Use</div>Preferred over Spearman when many tied ranks exist (e.g., Likert data). More conservative but more accurate with ties. Range: −1 to +1.</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div><code>τb = .xxx, p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Partial Correlation</h4>
+        <p class="desc">Correlation between two variables controlling for one or more confounding variables.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Correlate</span><span class="path-arrow">›</span><span class="path-step">Partial…</span></div>
+        <ul class="dialog-steps">
+          <li>Move variables of interest to <em>Variables</em></li>
+          <li>Move control/confound variable(s) to <em>Controlling for</em></li>
           <li>Click <strong>OK</strong></li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Use Case</div>Example: Correlation between exercise and cholesterol, controlling for age and BMI. The partial r shows the "pure" relationship after removing the confound's influence.</div>
+        <div class="report-box"><div class="report-title">📝 APA Reporting</div><code>r(df) = .xxx, p = .xxx</code>, controlling for [variable].</div>
       </div>
-
-      <div class="path-card">
-        <h4>Case Summaries</h4>
-        <p>List individual case values with optional group subtotals.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Reports</span><span class="path-arrow">›</span><span class="path-step">Case Summaries…</span></div>
-        <ul class="dialog-steps">
-          <li>Move variables to display into <em>Variables</em></li>
-          <li>Move grouping variable to <em>Grouping Variables</em> (optional)</li>
-          <li>Check <em>Statistics</em> for subtotals → Continue → OK</li>
-        </ul>
-      </div>
-
-      <div class="path-card">
-        <h4>Compare Means (Group Means Table)</h4>
-        <p>See mean, SD, and count broken down by a grouping variable.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">Means…</span></div>
-        <ul class="dialog-steps">
-          <li>Move the continuous variable to <em>Dependent List</em></li>
-          <li>Move grouping variable to <em>Independent List</em></li>
-          <li>Click <strong>Options…</strong> → select statistics → Continue → OK</li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="info-box">
-    <div class="box-title">ℹ️ Choosing the Right Summary Tool</div>
-    Use <strong>Frequencies</strong> for nominal/ordinal variables. Use <strong>Descriptives</strong> for scale variables when you need means and SDs quickly. Use <strong>Explore</strong> when you need normality tests before parametric analyses.
-  </div>
-</div>
-
-<!-- ════════ 3. REGRESSION ════════ -->
-<div class="section" id="regression">
-  <div class="section-title">📈 Regression Analysis</div>
-  <p class="section-desc">Run linear, logistic, and other regression models through SPSS menus.</p>
-
-  <div class="category">
-    <div class="category-title">📉 Linear Regression</div>
-    <div class="card-grid">
-
-      <div class="path-card">
-        <h4>Simple / Multiple Linear Regression</h4>
-        <p>Predict a continuous outcome from one or more predictors.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span></div>
-        <ul class="dialog-steps">
-          <li>Move outcome (DV) to <em>Dependent</em></li>
-          <li>Move predictor(s) to <em>Independent(s)</em></li>
-          <li>Choose <strong>Method</strong>: Enter, Stepwise, Forward, Backward</li>
-          <li>Click <strong>Statistics…</strong> → check <em>Estimates, Model fit, R squared change, Collinearity diagnostics</em> → Continue</li>
-          <li>Click <strong>Plots…</strong> → add <em>ZRESID vs ZPRED</em>, check <em>Normal probability plot</em> → Continue → OK</li>
-        </ul>
-        <p class="path-note">Output: Model Summary (R², Adj. R²), ANOVA table, Coefficients with B, Beta, t, Sig.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Hierarchical Regression (Block Entry)</h4>
-        <p>Enter predictors in ordered blocks to test incremental variance explained.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span></div>
-        <ul class="dialog-steps">
-          <li>Add Block 1 predictors to <em>Independent(s)</em></li>
-          <li>Click <strong>Next</strong> to create Block 2 → add second set</li>
-          <li>Under Statistics…, check <em>R squared change</em></li>
-          <li>Continue → OK</li>
-        </ul>
-        <p class="path-note">Each block's ΔR² and F-change significance will appear in Model Summary.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Regression Diagnostics</h4>
-        <p>Save residuals, leverage, Cook's D, and influence statistics as new variables.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span><span class="path-arrow">›</span><span class="path-step">Save…</span></div>
-        <ul class="dialog-steps">
-          <li>Under <em>Residuals</em>: check <em>Standardized, Studentized</em></li>
-          <li>Under <em>Distances</em>: check <em>Cook's, Leverage values</em></li>
-          <li>Under <em>Influence Statistics</em>: check <em>DfBeta(s)</em></li>
-          <li>Continue → OK (saved as new variables in dataset)</li>
-        </ul>
-      </div>
-
     </div>
   </div>
 
   <div class="category">
-    <div class="category-title">🔀 Logistic & Other Regression</div>
+    <h3 class="category-title"><span class="icon">⚖️</span>Group Comparison — Parametric Tests</h3>
     <div class="card-grid">
-
       <div class="path-card">
-        <h4>Binary Logistic Regression</h4>
-        <p>Predict a binary (0/1) outcome from continuous or categorical predictors.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Binary Logistic…</span></div>
-        <ul class="dialog-steps">
-          <li>Move binary DV to <em>Dependent</em></li>
-          <li>Move predictors to <em>Covariates</em></li>
-          <li>For categorical predictors: click <strong>Categorical…</strong> → set contrast type → Continue</li>
-          <li>Click <strong>Options…</strong> → check <em>CI for Exp(B)</em>, <em>Hosmer-Lemeshow goodness of fit</em> → Continue → OK</li>
-        </ul>
-        <p class="path-note">Output: Exp(B) = Odds Ratios with 95% CI.</p>
-      </div>
-
-      <div class="path-card">
-        <h4>Ordinal Logistic Regression</h4>
-        <p>Model an ordinal outcome (e.g., Likert scale ratings).</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Ordinal…</span></div>
-        <ul class="dialog-steps">
-          <li>Move ordinal DV to <em>Dependent</em></li>
-          <li>Move continuous predictors to <em>Covariate(s)</em></li>
-          <li>Move categorical predictors to <em>Factor(s)</em></li>
-          <li>Output…: check parameter estimates, goodness of fit → Continue → OK</li>
-        </ul>
-      </div>
-
-      <div class="path-card">
-        <h4>Curve Estimation (Non-linear Trend)</h4>
-        <p>Fit linear, quadratic, logarithmic, and other functional forms.</p>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Curve Estimation…</span></div>
-        <ul class="dialog-steps">
-          <li>Move DV to <em>Dependent(s)</em> and IV to <em>Independent Variable</em></li>
-          <li>Check desired model types: <em>Linear, Quadratic, Cubic, Logarithmic, etc.</em></li>
-          <li>Check <em>Plot models</em> for a visual comparison</li>
-          <li>Click <strong>OK</strong></li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<!-- ════════ 4. COMPARISON ════════ -->
-<div class="section" id="comparison">
-  <div class="section-title">⚖️ Group Comparison Tests</div>
-  <p class="section-desc">Compare means across groups using t-tests, ANOVA, and related procedures.</p>
-
-  <div class="category">
-    <div class="category-title">🔬 T-Tests</div>
-    <div class="card-grid">
-
-      <div class="path-card">
-        <h4>One-Sample T-Test</h4>
-        <p>Test whether a sample mean differs from a known / hypothesized value.</p>
+        <h4>One-Sample t-Test</h4>
+        <p class="desc">Test whether a sample mean differs from a known/hypothesized population value (e.g., is mean BMI = 25?).</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">One-Sample T Test…</span></div>
         <ul class="dialog-steps">
           <li>Move variable to <em>Test Variable(s)</em></li>
           <li>Enter the hypothesized value in <strong>Test Value</strong> field</li>
           <li>Click <strong>OK</strong></li>
         </ul>
-        <p class="path-note">Output: t-statistic, df, Sig. (2-tailed), Mean Difference with 95% CI.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><span class="formula">t = (x̄ − μ₀) / (s / √n)</span><br><strong>H₀</strong>: μ = μ₀ | <strong>Assumptions</strong>: continuous variable, approximately normal distribution (or n ≥ 30).</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>t(df) = x.xx, p = .xxx, d = x.xx [95% CI: x.xx, x.xx]</code></div>
       </div>
-
       <div class="path-card">
-        <h4>Independent Samples T-Test</h4>
-        <p>Compare means of two independent groups.</p>
+        <h4>Independent Samples t-Test</h4>
+        <p class="desc">Compare means of two independent groups (e.g., treatment vs. control).</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">Independent-Samples T Test…</span></div>
         <ul class="dialog-steps">
           <li>Move DV to <em>Test Variable(s)</em></li>
@@ -720,626 +713,870 @@ padding-right:0;
           <li>Click <strong>Define Groups…</strong> → enter values for Group 1 and Group 2 → Continue</li>
           <li>Click <strong>OK</strong></li>
         </ul>
-        <p class="path-note">Check Levene's Test: if Sig. &lt; .05, use "Equal variances not assumed" row.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Levene's</div><span class="formula">t = (x̄₁ − x̄₂) / SE_diff</span><br><strong>Check Levene's Test first:</strong><br>p &gt; .05 → Equal variances assumed row<br>p ≤ .05 → Equal variances <u>not</u> assumed (Welch correction)</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>t(df) = x.xx, p = .xxx, d = x.xx</code></div>
       </div>
-
       <div class="path-card">
-        <h4>Paired Samples T-Test</h4>
-        <p>Compare means from the same subjects measured twice (pre-post, matched pairs).</p>
+        <h4>Welch t-Test (Unequal Variances)</h4>
+        <p class="desc">The robust version of the independent t-test when Levene's test is significant (variances unequal).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">Independent-Samples T Test…</span></div>
+        <p class="desc">Same dialog as independent t-test. In the output, use the <strong>"Equal variances not assumed"</strong> row (which applies Welch-Satterthwaite df correction).</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Welch's t-test adjusts the degrees of freedom downward to account for unequal variances, producing a more conservative (but valid) test. Degrees of freedom are no longer whole numbers.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>t(df_Welch) = x.xx, p = .xxx</code> — note: report Welch-corrected df, not N−2.</div>
+      </div>
+      <div class="path-card">
+        <h4>Paired Samples t-Test</h4>
+        <p class="desc">Compare means from the same subjects measured twice (pre/post, matched pairs, two conditions).</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">Paired-Samples T Test…</span></div>
         <ul class="dialog-steps">
-          <li>Click the first variable, then Ctrl+click the second</li>
+          <li>Click first variable, then Ctrl+click the second</li>
           <li>Move the pair to <em>Paired Variables</em></li>
           <li>Click <strong>OK</strong></li>
         </ul>
-        <p class="path-note">Output shows paired differences mean, SD, t, df, and Sig.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><span class="formula">t = D̄ / (SD_D / √n)</span>, where D = difference scores<br><strong>Assumption</strong>: Difference scores (Variable1 − Variable2) must be normally distributed — check via Explore on the difference variable.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>t(df) = x.xx, p = .xxx, d = x.xx</code></div>
       </div>
-
-    </div>
-  </div>
-
-  <div class="category">
-    <div class="category-title">📊 ANOVA</div>
-    <div class="card-grid">
-
       <div class="path-card">
         <h4>One-Way ANOVA</h4>
-        <p>Compare means across three or more independent groups.</p>
+        <p class="desc">Compare means across 3 or more independent groups (extension of independent t-test to 3+ groups).</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Compare Means</span><span class="path-arrow">›</span><span class="path-step">One-Way ANOVA…</span></div>
         <ul class="dialog-steps">
           <li>Move DV(s) to <em>Dependent List</em></li>
           <li>Move grouping variable to <em>Factor</em></li>
-          <li>Click <strong>Post Hoc…</strong> → check <em>Tukey</em> (equal var.) or <em>Games-Howell</em> (unequal) → Continue</li>
-          <li>Click <strong>Options…</strong> → check <em>Descriptive, Homogeneity of variance test, Welch</em> → Continue → OK</li>
+          <li>Click <strong>Post Hoc…</strong> → check <em>Tukey</em> (equal variances) or <em>Games-Howell</em> (unequal) → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive, Homogeneity of variance test, Welch, Brown-Forsythe, Means plot</em> → Continue → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><span class="formula">F = MS_between / MS_within = (SS_between/df_between) / (SS_within/df_within)</span><br><strong>Assumptions</strong>: Normal distribution per group, homogeneity of variance (Levene's), independent observations.<br>Significant F → run post-hoc tests to find which pairs differ.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code>. Post-hoc: Tukey HSD revealed...</div>
       </div>
-
       <div class="path-card">
         <h4>Two-Way (Factorial) ANOVA</h4>
-        <p>Test main effects and interaction of two independent variables on a continuous DV.</p>
+        <p class="desc">Test main effects of two IVs and their interaction on a continuous DV.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">General Linear Model</span><span class="path-arrow">›</span><span class="path-step">Univariate…</span></div>
         <ul class="dialog-steps">
           <li>Move DV to <em>Dependent Variable</em></li>
           <li>Move both IVs to <em>Fixed Factor(s)</em></li>
-          <li>Click <strong>Plots…</strong> → set up a profile plot → Add → Continue</li>
-          <li>Click <strong>Post Hoc…</strong> → select factors → check <em>Tukey</em> → Continue → OK</li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive statistics, Estimates of effect size, Homogeneity tests</em> → Continue</li>
+          <li>Click <strong>Plots…</strong> → set profile plot (Factor 1 on X, Factor 2 as separate lines) → Add → Continue → OK</li>
         </ul>
-        <p class="path-note">Interaction term (AxB) is automatically included.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Tests three F-ratios: Main Effect A, Main Effect B, and A×B Interaction. An interaction means the effect of one IV depends on the level of the other. <strong>Always interpret interaction first.</strong></div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Report all three: <code>F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code> for each effect.</div>
       </div>
-
       <div class="path-card">
         <h4>Repeated Measures ANOVA</h4>
-        <p>Compare means from the same participants across multiple time points or conditions.</p>
+        <p class="desc">Compare means from the same participants across 3+ time points or conditions.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">General Linear Model</span><span class="path-arrow">›</span><span class="path-step">Repeated Measures…</span></div>
         <ul class="dialog-steps">
-          <li>Enter a <strong>Within-Subject Factor Name</strong> and <em>Number of Levels</em> → Add → Define</li>
-          <li>Move time-point variables to <em>Within-Subjects Variables</em> slots</li>
+          <li>Enter a <strong>Within-Subject Factor Name</strong> (e.g., "Time") and <em>Number of Levels</em> → Add → Define</li>
+          <li>Move time-point variables to the <em>Within-Subjects Variables</em> slots in order</li>
           <li>Click <strong>Options…</strong> → check <em>Descriptive statistics, Estimates of effect size</em> → Continue</li>
           <li>Click <strong>Plots…</strong> → profile plot → Continue → OK</li>
         </ul>
-        <p class="path-note">Check Mauchly's Test of Sphericity. If violated (p &lt; .05) use Greenhouse-Geisser correction.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Sphericity</div><strong>Sphericity Assumption</strong>: Variances of the differences between all pairs of time points must be equal.<br><strong>Test:</strong> <span class="formula">Analyze → General Linear Model → Repeated Measures → Options → Mauchly's Test</span><br><br>If Mauchly's p &lt; .05 → sphericity violated:<br>• ε &lt; 0.75 → use <strong>Greenhouse-Geisser</strong> corrected F<br>• ε ≥ 0.75 → use <strong>Huynh-Feldt</strong> correction<br><br>Significant result → post-hoc: pairwise comparisons with Bonferroni correction.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>F(df_GG) = x.xx, p = .xxx, ηₚ² = .xx</code> (if sphericity violated, note GG correction applied).</div>
       </div>
-
       <div class="path-card">
-        <h4>ANCOVA (Covariate Control)</h4>
-        <p>Compare group means while controlling for a continuous covariate.</p>
+        <h4>ANCOVA (Analysis of Covariance)</h4>
+        <p class="desc">Compare group means while statistically controlling for a continuous covariate (e.g., compare post-scores adjusting for pre-scores or age).</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">General Linear Model</span><span class="path-arrow">›</span><span class="path-step">Univariate…</span></div>
         <ul class="dialog-steps">
           <li>Move DV to <em>Dependent Variable</em></li>
           <li>Move grouping variable to <em>Fixed Factor(s)</em></li>
-          <li>Move covariate(s) to <em>Covariate(s)</em></li>
-          <li>Options: check <em>Descriptive statistics, Homogeneity tests</em> → Continue → OK</li>
+          <li>Move covariate to <em>Covariate(s)</em></li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive statistics, Homogeneity tests, Estimates of effect size</em> → Continue → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Key Assumption: Homogeneity of Regression Slopes</div>The covariate must have the same relationship with the DV across all groups. Test this by including the Group × Covariate interaction term in the model. If significant (p &lt; .05), ANCOVA assumptions are violated.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>After controlling for [covariate], there was a significant group difference, <code>F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code>.</div>
       </div>
-
       <div class="path-card">
         <h4>MANOVA (Multiple DVs)</h4>
-        <p>Test group differences on two or more dependent variables simultaneously.</p>
+        <p class="desc">Test group differences on two or more dependent variables simultaneously — controls familywise error rate compared to running separate ANOVAs.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">General Linear Model</span><span class="path-arrow">›</span><span class="path-step">Multivariate…</span></div>
         <ul class="dialog-steps">
           <li>Move all DVs to <em>Dependent Variables</em></li>
           <li>Move grouping variable to <em>Fixed Factor(s)</em></li>
-          <li>Options: check <em>Descriptive statistics, Estimates of effect size</em> → Continue → OK</li>
+          <li>Click <strong>Options…</strong> → check <em>Descriptive statistics, Estimates of effect size</em> → Continue → OK</li>
         </ul>
-        <p class="path-note">Report Wilks' Lambda from the Multivariate Tests table.</p>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Outputs</div>Primary statistic: <strong>Wilks' Lambda (Λ)</strong> — closer to 0 = stronger group separation.<br>Also: Pillai's Trace (most robust), Hotelling's Trace, Roy's Largest Root.<br>If MANOVA is significant → run follow-up univariate ANOVAs with Bonferroni correction.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>Λ = .xx, F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code></div>
       </div>
-
     </div>
   </div>
-</div>
-
-<!-- ════════ 5. NON-PARAMETRIC ════════ -->
-<div class="section" id="nonparametric">
-  <div class="section-title">🔢 Non-Parametric Tests</div>
-  <p class="section-desc">Distribution-free alternatives when normality or other parametric assumptions are violated.</p>
-
-  <div class="card-grid">
-
-    <div class="path-card">
-      <h4>Mann-Whitney U Test</h4>
-      <p>Non-parametric alternative to the independent samples t-test.</p>
-      <div class="multi-path">
-        <div class="multi-path-label">Legacy dialog</div>
-        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">2 Independent Samples…</span></div>
-      </div>
-      <ul class="dialog-steps">
-        <li>Move test variable to <em>Test Variable List</em></li>
-        <li>Move grouping variable to <em>Grouping Variable</em> → Define Groups (enter values)</li>
-        <li>Check <em>Mann-Whitney U</em> under Test Type → OK</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Wilcoxon Signed-Rank Test</h4>
-      <p>Non-parametric paired test (alternative to paired t-test).</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">2 Related Samples…</span></div>
-      <ul class="dialog-steps">
-        <li>Select both variables → move the pair to <em>Test Pairs</em></li>
-        <li>Check <em>Wilcoxon</em> under Test Type → OK</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Kruskal-Wallis Test</h4>
-      <p>Non-parametric alternative to one-way ANOVA (3+ independent groups).</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">K Independent Samples…</span></div>
-      <ul class="dialog-steps">
-        <li>Move test variable to <em>Test Variable List</em></li>
-        <li>Move grouping variable to <em>Grouping Variable</em> → Define Range → Continue</li>
-        <li>Check <em>Kruskal-Wallis H</em> → OK</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Friedman Test</h4>
-      <p>Non-parametric alternative to one-way repeated measures ANOVA.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">K Related Samples…</span></div>
-      <ul class="dialog-steps">
-        <li>Move all repeated-measure variables to <em>Test Variables</em></li>
-        <li>Check <em>Friedman</em> under Test Type → OK</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Chi-Square Goodness-of-Fit</h4>
-      <p>Test whether an observed frequency distribution matches expected proportions.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">Chi-Square…</span></div>
-      <ul class="dialog-steps">
-        <li>Move categorical variable to <em>Test Variable List</em></li>
-        <li>Under <em>Expected Values</em>: choose <em>All categories equal</em> or enter specific values</li>
-        <li>Click <strong>OK</strong></li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Binomial Test</h4>
-      <p>Test whether the proportion of a binary variable matches a specified value.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">Binomial…</span></div>
-      <ul class="dialog-steps">
-        <li>Move binary variable to <em>Test Variable List</em></li>
-        <li>Enter <strong>Test Proportion</strong> (e.g., 0.5 for 50/50)</li>
-        <li>Click <strong>OK</strong></li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="success-box">
-    <div class="box-title">✅ Automated Nonparametric Tests (SPSS v21+)</div>
-    Use <strong>Analyze › Nonparametric Tests › One Sample / Related Samples / Independent Samples…</strong> for a guided wizard that automatically selects the appropriate test — no need to remember legacy dialogs!
-  </div>
-</div>
-
-<!-- ════════ 6. RELIABILITY ════════ -->
-<div class="section" id="reliability">
-  <div class="section-title">🔬 Reliability & Scale Analysis</div>
-  <p class="section-desc">Assess internal consistency of questionnaire scales and explore scale structure.</p>
-
-  <div class="card-grid">
-
-    <div class="path-card">
-      <h4>Reliability Analysis (Cronbach's α)</h4>
-      <p>Measure internal consistency of a multi-item scale.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Scale</span><span class="path-arrow">›</span><span class="path-step">Reliability Analysis…</span></div>
-      <ul class="dialog-steps">
-        <li>Move all scale items to <em>Items</em></li>
-        <li>Keep Model as <em>Alpha</em> (Cronbach's)</li>
-        <li>Click <strong>Statistics…</strong> → check <em>Item, Scale, Scale if item deleted, Correlations, Inter-item</em> → Continue</li>
-        <li>Click <strong>OK</strong></li>
-      </ul>
-      <p class="path-note">Target: α ≥ .70 (acceptable); α ≥ .80 (good). Check "Alpha if Item Deleted" to identify weak items.</p>
-    </div>
-
-    <div class="path-card">
-      <h4>Inter-Rater Reliability (ICC)</h4>
-      <p>Assess agreement between raters using Intraclass Correlation Coefficient.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Scale</span><span class="path-arrow">›</span><span class="path-step">Reliability Analysis…</span></div>
-      <ul class="dialog-steps">
-        <li>Move rater variables to <em>Items</em></li>
-        <li>Change <em>Model</em> to <strong>Intraclass correlation coefficient</strong></li>
-        <li>Set <em>Model</em> (Two-Way Mixed/Random) and <em>Type</em> (Consistency/Absolute Agreement)</li>
-        <li>Statistics: check CI → Continue → OK</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Multidimensional Scaling (Perceptual Mapping)</h4>
-      <p>Visualize similarities or distances between items/stimuli in 2D/3D space.</p>
-      <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Scale</span><span class="path-arrow">›</span><span class="path-step">Multidimensional Scaling (ALSCAL)…</span></div>
-      <ul class="dialog-steps">
-        <li>Move proximity variables to <em>Variables</em></li>
-        <li>Set data type (distances vs. similarities)</li>
-        <li>Choose <em>Number of Dimensions</em> (usually 2)</li>
-        <li>Options: display plot → OK</li>
-      </ul>
-    </div>
-
-  </div>
-</div>
-
-<!-- ════════ 7. FACTOR ════════ -->
-<div class="section" id="factor">
-  <div class="section-title">🧮 Factor & Cluster Analysis</div>
-  <p class="section-desc">Explore latent structures, reduce dimensions, and group cases.</p>
 
   <div class="category">
-    <div class="category-title">🔍 Factor Analysis (EFA & PCA)</div>
+    <h3 class="category-title"><span class="icon">🔢</span>Non-Parametric Tests</h3>
     <div class="card-grid">
+      <div class="path-card">
+        <h4>Mann-Whitney U Test</h4>
+        <p class="desc">Non-parametric alternative to the independent samples t-test. Use when data is ordinal or non-normal.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">2 Independent Samples…</span></div>
+        <ul class="dialog-steps">
+          <li>Move test variable to <em>Test Variable List</em></li>
+          <li>Move grouping variable to <em>Grouping Variable</em> → Define Groups → Continue</li>
+          <li>Check <em>☑ Mann-Whitney U</em> under Test Type → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Ranks all observations from both groups combined, then tests whether the ranks are equally distributed between groups.<br><span class="formula">Effect size: r = Z / √N</span><br>Small: .1 | Medium: .3 | Large: .5</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>U = xxx, z = x.xx, p = .xxx, r = .xx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Wilcoxon Signed-Rank Test</h4>
+        <p class="desc">Non-parametric alternative to the paired samples t-test. Use when difference scores are non-normal.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">2 Related Samples…</span></div>
+        <ul class="dialog-steps">
+          <li>Select both variables → move the pair to <em>Test Pairs</em></li>
+          <li>Check <em>☑ Wilcoxon</em> under Test Type → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Ranks the absolute values of differences, then tests whether positive and negative ranks are equally balanced. More powerful than Sign Test.<br><span class="formula">Effect size: r = Z / √N</span></div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>Z = x.xx, p = .xxx, r = .xx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Kruskal-Wallis H Test</h4>
+        <p class="desc">Non-parametric alternative to one-way ANOVA (3+ independent groups, non-normal data).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">K Independent Samples…</span></div>
+        <ul class="dialog-steps">
+          <li>Move test variable to <em>Test Variable List</em></li>
+          <li>Move grouping variable to <em>Grouping Variable</em> → Define Range → Continue</li>
+          <li>Check <em>☑ Kruskal-Wallis H</em> → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Post-Hoc After Significant KW</div>SPSS does not automatically provide post-hoc for KW. To identify which pairs differ:<br>Run pairwise Mann-Whitney U tests with <strong>Bonferroni correction</strong>: use α' = .05 / k, where k = number of pairwise comparisons.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>H(df) = x.xx, p = .xxx</code>. Pairwise comparisons with Bonferroni correction revealed...</div>
+      </div>
+      <div class="path-card">
+        <h4>Friedman Test</h4>
+        <p class="desc">Non-parametric alternative to one-way repeated-measures ANOVA.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">K Related Samples…</span></div>
+        <ul class="dialog-steps">
+          <li>Move all repeated-measure variables to <em>Test Variables</em></li>
+          <li>Check <em>☑ Friedman</em> under Test Type → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Ranks the variables within each case (row), then tests whether the mean ranks differ across conditions. Post-hoc: pairwise Wilcoxon tests with Bonferroni correction.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>χ²(df, N = xxx) = x.xx, p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Chi-Square Goodness-of-Fit</h4>
+        <p class="desc">Test whether an observed frequency distribution fits expected proportions (e.g., equal distribution across categories).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">Chi-Square…</span></div>
+        <ul class="dialog-steps">
+          <li>Move categorical variable to <em>Test Variable List</em></li>
+          <li>Under <em>Expected Values</em>: choose <em>All categories equal</em> or enter specific expected proportions</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div><span class="formula">χ² = Σ[(O − E)² / E]</span><br>Tests H₀: observed frequencies = expected frequencies.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>χ²(df) = x.xx, p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Binomial Test</h4>
+        <p class="desc">Test whether the proportion of a binary outcome matches a hypothesized value (e.g., is cure rate = 50%?).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">Binomial…</span></div>
+        <ul class="dialog-steps">
+          <li>Move binary variable to <em>Test Variable List</em></li>
+          <li>Enter <strong>Test Proportion</strong> (e.g., 0.50 for 50%)</li>
+          <li>Click <strong>OK</strong></li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Uses binomial distribution to compare observed proportion against H₀. Exact test — no large-sample approximation needed. Outputs exact significance (p-value).</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>The observed proportion (.xx) was significantly different from the expected proportion of .50, <code>p = .xxx</code> (exact, two-tailed).</div>
+      </div>
+      <div class="path-card">
+        <h4>Sign Test</h4>
+        <p class="desc">Simplest paired non-parametric test — counts which direction the differences go (positive vs. negative signs).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Nonparametric Tests</span><span class="path-arrow">›</span><span class="path-step">Legacy Dialogs</span><span class="path-arrow">›</span><span class="path-step">2 Related Samples…</span></div>
+        <ul class="dialog-steps">
+          <li>Move pair of variables to <em>Test Pairs</em></li>
+          <li>Check <em>☑ Sign</em> under Test Type → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Less powerful than Wilcoxon because it ignores the magnitude of differences — only uses direction. Use when only the sign (direction) of change is reliable.</div>
+      </div>
+      <div class="path-card">
+        <h4>McNemar Test (Paired Proportions)</h4>
+        <p class="desc">Test whether proportions change significantly in a paired/matched design (e.g., before/after treatment — binary outcome).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Crosstabs…</span></div>
+        <ul class="dialog-steps">
+          <li>Move Pre variable to <em>Row(s)</em>, Post variable to <em>Column(s)</em></li>
+          <li>Click <strong>Statistics…</strong> → check <em>☑ McNemar</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Uses only the discordant pairs (cases where response changed). Tests whether the probability of changing from No→Yes equals the probability of changing from Yes→No.<br><strong>Use when</strong>: binary DV, paired/matched design, comparing pre vs. post proportions.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>McNemar χ²(1) = x.xx, p = .xxx</code></div>
+      </div>
+    </div>
+  </div>
 
+  <div class="category">
+    <h3 class="category-title"><span class="icon">⏱️</span>Survival Analysis</h3>
+    <div class="critical-box"><div class="box-title">🏥 Critical in Medical Research</div>Survival analysis handles time-to-event data with censored observations — essential for clinical trials, oncology, and epidemiology.</div>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Kaplan-Meier Survival Curve</h4>
+        <p class="desc">Estimate and plot survival probability over time, accounting for censored observations.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Survival</span><span class="path-arrow">›</span><span class="path-step">Kaplan-Meier…</span></div>
+        <ul class="dialog-steps">
+          <li>Move <strong>time variable</strong> (duration) to <em>Time</em> box</li>
+          <li>Move <strong>status variable</strong> (event: 0=censored, 1=event) to <em>Status</em></li>
+          <li>Click <strong>Define Event…</strong> → enter value for event occurred (usually 1) → Continue</li>
+          <li>(Optional) Move grouping variable to <em>Factor</em> for group comparison</li>
+          <li>Click <strong>Options…</strong> → check <em>Survival table, At risk</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>The KM estimator calculates the probability of surviving past each event time as a step function: <span class="formula">S(t) = Π[(nᵢ − dᵢ) / nᵢ]</span><br>where nᵢ = at risk, dᵢ = events at time tᵢ. Censoring accounts for participants lost to follow-up or study end.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Median survival time was xx months (95% CI: xx–xx). The x-year survival probability was xx%.</div>
+        <div class="tag-list"><span class="tag tag-critical">Critical</span><span class="tag tag-medical">Oncology / Clinical Trials</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Log-Rank Test (Compare Survival Curves)</h4>
+        <p class="desc">Test whether two or more survival curves are statistically different (non-parametric comparison).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Survival</span><span class="path-arrow">›</span><span class="path-step">Kaplan-Meier…</span><span class="path-arrow">›</span><span class="path-step">Compare Factor</span></div>
+        <ul class="dialog-steps">
+          <li>Setup KM with a <em>Factor</em> (grouping) variable</li>
+          <li>Click <strong>Compare Factor</strong> button</li>
+          <li>Check <em>☑ Log rank</em> (most common), <em>☑ Breslow</em> (weights early events), <em>☑ Tarone-Ware</em></li>
+          <li>Select <em>Pooled over strata</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Log-rank gives equal weight to all time points. Breslow gives more weight to early events. Use Log-rank when hazards are proportional over time; Breslow when early events are more important.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Log-rank test: <code>χ²(df) = x.xx, p = .xxx</code>. Survival differed significantly between groups.</div>
+      </div>
+      <div class="path-card">
+        <h4>Cox Proportional Hazards Regression</h4>
+        <p class="desc">Multivariable survival model — estimate hazard ratios while adjusting for covariates.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Survival</span><span class="path-arrow">›</span><span class="path-step">Cox Regression…</span></div>
+        <ul class="dialog-steps">
+          <li>Move <strong>time variable</strong> to <em>Time</em></li>
+          <li>Move <strong>status variable</strong> to <em>Status</em> → Define Event → Continue</li>
+          <li>Move <strong>covariates</strong> to <em>Covariates</em></li>
+          <li>Move categorical variables to <em>Categorical</em> → set reference category → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>CI for Exp(B)</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Proportional Hazards Assumption</div>Cox model: <span class="formula">h(t) = h₀(t) · exp(β₁x₁ + β₂x₂ + ...)</span><br><strong>Exp(B) = Hazard Ratio (HR)</strong><br>HR &gt; 1: increased hazard | HR &lt; 1: protective factor<br><strong>PH Assumption</strong>: Test using time-covariate interactions. If significant interaction, PH is violated — consider stratified Cox or time-varying covariates.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>HR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></div>
+        <div class="tag-list"><span class="tag tag-critical">Critical</span><span class="tag tag-advanced">Advanced</span><span class="tag tag-medical">Oncology</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Life Tables (Actuarial Method)</h4>
+        <p class="desc">Alternative to KM for large samples — groups survival into time intervals rather than individual event times.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Survival</span><span class="path-arrow">›</span><span class="path-step">Life Tables…</span></div>
+        <ul class="dialog-steps">
+          <li>Move time variable to <em>Time</em></li>
+          <li>Move status variable to <em>Status</em> → Define Event → Continue</li>
+          <li>Define time interval width under <em>Display Time Intervals</em></li>
+          <li>Move grouping variable to <em>Factor</em> (optional) → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 When to Use</div>Use when time is measured in grouped intervals (e.g., yearly survival rates) rather than exact times. Commonly used in actuarial/demographic research and large registry studies.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📉</span>ROC Curve — Diagnostic Accuracy</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>ROC Curve Analysis</h4>
+        <p class="desc">Evaluate diagnostic accuracy of a continuous test variable against a binary gold standard (disease yes/no).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">ROC Curve…</span></div>
+        <ul class="dialog-steps">
+          <li>Move <strong>test variable</strong> (continuous predictor/biomarker) to <em>Test Variable</em></li>
+          <li>Move <strong>state variable</strong> (gold standard: 0/1) to <em>State Variable</em></li>
+          <li>Click <strong>Define Value…</strong> → enter value for positive state (usually 1)</li>
+          <li>Click <strong>Options…</strong> → check <em>Coordinate points of the ROC curve</em>, <em>Standard error and CI</em></li>
+          <li>Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; AUC</div>Plots Sensitivity (true positive rate) vs. 1−Specificity (false positive rate) at every possible threshold.<br><br><strong>AUC Interpretation</strong>:<br>0.90–1.00 = Excellent<br>0.80–0.89 = Good<br>0.70–0.79 = Fair<br>0.60–0.69 = Poor<br>0.50–0.59 = Fail (no discrimination)</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>The AUC was .xx (95% CI: .xx–.xx), indicating [excellent/good/fair] discriminative ability. The optimal cutoff was xx (sensitivity = xx%, specificity = xx%).</div>
+        <div class="tag-list"><span class="tag tag-critical">Diagnostic Accuracy</span><span class="tag tag-medical">Medical Research</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== REGRESSION & MODELING ============================== -->
+<section class="section" id="sec-regression">
+  <div class="section-header">
+    <h2 class="section-title">📈 Regression &amp; Modeling</h2>
+    <p class="section-desc">Linear regression, logistic regression, GLM, mixed models, factor analysis, reliability, and scale analysis.</p>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📉</span>Linear Regression</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Simple / Multiple Linear Regression</h4>
+        <p class="desc">Predict a continuous outcome from one or more predictors. Understand which predictors matter and by how much.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span></div>
+        <ul class="dialog-steps">
+          <li>Move outcome (DV) to <em>Dependent</em></li>
+          <li>Move predictor(s) to <em>Independent(s)</em></li>
+          <li>Choose <strong>Method</strong>: Enter (all at once), Stepwise, Forward, Backward</li>
+          <li>Click <strong>Statistics…</strong> → check: <em>Estimates, Model fit, R² change, Descriptives, Collinearity diagnostics, Part and partial correlations</em> → Continue</li>
+          <li>Click <strong>Plots…</strong> → ZRESID (Y) vs. ZPRED (X), check Normal P-P plot → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Assumptions</div><span class="formula">Ŷ = b₀ + b₁X₁ + b₂X₂ + ... + ε</span><br><strong>R²</strong>: proportion of variance explained<br><strong>B</strong>: unstandardized coefficient (raw units)<br><strong>Beta (β)</strong>: standardized coefficient (compare relative importance)<br><br><strong>Assumptions (LINE)</strong>:<br>L = Linearity | I = Independence of errors | N = Normality of residuals | E = Equal variance (homoscedasticity)</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>The model significantly predicted [DV], <code>R² = .xx, F(df₁, df₂) = x.xx, p = .xxx</code>. [Predictor] significantly contributed, <code>B = x.xx, β = .xx, t(df) = x.xx, p = .xxx</code>.</div>
+      </div>
+      <div class="path-card">
+        <h4>Hierarchical Regression (Block Entry)</h4>
+        <p class="desc">Enter predictors in theoretically ordered blocks to test how much variance each set adds (ΔR²).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span></div>
+        <ul class="dialog-steps">
+          <li>Add Block 1 predictors to <em>Independent(s)</em></li>
+          <li>Click <strong>Next</strong> → Block 2 appears → add second set of predictors</li>
+          <li>Click <strong>Statistics…</strong> → check <em>R squared change</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Interpreting ΔR²</div>Each block's <strong>ΔR²</strong> (R² change) and associated F-change test tells you whether Block 2 explains significantly more variance above and beyond Block 1. Report ΔR², ΔF, and its p-value.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Block 2 variables explained an additional xx% of variance, <code>ΔR² = .xx, ΔF(df₁, df₂) = x.xx, p = .xxx</code>.</div>
+      </div>
+      <div class="path-card">
+        <h4>Collinearity Diagnostics (VIF / Tolerance)</h4>
+        <p class="desc">Detect multicollinearity — when predictors are too highly correlated with each other.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span><span class="path-arrow">›</span><span class="path-step">Statistics…</span><span class="path-arrow">›</span><span class="path-step">☑ Collinearity diagnostics</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Interpretation</div><strong>Tolerance = 1 − R²</strong> (variance not explained by other predictors)<br><strong>VIF = 1 / Tolerance</strong><br><br>VIF &lt; 5: acceptable<br>VIF 5–10: moderate concern<br>VIF &gt; 10: serious multicollinearity → remove or combine predictors</div>
+        <div class="tag-list"><span class="tag tag-critical">Critical Diagnostic</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Residuals &amp; Influence Diagnostics</h4>
+        <p class="desc">Save residuals, leverage, Cook's distance, and DfBeta to detect outliers and influential cases.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Linear…</span><span class="path-arrow">›</span><span class="path-step">Save…</span></div>
+        <ul class="dialog-steps">
+          <li>Under <em>Residuals</em>: check <em>Standardized, Studentized</em></li>
+          <li>Under <em>Distances</em>: check <em>Cook's, Mahalanobis, Leverage</em></li>
+          <li>Under <em>Influence Statistics</em>: check <em>DfBeta(s)</em></li>
+          <li>Continue → OK (new variables created in dataset)</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Cutoffs</div><strong>Cook's D &gt; 1</strong> or <strong>&gt; 4/n</strong>: influential case<br><strong>Leverage &gt; 2(k+1)/n</strong>: high leverage<br><strong>Standardized residual |z| &gt; 3</strong>: outlier<br><strong>Mahalanobis distance</strong>: compare to chi-square critical value at p &lt; .001, df = number of predictors</div>
+      </div>
+      <div class="path-card">
+        <h4>Curve Estimation (Non-linear Trends)</h4>
+        <p class="desc">Fit and compare multiple functional forms (linear, quadratic, cubic, logarithmic, etc.) to your data.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Curve Estimation…</span></div>
+        <ul class="dialog-steps">
+          <li>Move DV to <em>Dependent(s)</em> and IV to <em>Independent</em></li>
+          <li>Check desired model types: Linear, Quadratic, Cubic, Logarithmic, Power, Exponential</li>
+          <li>Check <em>☑ Plot models</em> → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 When to Use</div>Use when a scatterplot suggests a curved relationship. Compare R² values across models and choose the simplest that fits well. Quadratic adds one bend; cubic adds two.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">🔀</span>Logistic &amp; GLM Regression</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Binary Logistic Regression</h4>
+        <p class="desc">Predict a binary (yes/no, 0/1) outcome from continuous and/or categorical predictors. Outputs Odds Ratios.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Binary Logistic…</span></div>
+        <ul class="dialog-steps">
+          <li>Move binary DV to <em>Dependent</em></li>
+          <li>Move predictors to <em>Covariates</em></li>
+          <li>Click <strong>Categorical…</strong> → move categorical predictors → set reference category → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>CI for Exp(B)</em>, <em>Hosmer-Lemeshow goodness of fit</em>, <em>Classification plots</em> → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Key Outputs</div><span class="formula">log[P/(1−P)] = b₀ + b₁X₁ + b₂X₂ + ...</span><br><strong>Exp(B) = Odds Ratio (OR)</strong><br><strong>−2LL</strong>: model fit (lower = better)<br><strong>Nagelkerke R²</strong>: pseudo-R² (variance explained)<br><strong>Hosmer-Lemeshow</strong>: p &gt; .05 = good model fit<br><strong>Classification table</strong>: % correctly classified<br><br><strong>Key Assumptions:</strong><br>• <strong>Independent observations</strong>: each case must be independent (no repeated measures)<br>• <strong>Linearity of the logit</strong>: continuous predictors must have a linear relationship with the log-odds — test using Box-Tidwell procedure or adding ln(X)×X interaction terms<br>• No severe multicollinearity (check VIF &lt; 10)<br>• No influential outliers (check standardized residuals)</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>OR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code>. Model fit: Nagelkerke R² = .xx, Hosmer-Lemeshow χ²(8) = x.xx, p = .xxx.</div>
+        <div class="tag-list"><span class="tag tag-critical">Critical</span><span class="tag tag-medical">Risk Prediction</span></div>
+      </div>
+      <div class="path-card">
+        <h4>Ordinal Logistic Regression</h4>
+        <p class="desc">Model an ordinal outcome (e.g., disease severity: mild/moderate/severe, Likert ratings).</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Ordinal…</span></div>
+        <ul class="dialog-steps">
+          <li>Move ordinal DV to <em>Dependent</em></li>
+          <li>Move continuous predictors to <em>Covariate(s)</em></li>
+          <li>Move categorical predictors to <em>Factor(s)</em></li>
+          <li>Under <strong>Output…</strong>: check parameter estimates, goodness of fit, test of parallel lines → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Parallel Lines Assumption</div>The <strong>Test of Parallel Lines</strong> must be non-significant (p &gt; .05), indicating that the relationship between predictors and outcome is consistent across all threshold levels.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>OR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code>. The proportional odds assumption was satisfied, <code>χ²(df) = x.xx, p = .xxx</code>.</div>
+      </div>
+      <div class="path-card">
+        <h4>Multinomial Logistic Regression</h4>
+        <p class="desc">Predict an unordered categorical outcome with 3+ categories (e.g., disease type A/B/C) from predictors.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Regression</span><span class="path-arrow">›</span><span class="path-step">Multinomial Logistic…</span></div>
+        <ul class="dialog-steps">
+          <li>Move categorical DV to <em>Dependent</em></li>
+          <li>Move categorical IVs to <em>Factor(s)</em>, continuous IVs to <em>Covariate(s)</em></li>
+          <li>Click <strong>Reference Category…</strong> → select reference → Continue</li>
+          <li>Click <strong>Statistics…</strong> → check Classification table, Likelihood ratio tests, Parameter estimates, CI → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory</div>Runs k−1 binary logistic regressions against the reference category. Each set of ORs compares one category vs. the reference. Appropriate when outcome has 3+ unordered categories.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Compared to [reference], [category] had <code>OR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code>.</div>
+      </div>
+      <div class="path-card">
+        <h4>Poisson Regression (GLM)</h4>
+        <p class="desc">Predict a count outcome (number of events) — hospital admissions, infection episodes, medication doses.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Generalized Linear Models</span><span class="path-arrow">›</span><span class="path-step">Generalized Linear Models…</span></div>
+        <ul class="dialog-steps">
+          <li>Click <strong>Response</strong> tab → set Distribution to <em>Poisson</em>, Link function to <em>Log</em></li>
+          <li>Move DV to <em>Dependent Variable</em></li>
+          <li>Move continuous predictors to <em>Covariates</em>, categorical to <em>Factors</em></li>
+          <li>Click <strong>Model</strong> → add terms → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Overdispersion</div><span class="formula">log(μ) = b₀ + b₁X₁ + ...</span><br>Exp(B) = Incidence Rate Ratio (IRR)<br><strong>Check for overdispersion</strong>: if Deviance/df &gt; 1.5, use Negative Binomial regression instead.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div><code>IRR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></div>
+      </div>
+      <div class="path-card">
+        <h4>Linear Mixed Models (Longitudinal)</h4>
+        <p class="desc">Analyze repeated measures and clustered data with correlated observations — handles missing data better than traditional RM ANOVA.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Mixed Models</span><span class="path-arrow">›</span><span class="path-step">Linear…</span></div>
+        <ul class="dialog-steps">
+          <li>Move <strong>subject ID</strong> to <em>Subjects</em></li>
+          <li>Move <strong>time variable</strong> to <em>Repeated</em> → set covariance structure (Unstructured or Compound Symmetry) → Continue</li>
+          <li>Move <strong>DV</strong> to <em>Dependent Variable</em></li>
+          <li>Move <strong>fixed effects</strong> to <em>Covariate(s)</em> / <em>Factor(s)</em></li>
+          <li>Click <strong>Fixed…</strong> → build model → Continue</li>
+          <li>Click <strong>Random…</strong> → add random intercept/slope → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Fixed vs. Random Effects</div><strong>Fixed effects</strong>: predictors you're interested in (time, treatment, covariates)<br><strong>Random effects</strong>: account for individual variation (random intercept = each person has their own baseline; random slope = each person changes at their own rate)</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>A linear mixed model revealed a significant effect of [predictor], <code>B = x.xx, SE = x.xx, t(df) = x.xx, p = .xxx</code>.</div>
+        <div class="tag-list"><span class="tag tag-critical">Critical</span><span class="tag tag-medical">Clinical Trials</span><span class="tag tag-advanced">Advanced</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">🔬</span>Scale &amp; Factor Analysis</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Cronbach's Alpha (Internal Consistency)</h4>
+        <p class="desc">Assess whether multiple items on a questionnaire/scale measure the same underlying construct.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Scale</span><span class="path-arrow">›</span><span class="path-step">Reliability Analysis…</span></div>
+        <ul class="dialog-steps">
+          <li>Move all scale items to <em>Items</em></li>
+          <li>Keep Model as <em>Alpha</em></li>
+          <li>Click <strong>Statistics…</strong> → check: Item, Scale, Scale if item deleted, Corrected item-total correlations, Inter-item → Continue → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 Theory &amp; Benchmarks</div>Ranges 0–1. Measures average inter-item correlation weighted by number of items.<br><strong>α ≥ 0.9</strong> = Excellent<br><strong>α ≥ 0.8</strong> = Good<br><strong>α ≥ 0.7</strong> = Acceptable<br><strong>α &lt; 0.7</strong> = Questionable<br><br>Check <strong>"Cronbach's Alpha if Item Deleted"</strong>: if deleting an item raises α substantially, consider removing that item.</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>Internal consistency was [excellent/good/acceptable] (α = .xx, n items = xx).</div>
+      </div>
+      <div class="path-card">
+        <h4>Inter-Rater Reliability (ICC)</h4>
+        <p class="desc">Assess agreement between multiple raters measuring the same subjects.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Scale</span><span class="path-arrow">›</span><span class="path-step">Reliability Analysis…</span></div>
+        <ul class="dialog-steps">
+          <li>Move rater variables to <em>Items</em></li>
+          <li>Change <em>Model</em> to <strong>Intraclass correlation coefficient</strong></li>
+          <li>Set Model (Two-Way Mixed = raters fixed; Two-Way Random = raters random sample)</li>
+          <li>Set Type (Consistency vs. Absolute Agreement) → Statistics → CI → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 ICC Benchmarks (Koo &amp; Mae, 2016)</div>ICC &lt; 0.5: Poor | 0.5–0.75: Moderate | 0.75–0.90: Good | &gt; 0.90: Excellent<br><br><strong>Consistency</strong>: raters use scales in same relative way<br><strong>Absolute Agreement</strong>: raters give exact same values</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>The ICC was .xx (95% CI [.xx, .xx]), indicating [good/excellent] reliability.</div>
+        <div class="tag-list"><span class="tag tag-medical">Clinical Measurement</span></div>
+      </div>
       <div class="path-card">
         <h4>Exploratory Factor Analysis (EFA)</h4>
-        <p>Identify latent factors underlying a set of observed variables.</p>
+        <p class="desc">Identify latent factors underlying a set of observed variables — use to develop or validate a scale structure.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Dimension Reduction</span><span class="path-arrow">›</span><span class="path-step">Factor…</span></div>
         <ul class="dialog-steps">
           <li>Move all indicator items to <em>Variables</em></li>
-          <li>Click <strong>Extraction…</strong> → Method: <em>Principal Axis Factoring</em> or <em>Maximum Likelihood</em>; choose <em>Eigenvalue &gt; 1</em> → Continue</li>
-          <li>Click <strong>Rotation…</strong> → Method: <em>Promax</em> (oblique) or <em>Varimax</em> (orthogonal) → Continue</li>
-          <li>Click <strong>Options…</strong> → check <em>Sorted by size, Suppress small coefficients (.30)</em> → Continue → OK</li>
+          <li>Click <strong>Extraction…</strong> → Method: <em>Principal Axis Factoring</em>; Eigenvalue &gt; 1; check Scree plot → Continue</li>
+          <li>Click <strong>Rotation…</strong> → Oblique: <em>Promax</em> (if factors likely correlated); Orthogonal: <em>Varimax</em> → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>Sorted by size</em>, <em>Suppress small coefficients (.30)</em> → Continue → OK</li>
         </ul>
-        <p class="path-note">Review Pattern Matrix (oblique) or Rotated Component Matrix (orthogonal). Loadings ≥ .40 are meaningful.</p>
+        <div class="theory-box"><div class="theory-title">📘 Key Decisions &amp; Outputs</div><strong>KMO &gt; 0.6</strong>: adequate for FA | <strong>Bartlett's p &lt; .05</strong>: significant correlations exist<br><strong>Communality &gt; 0.3</strong>: item variance explained<br><strong>Loading ≥ .40</strong>: item loads on factor<br>Use <em>Pattern Matrix</em> for oblique; <em>Rotated Component Matrix</em> for orthogonal<br><strong>Cross-loading</strong>: same item loads ≥.30 on 2+ factors — consider removing</div>
+        <div class="report-box"><div class="report-title">📝 APA Report</div>EFA revealed xx factors explaining xx% of total variance (KMO = .xx, Bartlett's χ²(df) = x.xx, p &lt; .001).</div>
       </div>
-
       <div class="path-card">
         <h4>Principal Components Analysis (PCA)</h4>
-        <p>Reduce many variables to fewer uncorrelated components.</p>
+        <p class="desc">Reduce many correlated variables into fewer uncorrelated components that capture maximum variance.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Dimension Reduction</span><span class="path-arrow">›</span><span class="path-step">Factor…</span></div>
         <ul class="dialog-steps">
           <li>Move variables to <em>Variables</em></li>
-          <li>Click <strong>Extraction…</strong> → Method: <em>Principal Components</em> → Continue</li>
+          <li>Click <strong>Extraction…</strong> → Method: <em>Principal Components</em>; check Scree plot → Continue</li>
           <li>Click <strong>Rotation…</strong> → <em>Varimax</em> → Continue</li>
           <li>Click <strong>Scores…</strong> → check <em>Save as variables</em> → Continue → OK</li>
         </ul>
-        <p class="path-note">Check the Scree Plot (Extraction → Display: Scree plot) to find the elbow point.</p>
+        <div class="theory-box"><div class="theory-title">📘 PCA vs. EFA</div><strong>PCA</strong>: data reduction — components explain as much variance as possible (includes unique variance). Use when you want to reduce dimensions.<br><strong>EFA</strong>: latent variable modeling — factors explain shared variance only. Use when modeling underlying constructs.</div>
       </div>
-
-      <div class="path-card">
-        <h4>Confirmatory Factor Analysis (CFA)</h4>
-        <p>Test a pre-specified factor structure — requires AMOS add-on.</p>
-        <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">New</span><span class="path-arrow">›</span><span class="path-step">IBM SPSS Amos</span></div>
-        <ul class="dialog-steps">
-          <li>Open <strong>AMOS Graphics</strong> from Start Menu or SPSS File menu</li>
-          <li>Click <em>File › Data Files…</em> → link your SPSS dataset</li>
-          <li>Draw latent factors (ellipses) and observed variables (rectangles) using toolbar</li>
-          <li>Click <em>Analyze › Calculate Estimates</em> → view output via <em>Analyze › View Text…</em></li>
-        </ul>
-        <p class="path-note">Report CFI ≥ .95, RMSEA ≤ .06, SRMR ≤ .08 for good fit.</p>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="category">
-    <div class="category-title">🗃️ Cluster Analysis</div>
-    <div class="card-grid">
-
       <div class="path-card">
         <h4>Hierarchical Cluster Analysis</h4>
-        <p>Group cases or variables into clusters with a dendrogram.</p>
+        <p class="desc">Group cases or variables into a hierarchy of clusters — produces a dendrogram for visual inspection.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Classify</span><span class="path-arrow">›</span><span class="path-step">Hierarchical Cluster…</span></div>
         <ul class="dialog-steps">
           <li>Move variables to <em>Variable(s)</em></li>
           <li>Choose to cluster <em>Cases</em> or <em>Variables</em></li>
-          <li>Method: <strong>Ward's</strong> (most common for cases)</li>
-          <li>Plots: check <em>Dendrogram</em> → Continue → OK</li>
+          <li>Click <strong>Method</strong> → linkage: <em>Ward's</em> (most common), distance: <em>Squared Euclidean</em></li>
+          <li>Click <strong>Plots</strong> → check <em>Dendrogram</em> → Continue → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Choosing Number of Clusters</div>Examine the dendrogram: cut the tree where the vertical lines are longest (biggest jumps in fusion distances). Also check the <strong>agglomeration schedule</strong> — large jumps in the distance column indicate where to cut.</div>
       </div>
-
       <div class="path-card">
         <h4>K-Means Cluster Analysis</h4>
-        <p>Partition cases into a specified number (k) of clusters.</p>
+        <p class="desc">Partition cases into a specified number (k) of non-hierarchical clusters — requires knowing k in advance.</p>
         <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Classify</span><span class="path-arrow">›</span><span class="path-step">K-Means Cluster…</span></div>
         <ul class="dialog-steps">
           <li>Move clustering variables to <em>Variables</em></li>
           <li>Set <em>Number of Clusters</em> (k)</li>
-          <li>Click <strong>Save…</strong> → check <em>Cluster membership</em> to save cluster ID as new variable</li>
-          <li>Options: check <em>Cluster information for each case</em> → Continue → OK</li>
+          <li>Click <strong>Save…</strong> → check <em>Cluster membership</em> → Continue</li>
+          <li>Click <strong>Options…</strong> → check <em>Initial cluster centers, ANOVA table</em> → Continue → OK</li>
         </ul>
+        <p class="path-note">Run hierarchical clustering first to determine appropriate k, then confirm with K-Means.</p>
       </div>
-
     </div>
   </div>
-</div>
+</section>
 
-<!-- ════════ 8. CHARTS ════════ -->
-<div class="section" id="charts">
-  <div class="section-title">🎨 Charts & Visualisation</div>
-  <p class="section-desc">Build bar charts, histograms, scatterplots, and more using SPSS Chart Builder.</p>
+<!-- ============================== VISUALIZATION ============================== -->
+<section class="section" id="sec-viz">
+  <div class="section-header">
+    <h2 class="section-title">📊 Visualization</h2>
+    <p class="section-desc">Build publication-quality charts using SPSS Chart Builder and edit them in Chart Editor.</p>
+  </div>
 
   <div class="category">
-    <div class="category-title">📊 Chart Builder (Primary Method)</div>
+    <h3 class="category-title"><span class="icon">🎨</span>Chart Builder (Primary Method)</h3>
     <div class="card-grid">
-
       <div class="path-card">
         <h4>Open Chart Builder</h4>
-        <p>SPSS's drag-and-drop chart creation interface.</p>
+        <p class="desc">SPSS's drag-and-drop interface for creating any chart type. Variable measurement levels must be set correctly first.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span></div>
         <ul class="dialog-steps">
           <li>Click <strong>OK</strong> on the welcome dialog</li>
-          <li>Choose chart type from the <em>Gallery</em> at bottom left</li>
-          <li>Drag a chart thumbnail to the canvas preview area</li>
-          <li>Drag variables from the variable list onto axis drop zones</li>
-          <li>Set options in <em>Element Properties</em> panel → OK</li>
+          <li>Choose a chart type from the <em>Gallery</em> at the bottom left</li>
+          <li>Drag a chart thumbnail to the canvas preview</li>
+          <li>Drag variables from the variable list onto the axis drop zones</li>
+          <li>Adjust settings in <em>Element Properties</em> panel → OK</li>
         </ul>
-        <p class="path-note">Double-click a chart in Output Viewer to open Chart Editor for formatting.</p>
+        <p class="path-note">Double-click any chart in Output Viewer to open Chart Editor for detailed formatting.</p>
       </div>
-
       <div class="path-card">
-        <h4>Bar Chart</h4>
-        <p>Display counts or means for categorical groups.</p>
+        <h4>Bar Chart (Means or Counts)</h4>
+        <p class="desc">Display counts or group means with optional error bars. Most common chart for categorical data.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Bar</span></div>
         <ul class="dialog-steps">
           <li>Drag <em>Simple Bar</em> thumbnail to canvas</li>
-          <li>Drag categorical variable to <em>X-Axis</em> drop zone</li>
-          <li>Drag continuous variable to <em>Y-Axis</em> (or leave for Count)</li>
-          <li>In Element Properties: set Statistic to <em>Mean</em> or <em>Count</em> → Apply → OK</li>
+          <li>Drag categorical variable to <em>X-Axis</em></li>
+          <li>Drag continuous variable to <em>Y-Axis</em> (or leave as Count)</li>
+          <li>In Element Properties → set Statistic to <em>Mean</em> or <em>Count</em></li>
+          <li>To add error bars: check <em>Display error bars</em> → set to SD or 95% CI → Apply → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Best Practices</div>For publications: add 95% CI error bars (not SD). Label axes with units. Use a descriptive title. Export as TIFF 300 DPI for journals.</div>
       </div>
-
       <div class="path-card">
-        <h4>Histogram</h4>
-        <p>Visualize the distribution of a continuous variable.</p>
+        <h4>Histogram (Distribution)</h4>
+        <p class="desc">Visualize the frequency distribution of a continuous variable. Essential for normality assessment.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Histogram</span></div>
         <ul class="dialog-steps">
           <li>Drag <em>Simple Histogram</em> to canvas</li>
           <li>Drag continuous variable to <em>X-Axis</em></li>
-          <li>In Element Properties: check <em>Display normal curve</em> if needed → Apply → OK</li>
+          <li>In Element Properties: check <em>Display normal curve</em> to overlay bell curve → Apply → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Visual Normality Assessment</div>Normal distribution: symmetric bell shape, bars follow the curve. Skewed right: long right tail. Skewed left: long left tail. Bimodal: two peaks (may indicate two subgroups in your data).</div>
       </div>
-
       <div class="path-card">
-        <h4>Scatterplot</h4>
-        <p>Explore relationship between two continuous variables.</p>
+        <h4>Scatterplot (Correlation)</h4>
+        <p class="desc">Explore the relationship between two continuous variables. Add regression line to show direction and strength.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Scatter/Dot</span></div>
         <ul class="dialog-steps">
           <li>Drag <em>Simple Scatter</em> to canvas</li>
           <li>Drag X variable to <em>X-Axis</em>, Y variable to <em>Y-Axis</em></li>
-          <li>Optionally drag grouping variable to <em>Color</em> drop zone</li>
-          <li>To add regression line: Chart Editor → Elements › Fit Line at Total</li>
+          <li>Drag grouping variable to <em>Color</em> zone for color-coded groups (optional)</li>
+          <li>After creating: in Chart Editor → Elements menu → <em>Fit Line at Total</em> to add regression line → OK</li>
         </ul>
       </div>
-
       <div class="path-card">
-        <h4>Boxplot</h4>
-        <p>Show median, quartiles, and outliers by group.</p>
+        <h4>Boxplot (Group Comparison)</h4>
+        <p class="desc">Display median, quartiles, range, and outliers. Best chart for comparing distributions across groups.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Boxplot</span></div>
         <ul class="dialog-steps">
           <li>Drag <em>Simple Boxplot</em> to canvas</li>
           <li>Drag continuous variable to <em>Y-Axis</em></li>
-          <li>Drag categorical variable to <em>X-Axis</em></li>
-          <li>OK</li>
+          <li>Drag categorical variable to <em>X-Axis</em> → OK</li>
         </ul>
+        <div class="theory-box"><div class="theory-title">📘 Reading a Boxplot</div>Line in box = <strong>Median (Q2)</strong> | Box edges = <strong>Q1 and Q3</strong> (IQR) | Whiskers = 1.5×IQR from box edges | Circles (○) = mild outliers | Asterisks (*) = extreme outliers (case numbers shown)</div>
       </div>
-
       <div class="path-card">
-        <h4>Line Chart</h4>
-        <p>Display trends over categories or time using connected points.</p>
+        <h4>Line Chart (Trends over Time)</h4>
+        <p class="desc">Connect means or counts across ordered categories or time points.</p>
         <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Line</span></div>
         <ul class="dialog-steps">
-          <li>Drag <em>Simple Line</em> to canvas</li>
+          <li>Drag <em>Simple Line</em> or <em>Multiple Line</em> to canvas</li>
           <li>Drag time/category variable to <em>X-Axis</em></li>
           <li>Drag measure to <em>Y-Axis</em></li>
-          <li>For multiple groups: drag grouping variable to <em>Color</em> → OK</li>
+          <li>For groups: drag grouping variable to <em>Color</em> → OK</li>
         </ul>
       </div>
-
+      <div class="path-card">
+        <h4>Error Bar Chart</h4>
+        <p class="desc">Plot means with confidence intervals or standard deviations — preferred for APA publications over bar charts.</p>
+        <div class="path"><span class="path-step">Graphs</span><span class="path-arrow">›</span><span class="path-step">Chart Builder…</span><span class="path-arrow">›</span><span class="path-step">Gallery: Error Bar</span></div>
+        <ul class="dialog-steps">
+          <li>Drag <em>Simple Error Bar</em> to canvas</li>
+          <li>Drag continuous DV to <em>Y-Axis</em></li>
+          <li>Drag grouping variable to <em>X-Axis</em></li>
+          <li>In Element Properties: set to <em>95% CI</em> or <em>Standard Error</em> → Apply → OK</li>
+        </ul>
+        <div class="theory-box"><div class="theory-title">📘 CI vs. SE Error Bars</div><strong>95% CI bars</strong>: If bars don't overlap, groups likely differ significantly (approximate rule)<br><strong>SE bars</strong>: Smaller, often overlap even when significant. For inferential interpretation, always use 95% CI bars.</div>
+      </div>
+      <div class="path-card">
+        <h4>P-P Plot &amp; Q-Q Plot (Normality Check)</h4>
+        <p class="desc">Graphical check of normality — points should fall along the diagonal line if data is normally distributed.</p>
+        <div class="path"><span class="path-step">Analyze</span><span class="path-arrow">›</span><span class="path-step">Descriptive Statistics</span><span class="path-arrow">›</span><span class="path-step">Explore…</span><span class="path-arrow">›</span><span class="path-step">Plots → Normality plots</span></div>
+        <div class="theory-box"><div class="theory-title">📘 Interpretation</div><strong>P-P Plot</strong>: plots cumulative observed vs. expected proportions. Points near the diagonal = normal.<br><strong>Q-Q Plot</strong>: plots observed vs. theoretical quantiles. S-shape = skewness; heavy tails = kurtosis.<br>Or use: <span style="font-size:.8rem">Graphs › Chart Builder › Gallery: Q-Q</span> for a standalone Q-Q plot.</div>
+      </div>
     </div>
   </div>
 
   <div class="category">
-    <div class="category-title">✏️ Editing Charts</div>
+    <h3 class="category-title"><span class="icon">✏️</span>Editing &amp; Exporting Charts</h3>
     <div class="card-grid">
-
       <div class="path-card">
-        <h4>Chart Editor</h4>
-        <p>Modify colors, fonts, axes, titles, and add fit lines after chart is created.</p>
+        <h4>Chart Editor (Format &amp; Customize)</h4>
+        <p class="desc">Edit colors, fonts, axis labels, titles, add reference lines, and fine-tune any chart.</p>
         <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Double-click chart</span></div>
         <ul class="dialog-steps">
-          <li>Click any element to select it, then right-click for options</li>
+          <li>Click any element → right-click for quick options</li>
           <li>Double-click an element to open its <em>Properties</em> dialog</li>
-          <li>Use <strong>Elements</strong> menu to add fit lines, reference lines, error bars</li>
-          <li>Use <strong>Options</strong> menu to change chart size</li>
-          <li>Close Chart Editor window to save changes to output</li>
+          <li>Use <strong>Elements</strong> menu → Fit Line, Reference Line, Error Bars</li>
+          <li>Use <strong>Options</strong> menu → Chart size</li>
+          <li>Close Chart Editor window to save changes</li>
         </ul>
       </div>
-
       <div class="path-card">
         <h4>Export Chart as Image</h4>
-        <p>Save a chart as PNG, TIFF, EMF, or PDF.</p>
+        <p class="desc">Save charts as PNG, TIFF, EMF, or PDF for publications and presentations.</p>
         <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Right-click chart</span><span class="path-arrow">›</span><span class="path-step">Export…</span></div>
         <ul class="dialog-steps">
-          <li>Select <strong>Export format</strong>: PNG, TIFF, JPG, EMF, PDF</li>
+          <li>Select <strong>Format</strong>: PNG, TIFF, JPG, EMF, PDF</li>
           <li>Set file path and name</li>
-          <li>Adjust <em>Image size</em> and <em>Resolution (DPI)</em> for publication quality</li>
+          <li>Adjust <em>Image size</em> and <em>Resolution (DPI)</em></li>
           <li>Click <strong>OK</strong></li>
         </ul>
-        <p class="path-note">For journals: TIFF at 300+ DPI. For presentations: PNG at 150+ DPI.</p>
+        <p class="path-note">For journal submission: TIFF at 300–600 DPI. For presentations: PNG at 150–300 DPI. For Word: EMF (scalable, no quality loss).</p>
       </div>
-
     </div>
   </div>
-</div>
+</section>
 
-<!-- ════════ 9. OUTPUT ════════ -->
-<div class="section" id="output">
-  <div class="section-title">📄 Output & Results Management</div>
-  <p class="section-desc">Navigate, export, and manage SPSS Output Viewer results.</p>
-
-  <div class="card-grid">
-
-    <div class="path-card">
-      <h4>Save Output File (.spv)</h4>
-      <p>Save your Output Viewer results for future reference.</p>
-      <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save</span></div>
-      <p style="font-size:.87rem;color:#555;margin:.5rem 0 .35rem">Or choose a location:</p>
-      <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Save As…</span><span class="path-arrow">›</span><span class="path-step">SPSS Output (.spv)</span></div>
-    </div>
-
-    <div class="path-card">
-      <h4>Export Output to Word / PDF / Excel</h4>
-      <p>Export all or selected results to various formats for reporting.</p>
-      <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Export…</span></div>
-      <ul class="dialog-steps">
-        <li>Under <em>Export Format</em>: choose Word (.docx), PDF, Excel (.xlsx), HTML, or PowerPoint</li>
-        <li>Under <em>Export What</em>: All visible output / Selected output</li>
-        <li>Set file path → <strong>OK</strong></li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Copy Table to Word / Excel</h4>
-      <p>Quickly copy a single output table to another application.</p>
-      <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Right-click table</span></div>
-      <ul class="dialog-steps">
-        <li>Click the table to select it</li>
-        <li>Right-click → <em>Copy</em> (for Word) or <em>Copy Special…</em></li>
-        <li>For Excel: <em>Copy Special…</em> → <em>Tab-separated values</em></li>
-        <li>Paste into Word, Excel, or PowerPoint</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Delete Unwanted Output Items</h4>
-      <p>Clean up the Output Viewer by removing items.</p>
-      <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Click item in left panel</span><span class="path-arrow">›</span><span class="path-step">Delete key</span></div>
-      <p class="path-note">Use Ctrl+Click to select multiple items in the left outline panel before deleting.</p>
-    </div>
-
-    <div class="path-card">
-      <h4>Pivot Table Editor</h4>
-      <p>Modify, reformat, or add footnotes to a results table.</p>
-      <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Double-click table</span></div>
-      <ul class="dialog-steps">
-        <li>Double-click opens the <em>Pivot Table Editor</em></li>
-        <li>Drag row/column labels via <strong>Pivot › Pivot Trays…</strong></li>
-        <li>Format cells via <strong>Format › Cell Properties</strong></li>
-        <li>Add footnotes via <strong>Insert › Footnote</strong></li>
-        <li>Click outside to deactivate editor</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Syntax Log (Copy Last Command)</h4>
-      <p>See the syntax generated by your menu actions for repeatability.</p>
-      <div class="path"><span class="path-step">Edit</span><span class="path-arrow">›</span><span class="path-step">Options…</span><span class="path-arrow">›</span><span class="path-step">Viewer tab</span></div>
-      <ul class="dialog-steps">
-        <li>Check <em>Display commands in the log</em></li>
-        <li>All menu-driven commands appear in output as syntax</li>
-        <li>Right-click Log entry → <em>Copy to Syntax Editor</em> to save and re-run</li>
-      </ul>
-    </div>
-
-    <div class="path-card">
-      <h4>Undo / Redo in Data Editor</h4>
-      <p>Reverse or redo the last data editing actions.</p>
-      <div class="multi-path">
-        <div class="multi-path-label">Menu</div>
-        <div class="path"><span class="path-step">Edit</span><span class="path-arrow">›</span><span class="path-step">Undo</span></div>
-      </div>
-      <div class="multi-path">
-        <div class="multi-path-label">Keyboard shortcut</div>
-        <div class="path"><span class="path-step">Ctrl</span><span class="path-arrow">+</span><span class="path-step">Z</span></div>
-      </div>
-      <p class="path-note">SPSS supports unlimited undo for data changes within a session.</p>
-    </div>
-
-    <div class="path-card">
-      <h4>SPSS Version & System Info</h4>
-      <p>Check your SPSS version, license, and installed modules.</p>
-      <div class="path"><span class="path-step">Help</span><span class="path-arrow">›</span><span class="path-step">About IBM SPSS Statistics</span></div>
-      <p class="path-note">Use <strong>Help › Topics</strong> (or press F1) for context-sensitive help on any open dialog.</p>
-    </div>
-
+<!-- ============================== REFERENCE ============================== -->
+<section class="section" id="sec-reference">
+  <div class="section-header">
+    <h2 class="section-title">📖 Reference</h2>
+    <p class="section-desc">Output management, keyboard shortcuts, APA reporting cheatsheet, and quick lookup tables.</p>
   </div>
 
-  <div class="info-box">
-    <div class="box-title">ℹ️ Quick Keyboard Shortcuts</div>
-    <div class="table-container" style="margin-top:.75rem">
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📄</span>Output Management</h3>
+    <div class="card-grid">
+      <div class="path-card">
+        <h4>Export Output to Word / PDF / Excel</h4>
+        <p class="desc">Export all or selected results to various formats for reporting and publication.</p>
+        <div class="path"><span class="path-step">File</span><span class="path-arrow">›</span><span class="path-step">Export…</span></div>
+        <ul class="dialog-steps">
+          <li>Under <em>Export Format</em>: choose Word (.docx), PDF, Excel (.xlsx), HTML, or PowerPoint</li>
+          <li>Under <em>Export What</em>: All visible output / Selected output</li>
+          <li>Set file path → <strong>OK</strong></li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <h4>Copy Table to Word / Excel</h4>
+        <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Right-click table</span><span class="path-arrow">›</span><span class="path-step">Copy</span></div>
+        <p class="desc">Copy as Word table: right-click → Copy. For Excel-ready format: right-click → <em>Copy Special…</em> → <em>Tab-separated values</em>.</p>
+      </div>
+      <div class="path-card">
+        <h4>Pivot Table Editor</h4>
+        <div class="path"><span class="path-step">Output Viewer</span><span class="path-arrow">›</span><span class="path-step">Double-click table</span></div>
+        <ul class="dialog-steps">
+          <li>Drag row/column labels to rearrange via <strong>Pivot › Pivot Trays</strong></li>
+          <li>Format cells via <strong>Format › Cell Properties</strong></li>
+          <li>Add footnotes via <strong>Insert › Footnote</strong></li>
+          <li>Click outside to deactivate editor</li>
+        </ul>
+      </div>
+      <div class="path-card">
+        <h4>Syntax Log (Record Menu Commands)</h4>
+        <div class="path"><span class="path-step">Edit</span><span class="path-arrow">›</span><span class="path-step">Options…</span><span class="path-arrow">›</span><span class="path-step">Viewer tab</span><span class="path-arrow">›</span><span class="path-step">☑ Display commands in log</span></div>
+        <p class="path-note">Excellent way to learn syntax. Right-click Log → <em>Copy to Syntax Editor</em> to save and re-run later.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="category">
+    <h3 class="category-title"><span class="icon">⌨️</span>Keyboard Shortcuts</h3>
+    <div class="table-container">
       <table>
-        <thead><tr><th>Action</th><th>Shortcut</th></tr></thead>
-        <tbody>
-          <tr><td>Run syntax</td><td><code>Ctrl+R</code></td></tr>
-          <tr><td>Open data file</td><td><code>Ctrl+O</code></td></tr>
-          <tr><td>Save</td><td><code>Ctrl+S</code></td></tr>
-          <tr><td>Undo</td><td><code>Ctrl+Z</code></td></tr>
-          <tr><td>Copy</td><td><code>Ctrl+C</code></td></tr>
-          <tr><td>Switch window</td><td><code>Ctrl+Tab</code></td></tr>
-          <tr><td>Context Help</td><td><code>F1</code></td></tr>
-          <tr><td>Go to case (row)</td><td><code>Ctrl+G</code></td></tr>
-          <tr><td>Find / Replace</td><td><code>Ctrl+F</code> / <code>Ctrl+H</code></td></tr>
-        </tbody>
+        <tr><th>Action</th><th>Shortcut</th></tr>
+        <tr><td>Open data file</td><td><code>Ctrl+O</code></td></tr>
+        <tr><td>Save</td><td><code>Ctrl+S</code></td></tr>
+        <tr><td>Undo</td><td><code>Ctrl+Z</code></td></tr>
+        <tr><td>Redo</td><td><code>Ctrl+Y</code></td></tr>
+        <tr><td>Copy</td><td><code>Ctrl+C</code></td></tr>
+        <tr><td>Find &amp; Replace in Data Editor</td><td><code>Ctrl+F</code> / <code>Ctrl+H</code></td></tr>
+        <tr><td>Go to Case (row)</td><td><code>Ctrl+G</code></td></tr>
+        <tr><td>Run syntax</td><td><code>Ctrl+R</code></td></tr>
+        <tr><td>Switch windows</td><td><code>Ctrl+Tab</code></td></tr>
+        <tr><td>Context help on dialog</td><td><code>F1</code></td></tr>
+        <tr><td>Select All</td><td><code>Ctrl+A</code></td></tr>
+        <tr><td>Print</td><td><code>Ctrl+P</code></td></tr>
       </table>
     </div>
   </div>
-</div>
-</div><!-- /.ctr -->
 
-<div class="footer">
-  <div class="fc">
-    <p style="font-size:1.4rem;font-weight:800;margin-bottom:.4rem">&#128202; SPSS Navigation Guide</p>
-    <p style="font-size:1.05rem;font-weight:700;margin:.5rem 0">Monu Prajapati</p>
-    <p style="opacity:.85;margin-bottom:1.5rem;font-size:.9rem">Menu Paths &bull; Dialog Steps &bull; No Syntax Required</p>
-    <div class="cg">
-      <div class="cc2"><div class="ico">&#128452;</div><div class="lbl">Sections</div><div class="val">9 Main Topics</div></div>
-      <div class="cc2"><div class="ico">&#128506;</div><div class="lbl">Paths Covered</div><div class="val">50+ Navigation Paths</div></div>
-      <div class="cc2"><div class="ico">&#127891;</div><div class="lbl">Compatible With</div><div class="val">SPSS v25&ndash;v29</div></div>
-      <div class="cc2"><div class="ico">&#9998;</div><div class="lbl">Created By</div><div class="val">Monu Prajapati</div></div>
+  <div class="category">
+    <h3 class="category-title"><span class="icon">📝</span>APA Reporting Cheatsheet</h3>
+    <div class="table-container">
+      <table>
+        <tr><th>Test</th><th>APA Format</th><th>Effect Size</th></tr>
+        <tr><td>Pearson r</td><td><code>r(df) = .xx, p = .xxx</code></td><td>r: small=.1, medium=.3, large=.5</td></tr>
+        <tr><td>Spearman ρ</td><td><code>rₛ(df) = .xx, p = .xxx</code></td><td>r: small=.1, medium=.3, large=.5</td></tr>
+        <tr><td>Independent t</td><td><code>t(df) = x.xx, p = .xxx, d = x.xx</code></td><td>Cohen's d: small=0.2, medium=0.5, large=0.8</td></tr>
+        <tr><td>Paired t</td><td><code>t(df) = x.xx, p = .xxx, d = x.xx</code></td><td>Cohen's d (same benchmarks)</td></tr>
+        <tr><td>One-Way ANOVA</td><td><code>F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code></td><td>ηₚ²: small=.01, medium=.06, large=.14</td></tr>
+        <tr><td>Two-Way ANOVA</td><td>Report all 3 effects: <code>F(df₁, df₂) = x.xx, p = .xxx, ηₚ² = .xx</code></td><td>ηₚ² (same)</td></tr>
+        <tr><td>Repeated Measures ANOVA</td><td><code>F(df_GG) = x.xx, p = .xxx, ηₚ² = .xx</code> (add GG note if sphericity violated)</td><td>ηₚ²</td></tr>
+        <tr><td>Chi-Square (association)</td><td><code>χ²(df, N = xxx) = x.xx, p = .xxx, V = .xx</code></td><td>Cramér's V: small=.1, medium=.3, large=.5</td></tr>
+        <tr><td>Mann-Whitney U</td><td><code>U = xxx, z = x.xx, p = .xxx, r = .xx</code></td><td>r = Z/√N: small=.1, medium=.3, large=.5</td></tr>
+        <tr><td>Wilcoxon Z</td><td><code>Z = x.xx, p = .xxx, r = .xx</code></td><td>r = Z/√N</td></tr>
+        <tr><td>Kruskal-Wallis H</td><td><code>H(df) = x.xx, p = .xxx</code></td><td>ε² = H / (n²−1)/(n+1)</td></tr>
+        <tr><td>Binary Logistic</td><td><code>OR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></td><td>Nagelkerke R²</td></tr>
+        <tr><td>Cox Regression</td><td><code>HR = x.xx, 95% CI [x.xx, x.xx], p = .xxx</code></td><td>HR (effect direction)</td></tr>
+        <tr><td>Linear Regression</td><td><code>R² = .xx, F(df₁,df₂) = x.xx, p = .xxx; B = x.xx, β = .xx, t(df) = x.xx, p = .xxx</code></td><td>R², f²: small=.02, medium=.15, large=.35</td></tr>
+        <tr><td>Cronbach's α</td><td>α = .xx (n items = xx)</td><td>≥.70 acceptable, ≥.80 good, ≥.90 excellent</td></tr>
+        <tr><td>ICC</td><td>ICC = .xx, 95% CI [.xx, .xx]</td><td>>.90 excellent, .75–.90 good</td></tr>
+      </table>
     </div>
-    <p style="opacity:.45;font-size:.8rem;margin-top:1rem">IBM SPSS Statistics reference guide for academic &amp; research use</p>
   </div>
-</div>
 
-<button class="stb" id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Scroll to top">&uarr;</button>
+  <div class="info-box">
+    <div class="box-title">ℹ️ General APA Rules for Statistics</div>
+    1. Always report exact p-values (e.g., p = .023), not just "p &lt; .05" — except when p &lt; .001.<br>
+    2. Always report an effect size alongside every significance test.<br>
+    3. Report test statistic, degrees of freedom, p-value, and effect size in one complete statement.<br>
+    4. Degrees of freedom appear in parentheses after the test statistic letter: F(2, 87), t(43), χ²(3).<br>
+    5. Use leading zeros for values that cannot exceed 1: p = .043 (not p = 0.043). No leading zero for r and β.
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="fc">
+    <div class="contact-heading"><span class="contact-phone-icon">📞</span><span>Contact</span></div>
+    <p class="contact-name">Monu Prajapati</p>
+    <p class="contact-role">Statistician | Biostatistician</p>
+    <div class="contact-cards">
+      <a class="contact-card" href="tel:+917433863551">
+        <div class="contact-card-icon">📱</div>
+        <div class="contact-card-label">Mobile</div>
+        <div class="contact-card-value">+91 7433863551</div>
+      </a>
+      <a class="contact-card contact-card-email" href="mailto:prajpapatimonu@gmail.com">
+        <div class="contact-card-icon">✉️</div>
+        <div class="contact-card-label">Email</div>
+        <div class="contact-card-value contact-email-link">prajpapatimonu@gmail.com</div>
+      </a>
+    </div>
+    <p class="contact-copy">© 2026 Monu Prajapati. All rights reserved.</p>
+    <p class="contact-legal">IBM SPSS is a registered trademark of IBM Corp. This guide is for educational purposes only.</p>
+  </div>
+</footer>
+
+<button class="stb" id="stb" aria-label="Scroll to top">↑</button>
 
 <script>
-// Nav: identical to Stata guide
-var burger=document.getElementById('burger'),nav=document.getElementById('mainNav');
-burger.addEventListener('click',function(){burger.classList.toggle('open');nav.classList.toggle('open');});
-document.querySelectorAll('.ni').forEach(function(n){
-  n.addEventListener('click',function(){
-    burger.classList.remove('open');nav.classList.remove('open');
-    document.querySelectorAll('.ni').forEach(function(x){x.classList.remove('active');});
-    document.querySelectorAll('.section').forEach(function(x){x.classList.remove('active');});
-    n.classList.add('active');
-    var t=document.getElementById(n.getAttribute('data-s'));
-    if(t)t.classList.add('active');
+const burger=document.getElementById('burger');
+const nav=document.getElementById('mainNav');
+
+burger.addEventListener('click',()=>{
+  burger.classList.toggle('open');
+  nav.classList.toggle('open');
+  document.body.style.overflow=nav.classList.contains('open')?'hidden':'';
+});
+
+document.addEventListener('click',(e)=>{
+  if(!nav.contains(e.target)&&!burger.contains(e.target)&&nav.classList.contains('open')){
+    burger.classList.remove('open');
+    nav.classList.remove('open');
+    document.body.style.overflow='';
+  }
+});
+
+document.querySelectorAll('.ni').forEach(item=>{
+  item.addEventListener('click',()=>{
+    const target=item.getAttribute('data-s');
+    document.querySelectorAll('.ni').forEach(n=>n.classList.remove('active'));
+    item.classList.add('active');
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(target).classList.add('active');
+    burger.classList.remove('open');
+    nav.classList.remove('open');
+    document.body.style.overflow='';
     window.scrollTo({top:0,behavior:'smooth'});
   });
 });
-document.addEventListener('click',function(e){
-  if(!burger.contains(e.target)&&!nav.contains(e.target)){burger.classList.remove('open');nav.classList.remove('open');}
+
+const sBtn=document.getElementById('sBtn');
+const sOverlay=document.getElementById('sOverlay');
+const sInput=document.getElementById('sInput');
+const sResults=document.getElementById('sResults');
+const sClose=document.getElementById('sClose');
+
+const searchIdx=[];
+document.querySelectorAll('.path-card').forEach(card=>{
+  const h4=card.querySelector('h4');
+  const path=card.querySelector('.path');
+  const section=card.closest('.section');
+  if(h4&&section){
+    const tags=Array.from(card.querySelectorAll('.tag')).map(t=>t.textContent).join(' ');
+    const desc=card.querySelector('.desc')?card.querySelector('.desc').textContent:'';
+    searchIdx.push({h:h4.innerText,p:path?path.innerText:'',desc:desc,sid:section.id,tags:tags});
+  }
 });
 
-// Scroll top
-var stb=document.getElementById('stb');
-window.addEventListener('scroll',function(){stb.classList.toggle('vis',window.scrollY>300);});
+function openSearch(){
+  sOverlay.classList.add('open');
+  sInput.value='';
+  sResults.innerHTML='<div class="se">Start typing to search…</div>';
+  sInput.focus();
+  document.body.style.overflow='hidden';
+}
 
-// Search
-var sBtn=document.getElementById('sBtn'),sOverlay=document.getElementById('sOverlay'),
-    sInput=document.getElementById('sInput'),sResults=document.getElementById('sResults'),
-    sClose=document.getElementById('sClose');
-var idx=[];
-document.querySelectorAll('.path-card').forEach(function(card){
-  var h=card.querySelector('h4')?card.querySelector('h4').innerText:'';
-  var d=card.querySelector('p')?card.querySelector('p').innerText:'';
-  var paths=Array.from(card.querySelectorAll('.path-step')).map(function(s){return s.innerText;}).join(' > ');
-  var sec=card.closest('.section');
-  var sid=sec?sec.id:'';
-  var sn=sec&&sec.querySelector('.section-title')?sec.querySelector('.section-title').innerText:sid;
-  if(h)idx.push({h:h,d:d,paths:paths,sid:sid,sn:sn,card:card});
+function closeSearch(){
+  sOverlay.classList.remove('open');
+  document.body.style.overflow='';
+}
+
+sBtn.addEventListener('click',openSearch);
+sClose.addEventListener('click',closeSearch);
+document.addEventListener('keydown',(e)=>{
+  if(e.key==='Escape'&&sOverlay.classList.contains('open'))closeSearch();
 });
-function openS(){sOverlay.classList.add('open');sInput.value='';sResults.innerHTML='<div class="se">Start typing to search&hellip;</div>';setTimeout(function(){sInput.focus();},80);}
-function closeS(){sOverlay.classList.remove('open');}
-sBtn.addEventListener('click',openS);
-sClose.addEventListener('click',closeS);
-sOverlay.addEventListener('click',function(e){if(e.target===sOverlay)closeS();});
-document.addEventListener('keydown',function(e){
-  if(e.key==='Escape')closeS();
-  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openS();}
+sOverlay.addEventListener('click',(e)=>{
+  if(e.target===sOverlay)closeSearch();
 });
-sInput.addEventListener('input',function(){
-  var q=this.value.trim().toLowerCase();
-  if(!q){sResults.innerHTML='<div class="se">Start typing to search&hellip;</div>';return;}
-  var hits=idx.filter(function(i){return i.h.toLowerCase().includes(q)||i.d.toLowerCase().includes(q)||i.paths.toLowerCase().includes(q);}).slice(0,12);
-  if(!hits.length){sResults.innerHTML='<div class="se">No results for "<strong>'+q+'</strong>"</div>';return;}
-  sResults.innerHTML=hits.map(function(h,i){
-    return '<div class="sri" data-idx="'+i+'"><div class="rt">'+h.h+'</div><div class="rs">&#128194; '+h.sn.replace(/^[^\w]+/,'')+'</div><div class="rd">'+h.paths+'</div></div>';
+
+sInput.addEventListener('input',(e)=>{
+  const q=e.target.value.toLowerCase().trim();
+  if(!q){sResults.innerHTML='<div class="se">Start typing to search…</div>';return;}
+  const matches=searchIdx.filter(d=>
+    d.h.toLowerCase().includes(q)||
+    d.p.toLowerCase().includes(q)||
+    d.tags.toLowerCase().includes(q)||
+    d.desc.toLowerCase().includes(q)
+  );
+  if(matches.length===0){sResults.innerHTML='<div class="se">No results found. Try different keywords.</div>';return;}
+  sResults.innerHTML=matches.map(d=>{
+    const tagHtml=d.tags?`<span class="tag tag-essential" style="font-size:.65rem">${d.tags.split(' ')[0]}</span>`:'';
+    return `<div class="sri" onclick="openSection('${d.sid}')" role="button" tabindex="0"><strong>${d.h}</strong><br><small>${d.p||d.desc}</small>${tagHtml}</div>`;
   }).join('');
-  sResults.querySelectorAll('.sri').forEach(function(el){
-    el.addEventListener('click',function(){
-      var i=parseInt(this.getAttribute('data-idx'));
-      var hit=hits[i];
-      document.querySelectorAll('.ni').forEach(function(n){n.classList.remove('active');});
-      document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active');});
-      var ts=document.getElementById(hit.sid);if(ts)ts.classList.add('active');
-      var tn=document.querySelector('[data-s="'+hit.sid+'"]');if(tn)tn.classList.add('active');
-      closeS();
-      setTimeout(function(){
-        hit.card.scrollIntoView({behavior:'smooth',block:'center'});
-        hit.card.style.borderColor='var(--a)';
-        setTimeout(function(){hit.card.style.borderColor='';},2000);
-      },300);
-    });
-  });
+});
+
+window.openSection=function(id){
+  const navItem=document.querySelector(`.ni[data-s="${id}"]`);
+  if(navItem){navItem.click();closeSearch();}
+};
+
+const stb=document.getElementById('stb');
+window.addEventListener('scroll',()=>{
+  stb.classList.toggle('vis',window.scrollY>400);
+},{passive:true});
+
+stb.addEventListener('click',()=>{
+  window.scrollTo({top:0,behavior:'smooth'});
+});
+
+document.addEventListener('keydown',(e)=>{
+  if(!sOverlay.classList.contains('open'))return;
+  const items=sResults.querySelectorAll('.sri');
+  const active=document.activeElement;
+  const activeIndex=Array.from(items).indexOf(active);
+  if(e.key==='ArrowDown'&&items.length>0){e.preventDefault();items[activeIndex<items.length-1?activeIndex+1:0].focus();}
+  else if(e.key==='ArrowUp'&&items.length>0){e.preventDefault();items[activeIndex>0?activeIndex-1:items.length-1].focus();}
+  else if(e.key==='Enter'&&active.classList.contains('sri'))active.click();
 });
 </script>
 </body>
